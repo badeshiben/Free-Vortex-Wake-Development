@@ -1,0 +1,7 @@
+# .gitignore file
+*.pyc
+Regularization_1/
+Regularization_2/
+Regularization_3/
+SampleOutputs/
+Wake_Discretization/
