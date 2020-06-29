@@ -43,41 +43,41 @@ True                   FLookup     Flag to indicate whether a lookup for f' will
 4                      InCol_Cm    - The column in the airfoil tables that contains the pitching-moment coefficient; use zero if there is no Cm column (-)
 0                      InCol_Cpmin - The column in the airfoil tables that contains the Cpmin coefficient; use zero if there is no Cpmin column (-)
 30                     NumAFfiles  - Number of airfoil files used (-)
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_00.dat"    AFNames            - Airfoil file names (NumAFfiles lines) (quoted strings)
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_01.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_02.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_03.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_04.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_05.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_06.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_07.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_08.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_09.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_10.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_11.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_12.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_13.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_14.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_15.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_16.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_17.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_18.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_19.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_20.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_21.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_22.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_23.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_24.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_25.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_26.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_27.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_28.dat"
-"Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_29.dat"
+"../../../common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_00.dat"    AFNames            - Airfoil file names (NumAFfiles lines) (quoted strings)
+"../../../common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_01.dat"
+"../../../common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_02.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_03.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_04.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_05.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_06.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_07.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_08.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_09.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_10.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_11.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_12.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_13.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_14.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_15.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_16.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_17.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_18.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_19.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_20.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_21.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_22.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_23.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_24.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_25.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_26.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_27.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_28.dat"
+"../../../common/OpenFAST_BAR_02_AeroDyn15_Polar_29.dat"
 ======  Rotor/Blade Properties  =====================================================================
 True                   UseBlCm     - Include aerodynamic pitching moment in calculations?  (flag)
-"OpenFAST_BAR_02_AeroDyn15_blade.dat" ADBlFile(1) - Name of file containing distributed aerodynamic properties for Blade #1 (-)
-"OpenFAST_BAR_02_AeroDyn15_blade.dat" ADBlFile(2) - Name of file containing distributed aerodynamic properties for Blade #2 (-) [unused if NumBl < 2]
-"OpenFAST_BAR_02_AeroDyn15_blade.dat" ADBlFile(3) - Name of file containing distributed aerodynamic properties for Blade #3 (-) [unused if NumBl < 3]
+"../../../common/OpenFAST_BAR_02_AeroDyn15_blade.dat" ADBlFile(1) - Name of file containing distributed aerodynamic properties for Blade #1 (-)
+"../../../common/OpenFAST_BAR_02_AeroDyn15_blade.dat" ADBlFile(2) - Name of file containing distributed aerodynamic properties for Blade #2 (-) [unused if NumBl < 2]
+"../../../common/OpenFAST_BAR_02_AeroDyn15_blade.dat" ADBlFile(3) - Name of file containing distributed aerodynamic properties for Blade #3 (-) [unused if NumBl < 3]
 ======  Tower Influence and Aerodynamics ============================================================= [used only when TwrPotent/=0, TwrShadow=True, or TwrAero=True]
 9                     NumTwrNds   - Number of tower nodes used in the analysis  (-) [used only when TwrPotent/=0, TwrShadow=True, or TwrAero=True]
 TwrElev        TwrDiam        TwrCd
