@@ -1,5 +1,20 @@
 # .gitignore file
 *.pyc
+*.out
+*.outb
+*.sum
+*.ech
+*.exe
+*.dll
+*.lin
+*.vtk
+fvw_vtk
+vtk
+*.bat
+*_Bkp
+*_bkp
+*_old
+*_Old
 Regularization_1/
 Regularization_2/
 Regularization_3/
