@@ -6,8 +6,6 @@ import weio
 from create_studies import study1, study2, study3, study4, study5, study6
 
 
-
-
 def genericStudy(study, ref_dir, work_dir, main_file):
     """ Generate OpenFAST inputs for wake discretization study
 
@@ -76,19 +74,32 @@ def genericStudy(study, ref_dir, work_dir, main_file):
 
     return fastfiles
 
+def createSubmit(fastfiles, FAST_EXE):
+    """creates submission script from fast filenames and FAST_EXE path"""
+    f = open(work_dir + "Submit.txt", "w")
+    f.write('# ! /bin/bash\n')
+    f.write('# SBATCH --time 4:00:00\n')
+    f.write('# SBATCH -A bar\n')
+    f.write('# SBATCH --ntasks=16\n')
+    f.write('module purge\n')
+    f.write('ml comp-intel mkl\n')
+    f.write('\n')
+    for file in fastfiles:
+        f.write('/home/banderso2/OLAF/build/glue-codes/openfast ' + file + ' > '+ file[:-3] + 'txt\n')
+    f.close()
+    return fastfiles
+
 if __name__=='__main__':
     # --- "Global" Parameters for this script
     study = study1
     ref_dir          = './BAR_02_template/'   # Folder where the fast input files are located (will be copied)
     main_file        = 'OpenFAST_BAR_02.fst'    # Main file in ref_dir, used as a template
     work_dir         = 'BAR_02_discretization_inputs/'+study['param']+'/'          # Output folder (will be created)
-
-    # Optional:
-    FAST_EXE         = '../bin/openfast2.3-dev_x64s-vc-dbgout.exe' # Location of a FAST exe (and dll)
-
+    FAST_EXE = '/home/banderso2/OLAF/build/glue-codes/openfast/openfast'
     # --- Generate inputs files
     fastfiles = genericStudy(study, ref_dir, work_dir, main_file)
     print(fastfiles)
+    createSubmit(fastfiles, FAST_EXE)
 
     # --- Creating a batch script
     # fastlib.writeBatch(os.path.join(work_dir,'_RUN_ALL.bat'),fastfiles,fastExe=FAST_EXE)

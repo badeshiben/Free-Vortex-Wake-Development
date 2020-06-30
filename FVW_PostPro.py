@@ -188,13 +188,12 @@ def run_study(WS, name, values):
     -------
     plots of % diff between results at current and finest resolution
     """
-    work_dir = 'SampleOutputs/'  # Output folder
-    ExampleFst = 'BAR/Main_OpenFAST_BAR_00.fst'  # Some kind of fst file to get radial data
+    work_dir = 'BAR_02_discretization_inputs/'  # Output folder
     for ws in WS:
         outFiles=[]
         for i, value in enumerate(values):
-            case     ='ws{:04.1f}_'.format(ws) + name + '{:06.4f}'.format(value)
-            filename = os.path.join(work_dir, case + '.outb' )
+            case     ='ws{:.0f}_'.format(ws) + name + '{:.3f}'.format(value)
+            filename = os.path.join(work_dir, case + '.out')
             outFiles.append(filename)
         dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
         dfAvg.insert(0,'Reg_[m]', values)
@@ -210,13 +209,13 @@ if __name__ == "__main__":
     studies = {
         'DTfvw': {
             'WS': [4, 6, 8, 10, 12],
-            'name': 'DTfvw',
+            'param': 'DTfvw',
             'values': np.linspace(0.5, 5, 3)
         }
     }
 
     for study in studies:
-        run_study(studies[study]['WS'], studies[study]['name'], studies[study]['values'])
+        run_study(studies[study]['WS'], studies[study]['param'], studies[study]['values'])
 
 
 

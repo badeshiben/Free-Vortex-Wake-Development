@@ -1,0 +1,32 @@
+# ! /bin/bash
+# SBATCH --time 4:00:00
+# SBATCH -A bar
+# SBATCH --ntasks=16
+module purge
+ml comp-intel mkl
+
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.018.fst > BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.018.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.027.fst > BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.027.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.036.fst > BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.036.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.036.fst > BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.036.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.036.fst > BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.036.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.036.fst > BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.036.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.053.fst > BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.053.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.071.fst > BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.071.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.072.fst > BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.072.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.072.fst > BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.072.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.053.fst > BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.053.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.080.fst > BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.080.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.107.fst > BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.107.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.108.fst > BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.108.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.108.fst > BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.108.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.071.fst > BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.071.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.107.fst > BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.107.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.142.fst > BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.142.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.144.fst > BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.144.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.144.fst > BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.144.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.089.fst > BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.089.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.134.fst > BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.134.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.178.fst > BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.178.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.180.fst > BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.180.txt
+/home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.180.fst > BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.180.txt
