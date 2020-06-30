@@ -208,7 +208,7 @@ def run_study(WS, name, values):
 
 if __name__ == "__main__":
     studies = {
-        'wake_discretization': {
+        'DTfvw': {
             'WS': [4, 6, 8, 10, 12],
             'name': 'DTfvw',
             'values': np.linspace(0.5, 5, 3)

@@ -1,7 +1,236 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="969ba336-3df3-42e0-84a1-d82894eabfb8" name="Default Changelist" comment="" />
+    <list default="true" id="969ba336-3df3-42e0-84a1-d82894eabfb8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/create_studies.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_GenerateInputs.py" beforeDir="false" afterPath="$PROJECT_DIR$/00_GenerateInputs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF00_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF01_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF02_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF03_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF04_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF05_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF06_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF07_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF08_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF09_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF10_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF11_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF12_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF13_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF14_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF15_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF16_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF17_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF18_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF19_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF20_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF21_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF22_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF23_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF24_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF25_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF26_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF27_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF28_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/AF29_Coords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_00.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_01.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_02.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_03.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_04.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_05.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_06.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_07.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_08.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_09.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_10.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_11.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_12.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_13.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_14.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_15.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_16.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_17.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_18.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_19.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_20.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_21.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_22.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_23.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_24.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_25.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_26.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_27.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_28.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_29.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_30.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_31.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_32.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_33.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_34.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_35.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_36.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_37.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_38.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_39.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_40.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_41.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_42.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_43.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_44.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_45.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_46.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_47.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_48.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_49.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_50.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_51.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_52.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_53.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_54.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_55.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_56.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_57.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_58.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_59.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_60.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_61.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_62.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_63.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_64.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_65.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_66.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_67.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_68.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_69.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_70.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_71.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_72.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_73.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_74.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_75.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_76.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_77.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_78.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_79.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_80.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_81.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_82.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_83.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_84.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_85.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_86.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_87.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_88.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_89.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_90.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_91.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_92.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_93.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_94.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_95.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_96.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_97.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_98.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Airfoils/OpenFAST_BAR_00_AeroDyn15_Polar_99.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/FVWInputs.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/Main_OpenFAST_BAR_00.fst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/OpenFAST_BAR_00_AeroDyn15.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/OpenFAST_BAR_00_AeroDyn15_blade.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/OpenFAST_BAR_00_DISCON.IN" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/OpenFAST_BAR_00_ElastoDyn.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/OpenFAST_BAR_00_ElastoDyn_blade.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/OpenFAST_BAR_00_ElastoDyn_tower.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/OpenFAST_BAR_00_InflowFile.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR/OpenFAST_BAR_00_ServoDyn.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/AD15.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/AD15.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS10/OpenFAST_BAR_02_ElastoDyn.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/case_dependent/WS10/OpenFAST_BAR_02_ElastoDyn.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS10/OpenFAST_BAR_02_InflowFile.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/case_dependent/WS10/OpenFAST_BAR_02_InflowFile.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS12/OpenFAST_BAR_02_ElastoDyn.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/case_dependent/WS12/OpenFAST_BAR_02_ElastoDyn.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS12/OpenFAST_BAR_02_InflowFile.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/case_dependent/WS12/OpenFAST_BAR_02_InflowFile.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS2/1DTfvw/OLAF.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS2/1DTfvw/OpenFAST_BAR_02.fst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS2/1DTfvw/OpenFAST_BAR_02_AeroDyn15.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS2/OpenFAST_BAR_02_ElastoDyn.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS2/OpenFAST_BAR_02_InflowFile.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS4/OpenFAST_BAR_02_ElastoDyn.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/case_dependent/WS4/OpenFAST_BAR_02_ElastoDyn.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS4/OpenFAST_BAR_02_InflowFile.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/case_dependent/WS4/OpenFAST_BAR_02_InflowFile.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS6/OpenFAST_BAR_02_ElastoDyn.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/case_dependent/WS6/OpenFAST_BAR_02_ElastoDyn.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS6/OpenFAST_BAR_02_InflowFile.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/case_dependent/WS6/OpenFAST_BAR_02_InflowFile.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS8/OpenFAST_BAR_02_ElastoDyn.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/case_dependent/WS8/OpenFAST_BAR_02_ElastoDyn.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS8/OpenFAST_BAR_02_InflowFile.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/case_dependent/WS8/OpenFAST_BAR_02_InflowFile.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF00_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF00_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF01_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF01_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF02_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF02_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF03_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF03_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF04_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF04_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF05_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF05_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF06_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF06_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF07_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF07_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF08_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF08_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF09_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF09_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF10_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF10_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF11_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF11_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF12_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF12_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF13_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF13_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF14_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF14_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF15_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF15_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF16_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF16_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF17_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF17_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF18_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF18_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF19_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF19_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF20_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF20_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF21_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF21_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF22_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF22_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF23_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF23_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF24_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF24_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF25_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF25_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF26_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF26_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF27_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF27_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF28_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF28_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/AF29_Coords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/AF29_Coords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_00.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_00.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_01.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_01.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_02.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_02.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_03.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_03.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_04.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_04.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_05.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_05.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_06.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_06.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_07.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_07.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_08.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_08.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_09.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_09.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_10.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_10.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_11.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_11.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_12.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_12.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_13.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_13.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_14.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_14.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_15.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_15.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_16.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_16.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_17.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_17.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_18.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_18.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_19.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_19.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_20.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_20.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_21.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_21.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_22.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_22.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_23.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_23.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_24.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_24.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_25.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_25.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_26.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_26.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_27.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_27.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_28.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_28.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_29.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_29.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/OpenFAST_BAR_02_AeroDyn15_blade.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/OpenFAST_BAR_02_AeroDyn15_blade.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/OpenFAST_BAR_02_BeamDyn.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/OpenFAST_BAR_02_BeamDyn.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/OpenFAST_BAR_02_BeamDyn_Blade.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/OpenFAST_BAR_02_BeamDyn_Blade.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/OpenFAST_BAR_02_Cp_Ct_Cq.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/OpenFAST_BAR_02_Cp_Ct_Cq.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/OpenFAST_BAR_02_DISCON.IN" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/OpenFAST_BAR_02_DISCON.IN" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/OpenFAST_BAR_02_ElastoDyn_blade.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/OpenFAST_BAR_02_ElastoDyn_blade.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/OpenFAST_BAR_02_ElastoDyn_tower.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/OpenFAST_BAR_02_ElastoDyn_tower.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_Discretization_Inputs/common/OpenFAST_BAR_02_ServoDyn.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_Discretization_Inputs_old_structure/common/OpenFAST_BAR_02_ServoDyn.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FVW_PostPro.py" beforeDir="false" afterPath="$PROJECT_DIR$/FVW_PostPro.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,11 +256,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS2/1DTfvw" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS2/2nNWPanel" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS2/2nNWPanel" />
       <recent name="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS2/1DTfvw" />
     </key>
   </component>
@@ -129,71 +359,73 @@
     </state>
     <state x="510" y="335" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1590792745199" />
     <state x="583" y="345" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593445856802" />
-    <state width="1899" height="286" key="GridCell.Tab.0.bottom" timestamp="1593445772478">
+    <state width="1899" height="227" key="GridCell.Tab.0.bottom" timestamp="1593526466440">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="200" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1593215518662" />
-    <state width="1899" height="286" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593445772478" />
+    <state width="1659" height="2" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1593486380952" />
+    <state width="1899" height="227" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593526466440" />
     <state width="1899" height="208" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1591990404593" />
     <state width="1659" height="322" key="GridCell.Tab.0.bottom/0.23.1680.947@0.23.1680.947" timestamp="1591995041862" />
-    <state width="1899" height="286" key="GridCell.Tab.0.center" timestamp="1593445772475">
+    <state width="1899" height="227" key="GridCell.Tab.0.center" timestamp="1593526466439">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="200" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1593215518661" />
-    <state width="1899" height="286" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593445772475" />
+    <state width="1659" height="2" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1593486380951" />
+    <state width="1899" height="227" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593526466439" />
     <state width="1899" height="208" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1591990404592" />
     <state width="1659" height="322" key="GridCell.Tab.0.center/0.23.1680.947@0.23.1680.947" timestamp="1591995041861" />
-    <state width="1899" height="286" key="GridCell.Tab.0.left" timestamp="1593445772474">
+    <state width="1899" height="227" key="GridCell.Tab.0.left" timestamp="1593526466438">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="200" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1593215518661" />
-    <state width="1899" height="286" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593445772474" />
+    <state width="1659" height="2" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1593486380951" />
+    <state width="1899" height="227" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593526466438" />
     <state width="1899" height="208" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1591990404591" />
     <state width="1659" height="322" key="GridCell.Tab.0.left/0.23.1680.947@0.23.1680.947" timestamp="1591995041860" />
-    <state width="1899" height="286" key="GridCell.Tab.0.right" timestamp="1593445772476">
+    <state width="1899" height="227" key="GridCell.Tab.0.right" timestamp="1593526466440">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="200" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1593215518662" />
-    <state width="1899" height="286" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593445772476" />
+    <state width="1659" height="2" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1593486380951" />
+    <state width="1899" height="227" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593526466440" />
     <state width="1899" height="208" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1591990404592" />
     <state width="1659" height="322" key="GridCell.Tab.0.right/0.23.1680.947@0.23.1680.947" timestamp="1591995041861" />
-    <state width="1659" height="347" key="GridCell.Tab.1.bottom" timestamp="1593215518656">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state width="1899" height="400" key="GridCell.Tab.1.bottom" timestamp="1593525524468">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="347" key="GridCell.Tab.1.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1593215518656" />
-    <state width="1899" height="332" key="GridCell.Tab.1.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1592349469238" />
+    <state width="1659" height="2" key="GridCell.Tab.1.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1593486380953" />
+    <state width="1899" height="400" key="GridCell.Tab.1.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593525524468" />
     <state width="1659" height="322" key="GridCell.Tab.1.bottom/0.23.1680.947@0.23.1680.947" timestamp="1591995041865" />
-    <state width="1659" height="347" key="GridCell.Tab.1.center" timestamp="1593215518655">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state width="1899" height="400" key="GridCell.Tab.1.center" timestamp="1593525524467">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="347" key="GridCell.Tab.1.center/0.0.1680.1050@0.0.1680.1050" timestamp="1593215518655" />
-    <state width="1899" height="332" key="GridCell.Tab.1.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1592349469237" />
+    <state width="1659" height="2" key="GridCell.Tab.1.center/0.0.1680.1050@0.0.1680.1050" timestamp="1593486380952" />
+    <state width="1899" height="400" key="GridCell.Tab.1.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593525524467" />
     <state width="1659" height="322" key="GridCell.Tab.1.center/0.23.1680.947@0.23.1680.947" timestamp="1591995041864" />
-    <state width="1659" height="347" key="GridCell.Tab.1.left" timestamp="1593215518655">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state width="1899" height="400" key="GridCell.Tab.1.left" timestamp="1593525524466">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="347" key="GridCell.Tab.1.left/0.0.1680.1050@0.0.1680.1050" timestamp="1593215518655" />
-    <state width="1899" height="332" key="GridCell.Tab.1.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1592349469235" />
+    <state width="1659" height="2" key="GridCell.Tab.1.left/0.0.1680.1050@0.0.1680.1050" timestamp="1593486380952" />
+    <state width="1899" height="400" key="GridCell.Tab.1.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593525524466" />
     <state width="1659" height="322" key="GridCell.Tab.1.left/0.23.1680.947@0.23.1680.947" timestamp="1591995041864" />
-    <state width="1659" height="347" key="GridCell.Tab.1.right" timestamp="1593215518655">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state width="1899" height="400" key="GridCell.Tab.1.right" timestamp="1593525524467">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="347" key="GridCell.Tab.1.right/0.0.1680.1050@0.0.1680.1050" timestamp="1593215518655" />
-    <state width="1899" height="332" key="GridCell.Tab.1.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1592349469238" />
+    <state width="1659" height="2" key="GridCell.Tab.1.right/0.0.1680.1050@0.0.1680.1050" timestamp="1593486380952" />
+    <state width="1899" height="400" key="GridCell.Tab.1.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593525524467" />
     <state width="1659" height="322" key="GridCell.Tab.1.right/0.23.1680.947@0.23.1680.947" timestamp="1591995041865" />
     <state x="341" y="164" width="1201" height="722" key="SettingsEditor" timestamp="1590794244792">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="341" y="164" width="1201" height="722" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1590794244792" />
-    <state width="840" height="525" key="XDebugger.FullValuePopup" timestamp="1593213450284">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="840" height="525" key="XDebugger.FullValuePopup/0.0.1680.1050@0.0.1680.1050" timestamp="1593213450284" />
-    <state x="591" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1593445281048">
+    <state width="960" height="540" key="XDebugger.FullValuePopup" timestamp="1593525435481">
       <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="840" height="525" key="XDebugger.FullValuePopup/0.0.1680.1050@0.0.1680.1050" timestamp="1593462781840" />
+    <state width="960" height="540" key="XDebugger.FullValuePopup/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593525435481" />
+    <state x="517" y="372" key="com.intellij.ide.util.TipDialog" timestamp="1593516670753">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="517" y="357" key="com.intellij.ide.util.TipDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1593212492912" />
     <state x="591" y="367" key="com.intellij.ide.util.TipDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593445281048" />
+    <state x="517" y="372" key="com.intellij.ide.util.TipDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1593516670753" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -204,16 +436,18 @@
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/FVW_PostPro.py</url>
-          <line>217</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/FVW_PostPro.py</url>
-          <line>218</line>
-          <option name="timeStamp" value="27" />
+          <url>file://$PROJECT_DIR$/fastlib.py</url>
+          <line>481</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
 </project>
