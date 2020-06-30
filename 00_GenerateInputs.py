@@ -3,7 +3,9 @@ import os
 import pandas as pd
 import fastlib
 import weio
-from create_studies import study1
+from create_studies import study1, study2, study3, study4, study5, study6
+
+
 
 
 def genericStudy(study, ref_dir, work_dir, main_file):
@@ -63,7 +65,7 @@ def genericStudy(study, ref_dir, work_dir, main_file):
             p['AeroFile|FVWFile|'+study['param']]   = val
 
             # Name used for inputs files
-            p['__name__']='ws{:.0f}_'.format(wsp)+study['param']+'{:.4f}'.format(val)
+            p['__name__']='ws{:.0f}_'.format(wsp)+study['param']+'{:.3f}'.format(val)
 
             PARAMS.append(p)
 

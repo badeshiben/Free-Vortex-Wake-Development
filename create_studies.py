@@ -6,7 +6,7 @@ RPM = np.array([3.894, 5.846, 7.771, 7.881, 7.881])
 rotSpd = RPM * 0.104719755  # rad/s
 dpsi = np.array([2.5, 5, 7.5, 10, 12.5, 15]) * np.pi / 180  # rad
 Pitch = [0, 0, 0, 6.585, 10.161]  # deg
-DTfvw = np.outer(dpsi, rotSpd).tolist()
+DTfvw = np.round(np.outer(dpsi, rotSpd), decimals=3).tolist()
 study1 = {
         'param' : 'DTfvw',
         'WS'    : WS,
@@ -19,13 +19,13 @@ study1 = {
 NWE = np.array([30, 60, 120, 180, 240, 300, 360, 540, 720, 1080, 1440, 1800, 2160, 2520]) * np.pi / 180
 DTfvw = np.array([1, 1, 1, 1, 2])  # TODO from previous study
 prod = DTfvw * rotSpd
-nNWPanel = np.outer(NWE, 1 / prod).tolist()
+nNWPanel = np.round(np.outer(NWE, 1 / prod), decimals=3).tolist()
 study2 = {
         'param' : 'nNWPanel',
         'WS'    : WS,
         'RPM'   : RPM,
         'pitch' : Pitch,
-        'values': DTfvw
+        'values': nNWPanel
     }
 
 """study 3: WakeLength"""
@@ -33,13 +33,13 @@ FWE = np.array([231, 308, 385, 462, 539, 616, 693, 770, 847, 924])  # m
 dpsi = np.array([1, 1, 1, 1, 2])  # TODO from previous study
 nNWPanel = [1, 1, 1, 1, 1]  # todo from previous study
 part = rotSpd / WS / dpsi
-WakeLength = np.outer(FWE, part).tolist()
+WakeLength = np.round(np.outer(FWE, part), decimals=3).tolist()
 study3 = {
         'param' : 'WakeLength',
         'WS'    : WS,
         'RPM'   : RPM,
         'pitch' : Pitch,
-        'values': DTfvw
+        'values': WakeLength
     }
 
 """study 4: WakeRegFactor"""
@@ -49,7 +49,7 @@ study4 = {
         'WS'    : WS,
         'RPM'   : RPM,
         'pitch' : Pitch,
-        'values': DTfvw
+        'values': WakeRegFactor
     }
 
 """study 5: WingRegFactor"""
@@ -60,7 +60,7 @@ study5 = {
         'WS'    : WS,
         'RPM'   : RPM,
         'pitch' : Pitch,
-        'values': DTfvw
+        'values': WingRegFactor
     }
 """study 6: """
 WS = [4, 12]
@@ -73,5 +73,5 @@ study6 = {
         'WS'    : WS,
         'RPM'   : RPM,
         'pitch' : Pitch,
-        'values': DTfvw
+        'values': CoreSpreadEddyVisc
     }
