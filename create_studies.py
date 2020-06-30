@@ -6,7 +6,7 @@ RPM = np.array([3.894, 5.846, 7.771, 7.881, 7.881])
 rotSpd = RPM * 0.104719755  # rad/s
 dpsi = np.array([2.5, 5, 7.5, 10, 12.5, 15]) * np.pi / 180  # rad
 Pitch = [0, 0, 0, 6.585, 10.161]  # deg
-DTfvw = np.round(np.outer(dpsi, rotSpd), decimals=3).tolist()
+DTfvw = np.round(np.outer(dpsi, rotSpd), decimals=3)
 study1 = {
         'param' : 'DTfvw',
         'WS'    : WS,
@@ -19,7 +19,7 @@ study1 = {
 NWE = np.array([30, 60, 120, 180, 240, 300, 360, 540, 720, 1080, 1440, 1800, 2160, 2520]) * np.pi / 180
 DTfvw = np.array([1, 1, 1, 1, 2])  # TODO from previous study
 prod = DTfvw * rotSpd
-nNWPanel = np.round(np.outer(NWE, 1 / prod), decimals=3).tolist()
+nNWPanel = np.round(np.outer(NWE, 1 / prod), decimals=3)
 study2 = {
         'param' : 'nNWPanel',
         'WS'    : WS,
@@ -33,7 +33,7 @@ FWE = np.array([231, 308, 385, 462, 539, 616, 693, 770, 847, 924])  # m
 dpsi = np.array([1, 1, 1, 1, 2])  # TODO from previous study
 nNWPanel = [1, 1, 1, 1, 1]  # todo from previous study
 part = rotSpd / WS / dpsi
-WakeLength = np.round(np.outer(FWE, part), decimals=3).tolist()
+WakeLength = np.round(np.outer(FWE, part), decimals=3)
 study3 = {
         'param' : 'WakeLength',
         'WS'    : WS,
@@ -43,7 +43,7 @@ study3 = {
     }
 
 """study 4: WakeRegFactor"""
-WakeRegFactor = [0, 0.1, 0.5, 1, 1.5, 2, 2.5, 3, 5]
+WakeRegFactor = np.array([0, 0.1, 0.5, 1, 1.5, 2, 2.5, 3, 5])
 study4 = {
         'param' : 'WakeRegFactor',
         'WS'    : WS,
@@ -53,7 +53,7 @@ study4 = {
     }
 
 """study 5: WingRegFactor"""
-WingRegFactor = [0, 0.1, 0.5, 1, 1.5, 2, 2.5, 3, 5]
+WingRegFactor = np.array([0, 0.1, 0.5, 1, 1.5, 2, 2.5, 3, 5])
 WakeRegFactor = 2 #todo from previous study
 study5 = {
         'param' : 'WingRegFactor',
@@ -67,7 +67,7 @@ WS = [4, 12]
 RPM = np.array([3.894, 7.881])
 rotSpd = RPM * 0.104719755  # rad/s
 Pitch = [0, 0.161]  # deg
-CoreSpreadEddyVisc = [100, 500, 1000, 5000]
+CoreSpreadEddyVisc = np.array([100, 500, 1000, 5000])
 study6 = {
         'param' : 'CoreSpreadEddyVisc',
         'WS'    : WS,

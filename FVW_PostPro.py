@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import fastlib
+from create_studies import study1, study2, study3, study4, study5, study6
 import weio
 
 
@@ -189,16 +190,17 @@ def run_study(WS, name, values):
     plots of % diff between results at current and finest resolution
     """
     work_dir = 'BAR_02_discretization_inputs/'  # Output folder
-    for ws in WS:
+    for wsp in WS:
+        i = WS.index(wsp)
         outFiles=[]
-        for i, value in enumerate(values):
-            case     ='ws{:.0f}_'.format(ws) + name + '{:.3f}'.format(value)
+        for val in values:
+            case     ='ws{:.0f}_'.format(wsp)+study['param']+'{:.3f}'.format(val[i])
             filename = os.path.join(work_dir, case + '.out')
             outFiles.append(filename)
         dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
         dfAvg.insert(0,'Reg_[m]', values)
         # --- Save to csv since step above can be expensive
-        dfAvg.to_csv('Results_ws{:04.1f}_'.format(ws) + name + '.csv', sep='\t', index=False)
+        dfAvg.to_csv('Results_ws{:04.1f}_'.format(wsp) + name + '.csv', sep='\t', index=False)
         #print(dfAvg)
     resolution_raw('Reg_[m]', WS, 2)
     resolution_pDiff('Reg_[m]', WS, 2)
@@ -206,16 +208,10 @@ def run_study(WS, name, values):
 
 
 if __name__ == "__main__":
-    studies = {
-        'DTfvw': {
-            'WS': [4, 6, 8, 10, 12],
-            'param': 'DTfvw',
-            'values': np.linspace(0.5, 5, 3)
-        }
-    }
+    studies = [study1, study2, study3, study4, study5, study6]
 
     for study in studies:
-        run_study(studies[study]['WS'], studies[study]['param'], studies[study]['values'])
+        run_study(study['WS'], study['param'], study['values'])
 
 
 
