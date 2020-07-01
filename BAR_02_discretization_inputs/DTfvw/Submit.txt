@@ -12,6 +12,7 @@ ml comp-intel mkl
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.521.fst > BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.521.txt
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.625.fst > BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.625.txt
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.076.fst > BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.076.txt
+
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.152.fst > BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.152.txt
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.227.fst > BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.227.txt
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.303.fst > BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.303.txt
@@ -20,6 +21,7 @@ ml comp-intel mkl
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.056.fst > BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.056.txt
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.111.fst > BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.111.txt
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.167.fst > BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.167.txt
+
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.222.fst > BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.222.txt
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.278.fst > BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.278.txt
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.333.fst > BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.333.txt
@@ -29,6 +31,7 @@ ml comp-intel mkl
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.213.fst > BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.213.txt
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.266.fst > BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.266.txt
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.319.fst > BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.319.txt
+
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.053.fst > BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.053.txt
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.106.fst > BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.106.txt
 /home/banderso2/OLAF/build/glue-codes/openfast BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.159.fst > BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.159.txt

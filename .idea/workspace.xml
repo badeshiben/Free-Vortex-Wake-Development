@@ -3,170 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="969ba336-3df3-42e0-84a1-d82894eabfb8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF00_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF01_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF02_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF03_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF04_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF05_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF06_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF07_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF08_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF09_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF10_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF11_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF12_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF13_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF14_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF15_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF16_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF17_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF18_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF19_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF20_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF21_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF22_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF23_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF24_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF25_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF26_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF27_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF28_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/AF29_Coords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_00.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_01.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_02.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_03.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_04.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_05.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_06.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_07.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_08.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_09.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_10.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_11.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_12.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_13.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_14.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_15.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_16.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_17.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_18.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_19.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_20.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_21.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_22.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_23.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_24.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_25.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_26.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_27.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_28.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Airfoils/OpenFAST_BAR_02_AeroDyn15_Polar_29.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws10_DTfvw0.071.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws10_DTfvw0.107.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws10_DTfvw0.142.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws10_DTfvw0.144.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws12_DTfvw0.089.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws12_DTfvw0.134.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws12_DTfvw0.178.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws12_DTfvw0.180.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws4_DTfvw0.018.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws4_DTfvw0.027.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws4_DTfvw0.036.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws6_DTfvw0.036.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws6_DTfvw0.053.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws6_DTfvw0.071.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws6_DTfvw0.072.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws8_DTfvw0.053.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws8_DTfvw0.080.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws8_DTfvw0.107.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OLAF_ws8_DTfvw0.108.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_blade.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws10_DTfvw0.071.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws10_DTfvw0.107.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws10_DTfvw0.142.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws10_DTfvw0.144.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws12_DTfvw0.089.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws12_DTfvw0.134.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws12_DTfvw0.178.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws12_DTfvw0.180.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws4_DTfvw0.018.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws4_DTfvw0.027.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws4_DTfvw0.036.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws6_DTfvw0.036.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws6_DTfvw0.053.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws6_DTfvw0.071.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws6_DTfvw0.072.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws8_DTfvw0.053.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws8_DTfvw0.080.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws8_DTfvw0.107.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_AeroDyn15_ws8_DTfvw0.108.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_BeamDyn.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_BeamDyn_Blade.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_Cp_Ct_Cq.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_DISCON.IN" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_blade.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_tower.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws10_DTfvw0.071.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws10_DTfvw0.107.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws10_DTfvw0.142.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws10_DTfvw0.144.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws12_DTfvw0.089.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws12_DTfvw0.134.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws12_DTfvw0.178.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws12_DTfvw0.180.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws4_DTfvw0.018.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws4_DTfvw0.027.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws4_DTfvw0.036.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws6_DTfvw0.036.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws6_DTfvw0.053.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws6_DTfvw0.071.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws6_DTfvw0.072.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws8_DTfvw0.053.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws8_DTfvw0.080.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws8_DTfvw0.107.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ElastoDyn_ws8_DTfvw0.108.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws10_DTfvw0.071.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws10_DTfvw0.107.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws10_DTfvw0.142.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws10_DTfvw0.144.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws12_DTfvw0.089.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws12_DTfvw0.134.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws12_DTfvw0.178.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws12_DTfvw0.180.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws4_DTfvw0.018.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws4_DTfvw0.027.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws4_DTfvw0.036.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws6_DTfvw0.036.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws6_DTfvw0.053.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws6_DTfvw0.071.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws6_DTfvw0.072.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws8_DTfvw0.053.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws8_DTfvw0.080.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws8_DTfvw0.107.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_InflowFile_ws8_DTfvw0.108.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/OpenFAST_BAR_02_ServoDyn.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Submit.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.071.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.107.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.142.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.144.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.089.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.134.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.178.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws12_DTfvw0.180.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.018.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.027.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws4_DTfvw0.036.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.036.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.053.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.071.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws6_DTfvw0.072.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.053.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.080.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.107.fst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/ws8_DTfvw0.108.fst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Submit.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_discretization_inputs/DTfvw/Submit.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_template/OLAF.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_template/OLAF.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02.fst" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02.fst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02_AeroDyn15.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02_AeroDyn15.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02_BeamDyn.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02_BeamDyn.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02_ElastoDyn.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02_ElastoDyn.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02_InflowFile.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02_InflowFile.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02_ServoDyn.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/create_studies.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_studies.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -203,7 +47,7 @@
       <recent name="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS2/1DTfvw" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.FVW_GenerateInputs">
+  <component name="RunManager" selected="Python.create_studies">
     <configuration name="01_PostPro" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Parametric" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -309,67 +153,67 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="347" y="192" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593549782647">
+    <state x="347" y="192" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593643771037">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1591023518726" />
-    <state x="347" y="192" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593549782647" />
+    <state x="347" y="192" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593643771037" />
     <state x="583" y="345" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1593445856802">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="510" y="335" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1590792745199" />
     <state x="583" y="345" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593445856802" />
-    <state width="1899" height="319" key="GridCell.Tab.0.bottom" timestamp="1593549785849">
+    <state width="1899" height="341" key="GridCell.Tab.0.bottom" timestamp="1593644958464">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="230" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1593534932767" />
-    <state width="1899" height="319" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593549785849" />
+    <state width="1899" height="319" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900914" />
+    <state width="1899" height="341" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593644958464" />
     <state width="1899" height="208" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1591990404593" />
     <state width="1659" height="322" key="GridCell.Tab.0.bottom/0.23.1680.947@0.23.1680.947" timestamp="1591995041862" />
-    <state width="1899" height="319" key="GridCell.Tab.0.center" timestamp="1593549785848">
+    <state width="1899" height="341" key="GridCell.Tab.0.center" timestamp="1593644958463">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="230" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1593534932766" />
-    <state width="1899" height="319" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593549785848" />
+    <state width="1899" height="319" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900913" />
+    <state width="1899" height="341" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593644958463" />
     <state width="1899" height="208" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1591990404592" />
     <state width="1659" height="322" key="GridCell.Tab.0.center/0.23.1680.947@0.23.1680.947" timestamp="1591995041861" />
-    <state width="1899" height="319" key="GridCell.Tab.0.left" timestamp="1593549785847">
+    <state width="1899" height="341" key="GridCell.Tab.0.left" timestamp="1593644958463">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="230" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1593534932765" />
-    <state width="1899" height="319" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593549785847" />
+    <state width="1899" height="319" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900912" />
+    <state width="1899" height="341" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593644958463" />
     <state width="1899" height="208" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1591990404591" />
     <state width="1659" height="322" key="GridCell.Tab.0.left/0.23.1680.947@0.23.1680.947" timestamp="1591995041860" />
-    <state width="1899" height="319" key="GridCell.Tab.0.right" timestamp="1593549785849">
+    <state width="1899" height="341" key="GridCell.Tab.0.right" timestamp="1593644958464">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="230" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1593534932766" />
-    <state width="1899" height="319" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593549785849" />
+    <state width="1899" height="319" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900913" />
+    <state width="1899" height="341" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593644958464" />
     <state width="1899" height="208" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1591990404592" />
     <state width="1659" height="322" key="GridCell.Tab.0.right/0.23.1680.947@0.23.1680.947" timestamp="1591995041861" />
-    <state width="1899" height="319" key="GridCell.Tab.1.bottom" timestamp="1593549785852">
+    <state width="1899" height="341" key="GridCell.Tab.1.bottom" timestamp="1593644958817">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="230" key="GridCell.Tab.1.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1593534922937" />
-    <state width="1899" height="319" key="GridCell.Tab.1.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593549785852" />
+    <state width="1899" height="319" key="GridCell.Tab.1.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900916" />
+    <state width="1899" height="341" key="GridCell.Tab.1.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593644958817" />
     <state width="1659" height="322" key="GridCell.Tab.1.bottom/0.23.1680.947@0.23.1680.947" timestamp="1591995041865" />
-    <state width="1899" height="319" key="GridCell.Tab.1.center" timestamp="1593549785850">
+    <state width="1899" height="341" key="GridCell.Tab.1.center" timestamp="1593644958816">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="230" key="GridCell.Tab.1.center/0.0.1680.1050@0.0.1680.1050" timestamp="1593534922936" />
-    <state width="1899" height="319" key="GridCell.Tab.1.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593549785850" />
+    <state width="1899" height="319" key="GridCell.Tab.1.center/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900915" />
+    <state width="1899" height="341" key="GridCell.Tab.1.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593644958816" />
     <state width="1659" height="322" key="GridCell.Tab.1.center/0.23.1680.947@0.23.1680.947" timestamp="1591995041864" />
-    <state width="1899" height="319" key="GridCell.Tab.1.left" timestamp="1593549785850">
+    <state width="1899" height="341" key="GridCell.Tab.1.left" timestamp="1593644958815">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="230" key="GridCell.Tab.1.left/0.0.1680.1050@0.0.1680.1050" timestamp="1593534922936" />
-    <state width="1899" height="319" key="GridCell.Tab.1.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593549785850" />
+    <state width="1899" height="319" key="GridCell.Tab.1.left/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900914" />
+    <state width="1899" height="341" key="GridCell.Tab.1.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593644958815" />
     <state width="1659" height="322" key="GridCell.Tab.1.left/0.23.1680.947@0.23.1680.947" timestamp="1591995041864" />
-    <state width="1899" height="319" key="GridCell.Tab.1.right" timestamp="1593549785851">
+    <state width="1899" height="341" key="GridCell.Tab.1.right" timestamp="1593644958816">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1659" height="230" key="GridCell.Tab.1.right/0.0.1680.1050@0.0.1680.1050" timestamp="1593534922936" />
-    <state width="1899" height="319" key="GridCell.Tab.1.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593549785851" />
+    <state width="1899" height="319" key="GridCell.Tab.1.right/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900915" />
+    <state width="1899" height="341" key="GridCell.Tab.1.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593644958816" />
     <state width="1659" height="322" key="GridCell.Tab.1.right/0.23.1680.947@0.23.1680.947" timestamp="1591995041865" />
     <state x="341" y="164" width="1201" height="722" key="SettingsEditor" timestamp="1590794244792">
       <screen x="0" y="0" width="1680" height="1050" />
@@ -380,11 +224,12 @@
     </state>
     <state width="840" height="525" key="XDebugger.FullValuePopup/0.0.1680.1050@0.0.1680.1050" timestamp="1593462781840" />
     <state width="960" height="540" key="XDebugger.FullValuePopup/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593548284357" />
-    <state x="517" y="372" key="com.intellij.ide.util.TipDialog" timestamp="1593516670753">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state x="591" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1593644370349">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="517" y="357" key="com.intellij.ide.util.TipDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1593212492912" />
-    <state x="591" y="367" key="com.intellij.ide.util.TipDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593445281048" />
+    <state x="591" y="367" key="com.intellij.ide.util.TipDialog/0.0.1920.1080/-1920.-315.1920.1080/-1680.765.1680.1050@0.0.1920.1080" timestamp="1593623513820" />
+    <state x="591" y="367" key="com.intellij.ide.util.TipDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593644370349" />
     <state x="517" y="372" key="com.intellij.ide.util.TipDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1593516670753" />
   </component>
   <component name="XDebuggerManager">
@@ -405,6 +250,11 @@
           <line>55</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/create_studies.py</url>
+          <line>129</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -418,6 +268,8 @@
       <configuration name="PythonConfigurationType">
         <watch expression="study" />
         <watch expression="study5" />
+        <watch expression="CoreSpreadEddyVisc" />
+        <watch expression="study3" />
       </configuration>
     </watches-manager>
   </component>
