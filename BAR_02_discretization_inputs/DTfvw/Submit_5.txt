@@ -1,20 +1,20 @@
 #! /bin/bash
-# SBATCH --job-name=FVWcheck                     # Job name
-# SBATCH --time 0:05:00
-# SBATCH -A bar
-# SBATCH --nodes=1                               # Number of nodes
-# SBATCH --ntasks-per-node=36                    # Number of processors per node
-# SBATCH -o slurm-%x-%j.log                      # Output
+#SBATCH --job-name=FVWcheck                     # Job name
+#SBATCH --time 0:05:00
+#SBATCH -A bar
+#SBATCH --nodes=1                               # Number of nodes
+#SBATCH --ntasks-per-node=36                    # Number of processors per node
+#SBATCH -o slurm-%x-%j.log                      # Output
 
 module purge
 ml comp-intel mkl
 
-/home/banderso2/OLAF/build/glue-codes/openfast/openfast BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.159.fst
+/home/banderso2/OLAF/build/glue-codes/openfast/openfast ws10_DTfvw0.159.fst
 &
-/home/banderso2/OLAF/build/glue-codes/openfast/openfast BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.213.fst
+/home/banderso2/OLAF/build/glue-codes/openfast/openfast ws10_DTfvw0.213.fst
 &
-/home/banderso2/OLAF/build/glue-codes/openfast/openfast BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.266.fst
+/home/banderso2/OLAF/build/glue-codes/openfast/openfast ws10_DTfvw0.266.fst
 &
-/home/banderso2/OLAF/build/glue-codes/openfast/openfast BAR_02_discretization_inputs/DTfvw/ws10_DTfvw0.319.fst
+/home/banderso2/OLAF/build/glue-codes/openfast/openfast ws10_DTfvw0.319.fst
 &
 wait
