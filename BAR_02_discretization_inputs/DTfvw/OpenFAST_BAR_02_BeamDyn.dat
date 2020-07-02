@@ -1,7 +1,7 @@
 --------- BEAMDYN with OpenFAST INPUT FILE -------------------------------------------
 Generated with AeroElasticSE FAST driver
 ---------------------- SIMULATION CONTROL --------------------------------------
-True                   Echo        - Echo input data to "<RootName>.ech" (flag)
+False                   Echo        - Echo input data to "<RootName>.ech" (flag)
 True                   QuasiStaticInit - Use quasistatic pre-conditioning with centripetal accelerations in initialization (flag) [dynamic solve only]
 0                      rhoinf      - Numerical damping parameter for generalized-alpha integrator
 2                      quadrature  - Quadrature method: 1=Gaussian; 2=Trapezoidal (switch)
@@ -20,8 +20,8 @@ True                   RotStates   - Orient states in the rotating frame during 
 1                      member_total - Total number of members (-)
 50                     kp_total    - Total number of key points (-) [must be at least 3]
 1 50                               - Member number; Number of key points in this member
-        kp_xr                 kp_yr                 kp_zr             initial_twist    
-         (m)                   (m)                   (m)                  (deg)        
+        kp_xr                 kp_yr                 kp_zr             initial_twist
+         (m)                   (m)                   (m)                  (deg)
 -0.00000000000000e+00  0.00000000000000e+00  0.00000000000000e+00  2.00020000000000e+01
  0.00000000000000e+00  0.00000000000000e+00  2.04074000000000e+00  1.85638000000000e+01
  0.00000000000000e+00  0.00000000000000e+00  4.08148000000000e+00  1.71588000000000e+01

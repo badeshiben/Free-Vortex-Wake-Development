@@ -11,7 +11,7 @@ False         Echo          - Echo input data to <RootName>.ech (flag)
 ================== Parameters for Steady Wind Conditions [used only for WindType = 1] =========================
 12            HWindSpeed    - Horizontal windspeed (m/s)
 140.0         RefHtT1       - Reference height for horizontal wind speed (m)
-0.2           PLexp         - Power law exponent (-)
+0             PLexp         - Power law exponent (-)
 ================== Parameters for Uniform wind file   [used only for WindType = 2] ============================
 "/Users/pbortolo/work/2_openfast/BAR/OpenFAST_Models/BAR_00/Wind/140m_12mps.bts" FilenameT2    - Filename of time series data for uniform wind field. (-)
 140.0         RefHtT2       - Reference height for horizontal wind speed (m)

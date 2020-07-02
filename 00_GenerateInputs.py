@@ -10,15 +10,20 @@ def genericStudy(study, ref_dir, work_dir, main_file):
     """ Generate OpenFAST inputs for wake discretization study
 
     INPUTS:
-       - study      : dictionary containing:
-            Param   : Parameter name [str]
-            WS      : lists of wind speeds [m/s]
-            RPM     : list of RPMs
-            pitch   : list of pitches [deg]
-            values  : array of parameter values
-       - ref_dir    : Folder where the fast input files are located (will be copied)
-       - main_file  : Main file in ref_dir, used as a template
-       - work_dir   : Output folder (will be created)
+       - study                            : dictionary containing:
+            Param                         : Varied parameter name [str]
+            WS                            : lists of wind speeds [m/s]
+            RPM                           : list of RPMs
+            pitch                         : list of pitches [deg]
+            DTfvw                         : array of DTfvw
+            nNWPanel                      : array of nNWPanel
+            WakeLength                    : array of WakeLength
+            WakeRegFactor                 : array of WakeRegFactor
+            WingRegFactor                 : array of WingRegFactor
+            CoreSpreadEddyVisc            : array of CoreSpreadEddyVisc
+       - ref_dir                          : Folder where the fast input files are located (will be copied)
+       - main_file                        : Main file in ref_dir, used as a template
+       - work_dir                         : Output folder (will be created)
 
 
     This script uses a reference directory (`ref_dir`) which contains a reference input file (.fst)
@@ -46,29 +51,35 @@ def genericStudy(study, ref_dir, work_dir, main_file):
     BaseDict['AeroFile|WakeMod']=3
     BaseDict['AeroFile|FVWFile|RegFunction'] = 3   # Vatistas
     BaseDict['AeroFile|FVWFile|RegDeterMethod'] = 0  # manual(0), not auto(1), we vary the RegParam
-
-
     # --- Defining the parametric study, parameters that changes (list of dictionnaries with keys as FAST parameters)
     PARAMS=[]
     j = 0
     for wsp,rpm,pitch in zip(study['WS'], study['RPM'], study['pitch']): # here we zip since these are combined parameters
-        for val in study['values'][j]:
+        k = 0
+        for DTfvw, nNWP, WL, WaRF, WiRF, CSEV in zip(study['DTfvw'][j], study['nNWPanel'][j], study['WakeLength'][j],\
+                                                     study['WakeRegFactor'][j], study['WingRegFactor'][j], study['CoreSpreadEddyVisc'][j]):
             p=BaseDict.copy() # Important, create a copy for each simulation
             # Parameters for one simulation
-            p['EDFile|RotSpeed']       = rpm
-            p['EDFile|BlPitch(1)']     = pitch
-            p['EDFile|BlPitch(2)']     = pitch
-            p['EDFile|BlPitch(3)']     = pitch
-            p['InflowFile|HWindSpeed'] = wsp
-            p['AeroFile|FVWFile|'+study['param']]   = val
+            p['EDFile|RotSpeed']        = rpm
+            p['EDFile|BlPitch(1)']      = pitch
+            p['EDFile|BlPitch(2)']      = pitch
+            p['EDFile|BlPitch(3)']      = pitch
+            p['InflowFile|HWindSpeed']  = wsp
+            p['AeroFile|FVWFile|DTfvw'] = DTfvw
+            p['AeroFile|FVWFile|nNWPanel'] = nNWP
+            p['AeroFile|FVWFile|WakeLength'] = WL
+            p['AeroFile|FVWFile|WakeRegFactor'] = WaRF
+            p['AeroFile|FVWFile|WingRegFactor'] = WiRF
+            p['AeroFile|FVWFile|CoreSpreadEddyVisc'] = CSEV
 
             # Name used for inputs files
-            p['__name__']='ws{:.0f}_'.format(wsp)+study['param']+'{:.3f}'.format(val)
+            p['__name__']='ws{:.0f}_'.format(wsp)+study['param']+'{:.3f}'.format(study[study['param']][j, k])
 
             PARAMS.append(p)
 
             # Add this simulation to the list of simulations
             fastfiles=fastlib.templateReplace(PARAMS,ref_dir,workdir=work_dir,RemoveRefSubFiles=True,main_file=main_file, oneSimPerDir=False)
+            k += 1
         j += 1
     # --- Generating all files in a workdir
 
@@ -78,14 +89,20 @@ def createSubmit(fastfiles, FAST_EXE):
     """creates submission script from fast filenames and FAST_EXE path"""
     f = open(work_dir + "Submit.txt", "w")
     f.write('# ! /bin/bash\n')
-    f.write('# SBATCH --time 4:00:00\n')
+    f.write('# SBATCH --job-name=FVWcheck                     # Job name')
+    f.write('# SBATCH --time 0:05:00\n')
     f.write('# SBATCH -A bar\n')
-    f.write('# SBATCH --ntasks=16\n')
+    f.write('# SBATCH --nodes=1                               # Number of nodes\n')
+    f.write('# SBATCH --ntasks-per-node=36                    # Number of processors per node\n')
+    f.write('# SBATCH -o slurm-%x-%j.log                      # Output\n')
+    f.write('\n')
     f.write('module purge\n')
     f.write('ml comp-intel mkl\n')
     f.write('\n')
     for file in fastfiles:
-        f.write('/home/banderso2/OLAF/build/glue-codes/openfast ' + file + ' > '+ file[:-3] + 'txt\n')
+        f.write('/home/banderso2/OLAF/build/glue-codes/openfast ' + file + '\n')
+        f.write('&\n')
+    f.write('wait')
     f.close()
     return fastfiles
 
