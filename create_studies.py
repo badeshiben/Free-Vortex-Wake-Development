@@ -42,7 +42,7 @@ study1 = {
         'WakeRegFactor'                 : WakeRegFactor_default * np.ones([len(WS), len(dpsi)]),
         'WingRegFactor'                 : WingRegFactor_default * np.ones([len(WS), len(dpsi)]),
         'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones([len(WS), len(dpsi)])
-    }
+}
 
 """study 2: nNWpanel """
 NWE = np.array([30, 60, 120, 180, 240, 300, 360, 540, 720, 1080, 1440, 1800, 2160, 2520]) * np.pi / 180

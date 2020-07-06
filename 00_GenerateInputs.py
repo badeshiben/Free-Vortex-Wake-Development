@@ -85,26 +85,41 @@ def genericStudy(study, ref_dir, work_dir, main_file):
 
     return fastfiles
 
-def createSubmit(fastfiles, FAST_EXE):
-    """creates submission script from fast filenames and FAST_EXE path"""
-    f = open(work_dir + "Submit.txt", "w")
-    f.write('# ! /bin/bash\n')
-    f.write('# SBATCH --job-name=FVWcheck                     # Job name')
-    f.write('# SBATCH --time 0:05:00\n')
-    f.write('# SBATCH -A bar\n')
-    f.write('# SBATCH --nodes=1                               # Number of nodes\n')
-    f.write('# SBATCH --ntasks-per-node=36                    # Number of processors per node\n')
-    f.write('# SBATCH -o slurm-%x-%j.log                      # Output\n')
-    f.write('\n')
-    f.write('module purge\n')
-    f.write('ml comp-intel mkl\n')
-    f.write('\n')
-    for file in fastfiles:
-        f.write('/home/banderso2/OLAF/build/glue-codes/openfast ' + file + '\n')
-        f.write('&\n')
-    f.write('wait')
-    f.close()
-    return fastfiles
+def divide_chunks(l, n):
+    """divides list l into chunks of length n"""
+    for i in range(0, len(l), n):
+        yield fastfiles[i:i + n]
+
+def createSubmit(fastfiles, FAST_EXE, npf):
+    """creates submission scripts from fast filenames and FAST_EXE path. Up to n files per script
+    FAST_EXE: absolute path to FAST executable [str]
+    fastfiles: list of FAST file names [str]
+    npf: number of runs per submit script
+    """
+    nfiles = len(fastfiles)
+
+    chunks = list(divide_chunks(fastfiles, npf))
+
+    for chunk in chunks:
+        f = open(work_dir + "Submit_" + str(chunks.index(chunk)) + ".txt", "w")
+        f.write('#! /bin/bash\n')
+        f.write('#SBATCH --job-name=FVWcheck                     # Job name\n')
+        f.write('#SBATCH --time 2-00\n')
+        f.write('#SBATCH -A bar\n')
+        f.write('#SBATCH --nodes=1                               # Number of nodes\n')
+        f.write('#SBATCH --ntasks-per-node=36                    # Number of processors per node\n')
+        f.write('#SBATCH -o slurm-%x-%j.log                      # Output\n')
+        f.write('\n')
+        f.write('module purge\n')
+        f.write('ml comp-intel mkl\n')
+        f.write('\n')
+        for file in chunk:
+            fname = file.replace(work_dir,'')
+            f.write(FAST_EXE + ' ' + fname + '\n')
+            f.write('&\n')
+        f.write('wait')
+        f.close()
+
 
 if __name__=='__main__':
     # --- "Global" Parameters for this script
@@ -113,10 +128,10 @@ if __name__=='__main__':
     main_file        = 'OpenFAST_BAR_02.fst'    # Main file in ref_dir, used as a template
     work_dir         = 'BAR_02_discretization_inputs/'+study['param']+'/'          # Output folder (will be created)
     FAST_EXE = '/home/banderso2/OLAF/build/glue-codes/openfast/openfast'
+    npf = 4  # number of FAST runs per submission script
     # --- Generate inputs files
     fastfiles = genericStudy(study, ref_dir, work_dir, main_file)
-    print(fastfiles)
-    createSubmit(fastfiles, FAST_EXE)
+    createSubmit(fastfiles, FAST_EXE, npf)
 
     # --- Creating a batch script
     # fastlib.writeBatch(os.path.join(work_dir,'_RUN_ALL.bat'),fastfiles,fastExe=FAST_EXE)
