@@ -98,41 +98,15 @@ False                   SumPrint    - Generate a summary file listing input opti
 0                      NTwOuts     - Number of tower node outputs [0 - 9]  (-)
 1, 2, 6                TwOutNd     - Tower nodes whose values will be output  (-)
                    OutList             - The next line(s) contains a list of output parameters.  See OutListParameters.xlsx for a listing of available output channels, (-)
-"RtAeroCp"
-"RtAeroCq"
-"RtAeroCt"
-"RtAeroFxh"
-"RtAeroFyh"
-"RtAeroFzh"
-"RtAeroMxh"
-"RtAeroMyh"
-"RtAeroMzh"
-"RtAeroPwr"
-"RtArea"
-"RtSkew"
-"RtSpeed"
-"RtTSR"
-"RtVAvgxh"
-"RtVAvgyh"
-"RtVAvgzh"
 END  of Outlist (the word "END" must appear in the first 3 columns of this last OutList line)
 ====== Outputs for all blade stations (same ending as above for B1N1.... =========================== [optional section]
 1             BldNd_BladesOut - Number of blades to output all node information at. Up to number of blades on turbine. (-)
 "All"         BldNd_BlOutNd - Future feature will allow selecting a portion of the nodes to output. Not implemented yet. (-)
  OutList The next line(s) contains a list of output parameters.  See OutListParameters.xlsx for a listing of available output channels, (-)
-"VUndx"
-"VUndy"
-"VUndz"
 "VDisx"
 "VDisy"
 "VDisz"
-"STVx"
-"STVy"
-"STVz"
 "VRel"
-"DynP"
-"Re"
-"M"
 "Vindx"
 "Vindy"
 "AxInd"
@@ -140,14 +114,6 @@ END  of Outlist (the word "END" must appear in the first 3 columns of this last 
 "Alpha"
 "Theta"
 "Phi"
-"Curve"
-"Cl"
-"Cd"
-"Cm"
-"Cx"
-"Cy"
-"Cn"
-"Ct"
 "Fl"
 "Fd"
 "Mm"
@@ -155,12 +121,8 @@ END  of Outlist (the word "END" must appear in the first 3 columns of this last 
 "Fy"
 "Fn"
 "Ft"
-"Clrnc"
 "Vx"
 "Vy"
-"GeomPhi"
-"Chi"
-"UA_Flag"
 END of input file (the word "END" must appear in the first 3 columns of this last OutList line)
 ---------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------

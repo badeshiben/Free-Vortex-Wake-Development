@@ -58,34 +58,58 @@ def genericStudy(study, ref_dir, work_dir, main_file):
 
 
 
-    p = BaseDict.copy()  # Important, create a copy for each simulation
-    # Parameters for one simulation
-    p['EDFile|RotSpeed'] = study['RPM']
-    p['EDFile|BlPitch(1)'] = study['pitch']
-    p['EDFile|BlPitch(2)'] = study['pitch']
-    p['EDFile|BlPitch(3)'] = study['pitch']
-    p['InflowFile|HWindSpeed'] = study['WS']
-    p['AeroFile|FVWFile|DTfvw'] = study['DTfvw']
-    p['AeroFile|FVWFile|nNWPanel'] = study['nNWPanel']
-    p['AeroFile|FVWFile|WakeLength'] = study['WakeLength']
-    p['AeroFile|FVWFile|WakeRegFactor'] = study['WakeRegFactor']
-    p['AeroFile|FVWFile|WingRegFactor'] = study['WingRegFactor']
-    p['AeroFile|FVWFile|CoreSpreadEddyVisc'] = study['CoreSpreadEddyVisc']
+    # p = BaseDict.copy()  # Important, create a copy for each simulation
+    # # Parameters for one simulation
+    # p['EDFile|RotSpeed'] = study['RPM']
+    # p['EDFile|BlPitch(1)'] = study['pitch']
+    # p['EDFile|BlPitch(2)'] = study['pitch']
+    # p['EDFile|BlPitch(3)'] = study['pitch']
+    # p['InflowFile|HWindSpeed'] = study['WS']
+    # p['AeroFile|FVWFile|DTfvw'] = study['DTfvw']
+    # p['AeroFile|FVWFile|nNWPanel'] = study['nNWPanel']
+    # p['AeroFile|FVWFile|WakeLength'] = study['WakeLength']
+    # p['AeroFile|FVWFile|WakeRegFactor'] = study['WakeRegFactor']
+    # p['AeroFile|FVWFile|WingRegFactor'] = study['WingRegFactor']
+    # p['AeroFile|FVWFile|CoreSpreadEddyVisc'] = study['CoreSpreadEddyVisc']
+    #
+    #
+    #
+    #
+    # # Name used for inputs files
+    # p['__name__'] = 'ws4_nNWPanel' + str(study['nNWPanel']) + '_test'
+    #
+    # PARAMS.append(p)
+    #
+    # # Add this simulation to the list of simulations
+    # fastfiles = fastlib.templateReplace(PARAMS, ref_dir, workdir=work_dir, RemoveRefSubFiles=True, main_file=main_file,
+    #                                     oneSimPerDir=False)
 
 
+    k = 0
+    for wsp, rpm ,pitch, DTfvw, nNWP, WL, WaRF, WiRF, CSEV in zip(study['WS'], study['RPM'], study['pitch'], study['DTfvw'], study['nNWPanel'], study['WakeLength'],\
+                                                 study['WakeRegFactor'], study['WingRegFactor'], study['CoreSpreadEddyVisc']):
+        p=BaseDict.copy() # Important, create a copy for each simulation
+        # Parameters for one simulation
+        p['EDFile|RotSpeed']        = rpm
+        p['EDFile|BlPitch(1)']      = pitch
+        p['EDFile|BlPitch(2)']      = pitch
+        p['EDFile|BlPitch(3)']      = pitch
+        p['InflowFile|HWindSpeed']  = wsp
+        p['AeroFile|FVWFile|DTfvw'] = DTfvw
+        p['AeroFile|FVWFile|nNWPanel'] = nNWP
+        p['AeroFile|FVWFile|WakeLength'] = WL
+        p['AeroFile|FVWFile|WakeRegFactor'] = WaRF
+        p['AeroFile|FVWFile|WingRegFactor'] = WiRF
+        p['AeroFile|FVWFile|CoreSpreadEddyVisc'] = CSEV
 
+        # Name used for inputs files
+        p['__name__']='ws{:.0f}_'.format(wsp)+'WakeLength'+'{:.3f}'.format(study['WakeLength'][k])
 
-    # Name used for inputs files
-    p['__name__'] = 'ws4_nNWPanel' + str(study['nNWPanel']) + '_test'
+        PARAMS.append(p)
 
-    PARAMS.append(p)
-
-    # Add this simulation to the list of simulations
-    fastfiles = fastlib.templateReplace(PARAMS, ref_dir, workdir=work_dir, RemoveRefSubFiles=True, main_file=main_file,
-                                        oneSimPerDir=False)
-
-
-
+        # Add this simulation to the list of simulations
+        fastfiles=fastlib.templateReplace(PARAMS,ref_dir,workdir=work_dir,RemoveRefSubFiles=True,main_file=main_file, oneSimPerDir=False)
+        k += 1
     # j = 0
     # for wsp,rpm,pitch in zip(study['WS'], study['RPM'], study['pitch']): # here we zip since these are combined parameters
     #     k = 0

@@ -9,5 +9,12 @@
 module purge
 ml comp-intel mkl
 
-/home/banderso2/OLAF/build/glue-codes/openfast/openfast ws4_nNWPanel1010.0_test.fst
+/home/banderso2/OLAF/build/glue-codes/openfast/openfast ws4_WakeLength4449.000.fst
+&
+/home/banderso2/OLAF/build/glue-codes/openfast/openfast ws4_WakeLength4944.000.fst
+&
+/home/banderso2/OLAF/build/glue-codes/openfast/openfast ws4_WakeLength5438.000.fst
+&
+/home/banderso2/OLAF/build/glue-codes/openfast/openfast ws4_WakeLength5933.000.fst
+&
 wait

@@ -79,18 +79,18 @@ study3 = {
         'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones([len(WS), len(FWE)])
 }
 """test study: nNWpanel """
-WakeLength = np.round(FWE[-1]*rotSpd[0]/WS[0]/dpsi[0], decimals=0)
+WakeLength = np.round(FWE[-4:]*rotSpd[0]/WS[0]/dpsi[0], decimals=0)
 test_study = {
         'param'                         : 'TEST',
-        'WS'                            : WS[0],
-        'RPM'                           : RPM[0],
-        'pitch'                         : Pitch[0],
-        'DTfvw'                         : DTfvw[0, 0],
-        'nNWPanel'                      : np.round(NWE[-1]/DTfvw[0, 0]/rotSpd[0], decimals=0),
+        'WS'                            : WS[0] * np.ones(len(WakeLength)),
+        'RPM'                           : RPM[0] * np.ones(len(WakeLength)),
+        'pitch'                         : Pitch[0] * np.ones(len(WakeLength)),
+        'DTfvw'                         : DTfvw[0, 0] * np.ones(len(WakeLength)),
+        'nNWPanel'                      : np.round(NWE[-1]/DTfvw[0, 0]/rotSpd[0], decimals=0) * np.ones(len(WakeLength)),
         'WakeLength'                    : np.round(WakeLength, decimals=0),
-        'WakeRegFactor'                 : WakeRegFactor_default,
-        'WingRegFactor'                 : WingRegFactor_default,
-        'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default
+        'WakeRegFactor'                 : WakeRegFactor_default * np.ones(len(WakeLength)),
+        'WingRegFactor'                 : WingRegFactor_default * np.ones(len(WakeLength)),
+        'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones(len(WakeLength))
 }
 """study 4: WakeRegFactor"""
 WaRF = np.array([0, 0.1, 0.5, 1, 1.5, 2, 2.5, 3, 5])
