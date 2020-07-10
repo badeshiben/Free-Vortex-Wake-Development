@@ -120,31 +120,29 @@ True                   TabDelim    - Use tab delimiters in text tabular output f
 9                      NBlGages    - Number of blade nodes that have strain gages for output [0 to 9] (-)
 7, 12, 17, 21, 26, 31, 35, 40, 46 BldGagNd    - List of blade nodes that have strain gages [1 to BldNodes] (-) [unused if NBlGages=0]
                    OutList             - The next line(s) contains a list of output parameters.  See OutListParameters.xlsx for a listing of available output channels, (-)
-"BldPitch1"
-"GenSpeed"
+"BlPitch1"
 "HSSBrTq"
-"HSShftTq"
-"HSShftPwr"
-"LSShftMxa"
-"RootMxb1"
-"RootMxc1"
-"RootMyb1"
-"RootMyc1"
-"RootMzb1"
-"RotSpeed"
-"TipDxb1"
-"TipDxc1"
-"TipDyb1"
-"TipDyc1"
-"TipDzb1"
-"TipDzc1"
-"TwrBsMxt"
-"TwrBsMyt"
-"TwrBsMzt"
-"YawBrMxn"
-"YawBrMxp"
-"YawBrMyn"
-"YawBrMyp"
-"YawBrMzn"
+"HSSftTq"
+"HSSftPwr"
+"OoPDefl1"                - Blade 1 out-of-plane and in-plane deflections and tip twist
+"IPDefl1"                 - Blade 1 out-of-plane and in-plane deflections and tip twist
+"RotSpeed"                - Low-speed shaft and high-speed shaft speeds
+"GenSpeed"                - Low-speed shaft and high-speed shaft speeds
+"TTDspFA"                 - Tower fore-aft and side-to-side displacements and top twist
+"TTDspSS"                 - Tower fore-aft and side-to-side displacements and top twist
+"TTDspPtch"               - Tower fore-aft and side-to-side displacements and top twist
+"RootMIP1"                - In-plane bending, out-of-plane bending, and pitching moments at the root of blade 1
+"RootMOoP1"                - In-plane bending, out-of-plane bending, and pitching moments at the root of blade 1
+"RootMzb1"                - In-plane bending, out-of-plane bending, and pitching moments at the root of blade 1
+"RotTorq"                 - Rotor torque and low-speed shaft 0- and 90-bending moments at the main bearing
+"LSSGagMya"               - Rotor torque and low-speed shaft 0- and 90-bending moments at the main bearing
+"LSSGagMza"               - Rotor torque and low-speed shaft 0- and 90-bending moments at the main bearing
+"YawBrMxp"                - Side-to-side bending, fore-aft bending, and yaw moments at the top of the tower (not rotating with nacelle yaw)
+"YawBrMyp"                - Side-to-side bending, fore-aft bending, and yaw moments at the top of the tower (not rotating with nacelle yaw)
+"YawBrMzp"                - Side-to-side bending, fore-aft bending, and yaw moments at the top of the tower (not rotating with nacelle yaw)
+"TwrBsMxt"                - Side-to-side bending, fore-aft bending, and yaw moments at the base of the tower (mudline)
+"TwrBsMyt"                - Side-to-side bending, fore-aft bending, and yaw moments at the base of the tower (mudline)
+"TwrBsMzt"                - Side-to-side bending, fore-aft bending, and yaw moments at the base of the tower (mudline)
+"YawBrFxn"
 END of input file (the word "END" must appear in the first 3 columns of this last OutList line)
 ---------------------------------------------------------------------------------------
