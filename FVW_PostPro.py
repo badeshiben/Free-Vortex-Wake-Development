@@ -102,7 +102,6 @@ def resolution_raw(varying, WS, plot):
         plot_name = "Figures/" + varying + "_raw" + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
-
 """ DIFF VS FINEST RESOLUTION """
 def resolution_pDiff(varying, WS, plot):
     """
@@ -187,9 +186,8 @@ def resolution_pDiff(varying, WS, plot):
         plot_name = "Figures/" + varying + "_%diff" + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
-
-""" PLOT OUTPUTS ALONG BLADE SPAN """
-def spanwise_values(varying, WS, plot):
+""" PLOT OUTPUTS ALONG BLADE SPAN, VARYING PARAMS """
+def spanwise_vary_param(varying, WS, plot):
     """
     Parameters
     ----------
@@ -213,23 +211,24 @@ def spanwise_values(varying, WS, plot):
     Fd = df[['B1N1Fd', 'B1N2Fd', 'B1N3Fd', 'B1N4Fd', 'B1N5Fd', 'B1N6Fd', 'B1N7Fd', 'B1N8Fd', 'B1N9Fd']]
     Circ = df[['Gam1B1', 'Gam2B1', 'Gam3B1', 'Gam4B1', 'Gam5B1', 'Gam6B1', 'Gam7B1', 'Gam8B1', 'Gam9B1']]
 
-    ax[0, 0].set_ylabel('Axial Induction')
-    ax[0, 0].plot(norm_node_r, AxInd, 'o-', label='WS = {:}'.format(WS))
-    ax[0, 1].set_ylabel('Tangential Induction')
-    ax[0, 1].plot(norm_node_r, TnInd, 'o-', label='WS = {:}'.format(WS))
-    ax[1, 0].set_ylabel('Normal Force [N]')
-    ax[1, 0].plot(norm_node_r, Fn, 'o-', label='WS = {:}'.format(WS))
-    ax[1, 1].set_ylabel('Tangential Force [N]')
-    ax[1, 1].plot(norm_node_r, Ft, 'o-', label='WS = {:}'.format(WS))
-    ax[2, 0].set_ylabel('Lift Force [N]')
-    ax[2, 0].plot(norm_node_r, Fl, 'o-', label='WS = {:}'.format(WS))
-    ax[2, 1].set_ylabel('Drag Force [N]')
-    ax[2, 1].plot(norm_node_r, Fd, 'o-', label='WS = {:}'.format(WS))
-    ax[3, 0].set_ylabel('Circulation')
-    ax[3, 0].plot(norm_node_r, Fl, 'o-', label='WS = {:}'.format(WS))
+    for i in range(0, len(df['B1N1Fn'])):
+        ax[0, 0].set_ylabel('Axial Induction')
+        ax[0, 0].plot(norm_node_r, AxInd[i, :], 'o-', label='WS = {:}'.format(WS))
+        ax[0, 1].set_ylabel('Tangential Induction')
+        ax[0, 1].plot(norm_node_r, TnInd[i, :], 'o-', label='WS = {:}'.format(WS))
+        ax[1, 0].set_ylabel('Normal Force [N]')
+        ax[1, 0].plot(norm_node_r, Fn[i, :], 'o-', label='WS = {:}'.format(WS))
+        ax[1, 1].set_ylabel('Tangential Force [N]')
+        ax[1, 1].plot(norm_node_r, Ft[i, :], 'o-', label='WS = {:}'.format(WS))
+        ax[2, 0].set_ylabel('Lift Force [N]')
+        ax[2, 0].plot(norm_node_r, Fl[i, :], 'o-', label='WS = {:}'.format(WS))
+        ax[2, 1].set_ylabel('Drag Force [N]')
+        ax[2, 1].plot(norm_node_r, Fd[i, :], 'o-', label='WS = {:}'.format(WS))
+        ax[3, 0].set_ylabel('Circulation')
+        ax[3, 0].plot(norm_node_r, Fl[i, :], 'o-', label='WS = {:}'.format(WS))
 
-    ax[3, 0].legend(loc='upper left', bbox_to_anchor=(1, 1))
-    plt.tick_params(direction='in')
+        ax[3, 0].legend(loc='upper left', bbox_to_anchor=(1, 1))
+        plt.tick_params(direction='in')
 
     if plot == 1:
         plt.show()
@@ -238,6 +237,58 @@ def spanwise_values(varying, WS, plot):
         plot_name = "Figures/" + 'SPANWISE_' + varying + "_ws{:04.1f}".format(WS) + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
+""" PLOT OUTPUTS ALONG BLADE SPAN, VARYING WS """
+def spanwise_vary_WS(param, value, WS, plot):
+    """
+    Parameters
+    ----------
+    param:      param to use
+    value:      single param value
+    WS:         list of wind speeds [m/s]
+    plot:       plot options. [0, 1, 2] - [no plot, show plot, save plot]
+
+    Returns
+    -------
+    plots outputs along blade span
+    """
+
+    fig, ax = plt.subplots(4, 2, sharey=False, sharex=True, figsize=(15, 20))
+    norm_node_r = np.linspace(0, 1, 9)
+    for ws in WS:
+        df = pd.read_csv('Results_ws{:04.1f}'.format(ws) + '_' + param + '.csv', sep='\t')
+        AxInd = df[['B1N1AxInd', 'B1N2AxInd', 'B1N3AxInd', 'B1N4AxInd', 'B1N5AxInd', 'B1N6AxInd', 'B1N7AxInd', 'B1N8AxInd', 'B1N9AxInd']]
+        TnInd = df[['B1N1TnInd', 'B1N2TnInd', 'B1N3TnInd', 'B1N4TnInd', 'B1N5TnInd', 'B1N6TnInd', 'B1N7TnInd', 'B1N8TnInd', 'B1N9TnInd']]
+        Fn = df[['B1N1Fn', 'B1N2Fn', 'B1N3Fn', 'B1N4Fn', 'B1N5Fn', 'B1N6Fn', 'B1N7Fn', 'B1N8Fn', 'B1N9Fn']]
+        Ft = df[['B1N1Ft', 'B1N2Ft', 'B1N3Ft', 'B1N4Ft', 'B1N5Ft', 'B1N6Ft', 'B1N7Ft', 'B1N8Ft', 'B1N9Ft']]
+        Fl = df[['B1N1Fl', 'B1N2Fl', 'B1N3Fl', 'B1N4Fl', 'B1N5Fl', 'B1N6Fl', 'B1N7Fl', 'B1N8Fl', 'B1N9Fl']]
+        Fd = df[['B1N1Fd', 'B1N2Fd', 'B1N3Fd', 'B1N4Fd', 'B1N5Fd', 'B1N6Fd', 'B1N7Fd', 'B1N8Fd', 'B1N9Fd']]
+        Circ = df[['Gam1B1', 'Gam2B1', 'Gam3B1', 'Gam4B1', 'Gam5B1', 'Gam6B1', 'Gam7B1', 'Gam8B1', 'Gam9B1']]
+
+        i = df.index[df[[param] == value]]
+        ax[0, 0].set_ylabel('Axial Induction')
+        ax[0, 0].plot(norm_node_r, AxInd[i, :], 'o-', label='ws = {:}'.format(ws))
+        ax[0, 1].set_ylabel('Tangential Induction')
+        ax[0, 1].plot(norm_node_r, TnInd[i, :], 'o-', label='ws = {:}'.format(ws))
+        ax[1, 0].set_ylabel('Normal Force [N]')
+        ax[1, 0].plot(norm_node_r, Fn[i, :], 'o-', label='ws = {:}'.format(ws))
+        ax[1, 1].set_ylabel('Tangential Force [N]')
+        ax[1, 1].plot(norm_node_r, Ft[i, :], 'o-', label='ws = {:}'.format(ws))
+        ax[2, 0].set_ylabel('Lift Force [N]')
+        ax[2, 0].plot(norm_node_r, Fl[i, :], 'o-', label='ws = {:}'.format(ws))
+        ax[2, 1].set_ylabel('Drag Force [N]')
+        ax[2, 1].plot(norm_node_r, Fd[i, :], 'o-', label='ws = {:}'.format(ws))
+        ax[3, 0].set_ylabel('Circulation')
+        ax[3, 0].plot(norm_node_r, Fl[i, :], 'o-', label='ws = {:}'.format(ws))
+
+    ax[3, 0].legend(loc='upper left', bbox_to_anchor=(1, 1))
+    plt.tick_params(direction='in')
+
+    if plot == 1:
+        plt.show()
+        plt.close()
+    elif plot == 2:
+        plot_name = "Figures/" + 'SPANWISE_' + param + "{:04.1f}".format(value) + ".pdf"
+        plt.savefig(plot_name, bbox_inches='tight')
 
 """ RUN RESOLUTION STUDY """
 def run_study(WS, name, values):
@@ -267,7 +318,7 @@ def run_study(WS, name, values):
         #print(dfAvg)
     resolution_raw(name, WS, 2)
     resolution_pDiff(name, WS, 2)
-    spanwise_values(name, WS, 2)
+    spanwise_vary_param(name, WS, 2)
     print('Ran ' + name + ' post processing')
 
 

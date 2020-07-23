@@ -2,12 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="969ba336-3df3-42e0-84a1-d82894eabfb8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/FVW_PostProOLD.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02_ElastoDyn.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02_ElastoDyn.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_ElastoDyn_ws4_WakeLength4449.000.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_ElastoDyn_ws4_WakeLength4449.000.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_ElastoDyn_ws4_WakeLength4944.000.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_ElastoDyn_ws4_WakeLength4944.000.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_ElastoDyn_ws4_WakeLength5438.000.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_ElastoDyn_ws4_WakeLength5438.000.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_ElastoDyn_ws4_WakeLength5933.000.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_ElastoDyn_ws4_WakeLength5933.000.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_InflowFile_ws4_WakeLength4449.000.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_InflowFile_ws4_WakeLength4449.000.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_InflowFile_ws4_WakeLength4944.000.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_InflowFile_ws4_WakeLength4944.000.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_InflowFile_ws4_WakeLength5438.000.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_InflowFile_ws4_WakeLength5438.000.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_InflowFile_ws4_WakeLength5933.000.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/OpenFAST_BAR_02_InflowFile_ws4_WakeLength5933.000.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/ws4_WakeLength4449.000.fst" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/ws4_WakeLength4449.000.fst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/ws4_WakeLength4944.000.fst" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/ws4_WakeLength4944.000.fst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/ws4_WakeLength5438.000.fst" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/ws4_WakeLength5438.000.fst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/ws4_WakeLength5933.000.fst" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_discretization_inputs/TEST/ws4_WakeLength5933.000.fst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02.fst" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02.fst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02_InflowFile.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_template/OpenFAST_BAR_02_InflowFile.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FVW_PostPro.py" beforeDir="false" afterPath="$PROJECT_DIR$/FVW_PostPro.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Figures/Reg_[m]_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Figures/Reg_[m]_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Figures/Reg_[m]_raw.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Figures/Reg_[m]_raw.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +55,7 @@
       <recent name="$PROJECT_DIR$/BAR_02_Discretization_Inputs/case_dependent/WS2/1DTfvw" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.FVW_PostPro">
+  <component name="RunManager" selected="Python.FVW_GenerateInputs">
     <configuration name="01_PostPro" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Parametric" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -162,65 +172,81 @@
     </state>
     <state x="510" y="335" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1590792745199" />
     <state x="583" y="345" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593445856802" />
-    <state width="1899" height="227" key="GridCell.Tab.0.bottom" timestamp="1594402231142">
+    <state width="1899" height="404" key="GridCell.Tab.0.bottom" timestamp="1594756309671">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state width="1899" height="88" key="GridCell.Tab.0.bottom/-1680.1080.1680.1050/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594755102141" />
+    <state width="1899" height="404" key="GridCell.Tab.0.bottom/-1680.1103.1680.1027/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1594756309671" />
     <state width="1899" height="319" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900914" />
     <state width="1899" height="413" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080/-1680.1080.1680.1050@0.0.1920.1080" timestamp="1594334025079" />
-    <state width="1899" height="227" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594402231142" />
+    <state width="1899" height="231" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594420835778" />
     <state width="1899" height="208" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1591990404593" />
     <state width="1659" height="322" key="GridCell.Tab.0.bottom/0.23.1680.947@0.23.1680.947" timestamp="1591995041862" />
-    <state width="1899" height="227" key="GridCell.Tab.0.center" timestamp="1594402231139">
+    <state width="1899" height="404" key="GridCell.Tab.0.center" timestamp="1594756309669">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state width="1899" height="88" key="GridCell.Tab.0.center/-1680.1080.1680.1050/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594755102140" />
+    <state width="1899" height="404" key="GridCell.Tab.0.center/-1680.1103.1680.1027/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1594756309669" />
     <state width="1899" height="319" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900913" />
     <state width="1899" height="413" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080/-1680.1080.1680.1050@0.0.1920.1080" timestamp="1594334025078" />
-    <state width="1899" height="227" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594402231139" />
+    <state width="1899" height="231" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594420835777" />
     <state width="1899" height="208" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1591990404592" />
     <state width="1659" height="322" key="GridCell.Tab.0.center/0.23.1680.947@0.23.1680.947" timestamp="1591995041861" />
-    <state width="1899" height="227" key="GridCell.Tab.0.left" timestamp="1594402231138">
+    <state width="1899" height="404" key="GridCell.Tab.0.left" timestamp="1594756309669">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state width="1899" height="88" key="GridCell.Tab.0.left/-1680.1080.1680.1050/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594755102139" />
+    <state width="1899" height="404" key="GridCell.Tab.0.left/-1680.1103.1680.1027/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1594756309669" />
     <state width="1899" height="319" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900912" />
     <state width="1899" height="413" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080/-1680.1080.1680.1050@0.0.1920.1080" timestamp="1594334025077" />
-    <state width="1899" height="227" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594402231138" />
+    <state width="1899" height="231" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594420835776" />
     <state width="1899" height="208" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1591990404591" />
     <state width="1659" height="322" key="GridCell.Tab.0.left/0.23.1680.947@0.23.1680.947" timestamp="1591995041860" />
-    <state width="1899" height="227" key="GridCell.Tab.0.right" timestamp="1594402231141">
+    <state width="1899" height="404" key="GridCell.Tab.0.right" timestamp="1594756309670">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state width="1899" height="88" key="GridCell.Tab.0.right/-1680.1080.1680.1050/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594755102141" />
+    <state width="1899" height="404" key="GridCell.Tab.0.right/-1680.1103.1680.1027/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1594756309670" />
     <state width="1899" height="319" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900913" />
     <state width="1899" height="413" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080/-1680.1080.1680.1050@0.0.1920.1080" timestamp="1594334025079" />
-    <state width="1899" height="227" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594402231141" />
+    <state width="1899" height="231" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594420835777" />
     <state width="1899" height="208" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1591990404592" />
     <state width="1659" height="322" key="GridCell.Tab.0.right/0.23.1680.947@0.23.1680.947" timestamp="1591995041861" />
-    <state width="1899" height="227" key="GridCell.Tab.1.bottom" timestamp="1594402232099">
+    <state width="1899" height="404" key="GridCell.Tab.1.bottom" timestamp="1594756309674">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state width="1899" height="88" key="GridCell.Tab.1.bottom/-1680.1080.1680.1050/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594755102505" />
+    <state width="1899" height="404" key="GridCell.Tab.1.bottom/-1680.1103.1680.1027/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1594756309674" />
     <state width="1899" height="319" key="GridCell.Tab.1.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900916" />
     <state width="1899" height="413" key="GridCell.Tab.1.bottom/0.0.1920.1080/-1920.0.1920.1080/-1680.1080.1680.1050@0.0.1920.1080" timestamp="1594334025449" />
-    <state width="1899" height="227" key="GridCell.Tab.1.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594402232099" />
+    <state width="1899" height="88" key="GridCell.Tab.1.bottom/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594420835772" />
     <state width="1659" height="322" key="GridCell.Tab.1.bottom/0.23.1680.947@0.23.1680.947" timestamp="1591995041865" />
-    <state width="1899" height="227" key="GridCell.Tab.1.center" timestamp="1594402232097">
+    <state width="1899" height="404" key="GridCell.Tab.1.center" timestamp="1594756309672">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state width="1899" height="88" key="GridCell.Tab.1.center/-1680.1080.1680.1050/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594755102503" />
+    <state width="1899" height="404" key="GridCell.Tab.1.center/-1680.1103.1680.1027/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1594756309672" />
     <state width="1899" height="319" key="GridCell.Tab.1.center/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900915" />
     <state width="1899" height="413" key="GridCell.Tab.1.center/0.0.1920.1080/-1920.0.1920.1080/-1680.1080.1680.1050@0.0.1920.1080" timestamp="1594334025448" />
-    <state width="1899" height="227" key="GridCell.Tab.1.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594402232097" />
+    <state width="1899" height="88" key="GridCell.Tab.1.center/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594420835771" />
     <state width="1659" height="322" key="GridCell.Tab.1.center/0.23.1680.947@0.23.1680.947" timestamp="1591995041864" />
-    <state width="1899" height="227" key="GridCell.Tab.1.left" timestamp="1594402232094">
+    <state width="1899" height="404" key="GridCell.Tab.1.left" timestamp="1594756309671">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state width="1899" height="88" key="GridCell.Tab.1.left/-1680.1080.1680.1050/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594755102502" />
+    <state width="1899" height="404" key="GridCell.Tab.1.left/-1680.1103.1680.1027/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1594756309671" />
     <state width="1899" height="319" key="GridCell.Tab.1.left/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900914" />
     <state width="1899" height="413" key="GridCell.Tab.1.left/0.0.1920.1080/-1920.0.1920.1080/-1680.1080.1680.1050@0.0.1920.1080" timestamp="1594334025447" />
-    <state width="1899" height="227" key="GridCell.Tab.1.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594402232094" />
+    <state width="1899" height="88" key="GridCell.Tab.1.left/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594420835770" />
     <state width="1659" height="322" key="GridCell.Tab.1.left/0.23.1680.947@0.23.1680.947" timestamp="1591995041864" />
-    <state width="1899" height="227" key="GridCell.Tab.1.right" timestamp="1594402232098">
+    <state width="1899" height="404" key="GridCell.Tab.1.right" timestamp="1594756309673">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state width="1899" height="88" key="GridCell.Tab.1.right/-1680.1080.1680.1050/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594755102503" />
+    <state width="1899" height="404" key="GridCell.Tab.1.right/-1680.1103.1680.1027/0.0.1920.1080/-1920.23.1920.1057@0.0.1920.1080" timestamp="1594756309673" />
     <state width="1899" height="319" key="GridCell.Tab.1.right/0.0.1680.1050@0.0.1680.1050" timestamp="1593561900915" />
     <state width="1899" height="413" key="GridCell.Tab.1.right/0.0.1920.1080/-1920.0.1920.1080/-1680.1080.1680.1050@0.0.1920.1080" timestamp="1594334025448" />
-    <state width="1899" height="227" key="GridCell.Tab.1.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594402232098" />
+    <state width="1899" height="88" key="GridCell.Tab.1.right/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594420835772" />
     <state width="1659" height="322" key="GridCell.Tab.1.right/0.23.1680.947@0.23.1680.947" timestamp="1591995041865" />
     <state x="341" y="164" width="1201" height="722" key="SettingsEditor" timestamp="1590794244792">
       <screen x="0" y="0" width="1680" height="1050" />
@@ -232,12 +258,13 @@
     <state width="840" height="525" key="XDebugger.FullValuePopup/0.0.1680.1050@0.0.1680.1050" timestamp="1593462781840" />
     <state width="960" height="540" key="XDebugger.FullValuePopup/0.0.1920.1080/-1920.0.1920.1080/-1680.1080.1680.1050@0.0.1920.1080" timestamp="1594334267730" />
     <state width="960" height="540" key="XDebugger.FullValuePopup/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593704489272" />
-    <state x="591" y="382" key="com.intellij.ide.util.TipDialog" timestamp="1594330208335">
+    <state x="591" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1595526349480">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state x="591" y="382" key="com.intellij.ide.util.TipDialog/-1680.1080.1680.1050/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594755099502" />
     <state x="517" y="372" key="com.intellij.ide.util.TipDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1594042173285" />
     <state x="591" y="367" key="com.intellij.ide.util.TipDialog/0.0.1920.1080/-1920.-315.1920.1080/-1680.765.1680.1050@0.0.1920.1080" timestamp="1593623513820" />
-    <state x="591" y="382" key="com.intellij.ide.util.TipDialog/0.0.1920.1080/-1920.0.1920.1080/-1680.1080.1680.1050@0.0.1920.1080" timestamp="1594330208335" />
+    <state x="591" y="367" key="com.intellij.ide.util.TipDialog/0.0.1920.1080/-1920.0.1920.1080/-1680.1080.1680.1050@0.0.1920.1080" timestamp="1595526349480" />
     <state x="591" y="367" key="com.intellij.ide.util.TipDialog/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1594245416225" />
     <state x="517" y="372" key="com.intellij.ide.util.TipDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1593516670753" />
     <state x="-1920" y="0" width="1920" height="1080" maximized="true" key="dock-window-1" timestamp="1593705209554">
@@ -269,6 +296,11 @@
           <url>file://$PROJECT_DIR$/FVW_PostPro.py</url>
           <line>21</line>
           <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/create_studies.py</url>
+          <line>148</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
