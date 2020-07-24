@@ -122,8 +122,8 @@ True                   TabDelim    - Use tab delimiters in text tabular output f
                    OutList             - The next line(s) contains a list of output parameters.  See OutListParameters.xlsx for a listing of available output channels, (-)
 "BlPitch1"
 "HSSBrTq"
-"HSSftTq"
-"HSSftPwr"
+"HSShftTq"
+"HSShftPwr"
 "OoPDefl1"                - Blade 1 out-of-plane and in-plane deflections and tip twist
 "IPDefl1"                 - Blade 1 out-of-plane and in-plane deflections and tip twist
 "RotSpeed"                - Low-speed shaft and high-speed shaft speeds
