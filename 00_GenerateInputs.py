@@ -90,6 +90,7 @@ def genericStudy(study, ref_dir, work_dir, main_file):
                                                  study['WakeRegFactor'], study['WingRegFactor'], study['CoreSpreadEddyVisc']):
         p=BaseDict.copy() # Important, create a copy for each simulation
         # Parameters for one simulation
+        p['DT']                     = DTfvw
         p['EDFile|RotSpeed']        = rpm
         p['EDFile|BlPitch(1)']      = pitch
         p['EDFile|BlPitch(2)']      = pitch

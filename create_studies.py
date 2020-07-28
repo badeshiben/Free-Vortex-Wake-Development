@@ -78,7 +78,7 @@ study3 = {
         'WingRegFactor'                 : WingRegFactor_default * np.ones([len(WS), len(FWE)]),
         'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones([len(WS), len(FWE)])
 }
-"""test study: nNWpanel """
+"""test study: WakeLength """
 WakeLength = np.round(FWE[-4:]*rotSpd[0]/WS[0]/dpsi[0], decimals=0)
 test_study = {
         'param'                         : 'TEST',
