@@ -91,6 +91,7 @@ def genericStudy(study, ref_dir, work_dir, main_file):
         p=BaseDict.copy() # Important, create a copy for each simulation
         # Parameters for one simulation
         p['DT']                     = DTfvw
+        p['DT_Out']                 = DTfvw
         p['EDFile|RotSpeed']        = rpm
         p['EDFile|BlPitch(1)']      = pitch
         p['EDFile|BlPitch(2)']      = pitch
@@ -162,10 +163,12 @@ def createSubmit(fastfiles, FAST_EXE, npf):
         f = open(work_dir + "Submit_" + str(chunks.index(chunk)) + ".txt", "w")
         f.write('#! /bin/bash\n')
         f.write('#SBATCH --job-name=FVWcheck                     # Job name\n')
-        f.write('#SBATCH --time 2-00\n')
+        f.write('#SBATCH --time 24-00\n')
         f.write('#SBATCH -A bar\n')
         f.write('#SBATCH --nodes=1                               # Number of nodes\n')
         f.write('#SBATCH --ntasks-per-node=36                    # Number of processors per node\n')
+        f.write('#SBATCH --mail-user benjamin.anderson@nrel.gov\n')
+        f.write('#SBATCH --mail-type BEGIN,END,FAIL\n')
         f.write('#SBATCH -o slurm-%x-%j.log                      # Output\n')
         f.write('\n')
         f.write('module purge\n')
