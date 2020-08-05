@@ -176,7 +176,7 @@ def createSubmit(fastfiles, FAST_EXE, npf):
         f.write('\n')
         for file in chunk:
             fname = file.replace(work_dir,'')
-            f.write(FAST_EXE + ' ' + fname + '&\n')
+            f.write(FAST_EXE + ' ' + fname + ' &\n')
         f.write('wait')
         f.close()
 
