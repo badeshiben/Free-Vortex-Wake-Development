@@ -33,8 +33,8 @@ True                   TIDrag      - Include the drag term in the tangential-ind
 ======  OLAF -- cOnvecting LAgrangian Filaments (Free Vortex Wake) Theory Options  ================== [used only when WakeMod=3]
 "OLAF.dat"             FVWFile - Input file for OLAF [used only when WakeMod=3]
 ======  Beddoes-Leishman Unsteady Airfoil Aerodynamics Options  ===================================== [used only when AFAeroMod=2]
-3                      UAMod       Unsteady Aero Model Switch (switch) {1=Baseline model (Original), 2=Gonzalez's variant (changes in Cn,Cc,Cm), 3=Minemma/Pierce variant (changes in Cc and Cm)} [used only when AFAeroMod=2]
-True                   FLookup     Flag to indicate whether a lookup for f' will be calculated (TRUE) or whether best-fit exponential equations will be used (FALSE); if FALSE S1-S4 must be provided in airfoil input files (flag) [used only when AFAeroMod=2]
+3                      UAMod       Unsteady Aero Model Switch (switch) {1=Baseline model (Original), 2=Gonzalez"s variant (changes in Cn,Cc,Cm), 3=Minemma/Pierce variant (changes in Cc and Cm)} [used only when AFAeroMod=2]
+True                   FLookup     Flag to indicate whether a lookup for f" will be calculated (TRUE) or whether best-fit exponential equations will be used (FALSE); if FALSE S1-S4 must be provided in airfoil input files (flag) [used only when AFAeroMod=2]
 ======  Airfoil Information =========================================================================
 1                      AFTabMod    - Interpolation method for multiple airfoil tables {1=1D interpolation on AoA (first table only); 2=2D interpolation on AoA and Re; 3=2D interpolation on AoA and UserProp} (-)
 1                      InCol_Alfa  - The column in the airfoil tables that contains the angle of attack (-)
@@ -93,7 +93,7 @@ TwrElev        TwrDiam        TwrCd
  1.370000000000000e+02  5.530325920000000e+00  1.000000000000000e+00
 ======  Tower Influence and Aerodynamics ============================================================= [used only when TwrPotent/=0, TwrShadow=True, or TwrAero=True]
 False                   SumPrint    - Generate a summary file listing input options and interpolated properties to "<rootname>.AD.sum"?  (flag)
-0                      NBlOuts     - Number of blade node outputs [0 - 9] (-)
+9                      NBlOuts     - Number of blade node outputs [0 - 9] (-)
 1, 4, 7, 13, 18, 23, 26, 28, 30 BlOutNd     - Blade nodes whose values will be output  (-)
 0                      NTwOuts     - Number of tower node outputs [0 - 9]  (-)
 1, 2, 6                TwOutNd     - Tower nodes whose values will be output  (-)
@@ -103,26 +103,69 @@ END  of Outlist (the word "END" must appear in the first 3 columns of this last 
 1             BldNd_BladesOut - Number of blades to output all node information at. Up to number of blades on turbine. (-)
 "All"         BldNd_BlOutNd - Future feature will allow selecting a portion of the nodes to output. Not implemented yet. (-)
  OutList The next line(s) contains a list of output parameters.  See OutListParameters.xlsx for a listing of available output channels, (-)
-"VDisx"
-"VDisy"
-"VDisz"
-"VRel"
-"Vindx"
-"Vindy"
-"AxInd"
-"TnInd"
-"Alpha"
-"Theta"
-"Phi"
-"Fl"
-"Fd"
-"Mm"
-"Fx"
-"Fy"
-"Fn"
-"Ft"
-"Vx"
-"Vy"
+
+"B1N1AxInd"
+"B1N2AxInd"
+"B1N3AxInd"
+"B1N4AxInd"
+"B1N5AxInd"
+"B1N6AxInd"
+"B1N7AxInd"
+"B1N8AxInd"
+"B1N9AxInd"
+"B1N1TnInd"
+"B1N2TnInd"
+"B1N3TnInd"
+"B1N4TnInd"
+"B1N5TnInd"
+"B1N6TnInd"
+"B1N7TnInd"
+"B1N8TnInd"
+"B1N9TnInd"
+"B1N1Fn"
+"B1N2Fn"
+"B1N3Fn"
+"B1N4Fn"
+"B1N5Fn"
+"B1N6Fn"
+"B1N7Fn"
+"B1N8Fn"
+"B1N9Fn"
+"B1N1Ft"
+"B1N2Ft"
+"B1N3Ft"
+"B1N4Ft"
+"B1N5Ft"
+"B1N6Ft"
+"B1N7Ft"
+"B1N8Ft"
+"B1N9Ft"
+"B1N1Fl"
+"B1N2Fl"
+"B1N3Fl"
+"B1N4Fl"
+"B1N5Fl"
+"B1N6Fl"
+"B1N7Fl"
+"B1N8Fl"
+"B1N9Fl"
+"B1N1Fd"
+"B1N2Fd"
+"B1N3Fd"
+"B1N4Fd"
+"B1N6Fd"
+"B1N7Fd"
+"B1N8Fd"
+"B1N9Fd"
+"Gam1B1"
+"Gam2B1"
+"Gam3B1"
+"Gam4B1"
+"Gam5B1"
+"Gam6B1"
+"Gam7B1"
+"Gam8B1"
+"Gam9B1"
 END of input file (the word "END" must appear in the first 3 columns of this last OutList line)
 ---------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------
