@@ -51,6 +51,18 @@ class FASTInFile(File):
         else:
             return i
 
+    def getIDs(self,label):
+        I=[]
+        # brute force search
+        for i in range(len(self.data)):
+            d = self.data[i]
+            if d['label'].lower()==label.lower():
+                I.append(i)
+        if len(I)<0:
+            raise KeyError('Variable `'+ label+'` not found in FAST file:'+self.filename)
+        else:
+            return I
+
     def getIDSafe(self,label):
         # brute force search
         for i in range(len(self.data)):
@@ -74,8 +86,9 @@ class FASTInFile(File):
 
     # Making it behave like a dictionary
     def __setitem__(self,key,item):
-        i = self.getID(key)
-        self.data[i]['value'] = item
+        I = self.getIDs(key)
+        for i in I: 
+            self.data[i]['value'] = item
 
     def __getitem__(self,key):
         i = self.getID(key)
@@ -168,9 +181,12 @@ class FASTInFile(File):
 
                 # --- Here we cheat and force an exit of the input file
                 # The reason for this is that some files have a lot of things after the END, which will result in the file being intepreted as a wrong format due to too many comments
-                self.data.append(parseFASTInputLine('END of input file (the word "END" must appear in the first 3 columns of this last OutList line)',i+1))
-                self.data.append(parseFASTInputLine('---------------------------------------------------------------------------------------',i+2))
-                break
+                if i+2<len(lines) and lines[i+2].lower().find('bldnd_bladesout')>0:
+                    print('>>>Bld Nodal outputs present')
+                else:
+                    self.data.append(parseFASTInputLine('END of input file (the word "END" must appear in the first 3 columns of this last OutList line)',i+1))
+                    self.data.append(parseFASTInputLine('---------------------------------------------------------------------------------------',i+2))
+                    break
             elif line.upper().find('SSOUTLIST'   )>0:
                 # SUBDYN Outlist doesn not follow regular format
                 self.data.append(parseFASTInputLine(line,i))
@@ -703,9 +719,10 @@ class FASTInFile(File):
         try:
             for j in range(nStations):
                 M[j,0]=float(lines[i]); i+=1;
-                M[j,1:37]=np.array((''.join(lines[i:i+6])).split()).astype(np.float)
+                LL = lines[i:i+6]
+                M[j,1:37]=np.array((' '.join(lines[i:i+6])).split()).astype(np.float)
                 i+=7
-                M[j,37:]=np.array((''.join(lines[i:i+6])).split()).astype(np.float)
+                M[j,37:]=np.array((' '.join(lines[i:i+6])).split()).astype(np.float)
                 i+=7
         except: 
             raise WrongFormatError('An error occured while reading section {}/{}'.format(j+1,nStations))
