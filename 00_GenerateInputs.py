@@ -72,8 +72,8 @@ def genericStudy(study, ref_dir, work_dir, main_file):
             p['EDFile|BlPitch(3)']      = pitch
             p['InflowFile|HWindSpeed']  = wsp
             p['AeroFile|FVWFile|DTfvw'] = DTfvw
-            p['AeroFile|FVWFile|nNWPanel'] = nNWP
-            p['AeroFile|FVWFile|WakeLength'] = WL
+            p['AeroFile|FVWFile|nNWPanel'] = int(nNWP)
+            p['AeroFile|FVWFile|WakeLength'] = int(WL)
             p['AeroFile|FVWFile|WakeRegFactor'] = WaRF
             p['AeroFile|FVWFile|WingRegFactor'] = WiRF
             p['AeroFile|FVWFile|CoreSpreadEddyVisc'] = CSEV
