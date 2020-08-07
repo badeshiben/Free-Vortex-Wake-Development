@@ -768,13 +768,13 @@ def spanwisePostProRows(df, FST_In=None):
                 M_AD = np.zeros((len(v), len(dfRad_AD), len(dfRad_AD.columns)))
                 Col_AD=dfRad_AD.columns.values
             M_AD[i, :, : ] = dfRad_AD.values
-        if r_ED is not None and len(r_ED)>0:
-            dfRad_ED = extract_spanwise_data(ColsInfoED, nrMaxED, df=None, ts=df.iloc[i])
-            dfRad_ED = insert_radial_columns(dfRad_ED, r_ED, R=R, IR=IR_ED)
-            if i==0:
-                M_ED = np.zeros((len(v), len(dfRad_ED), len(dfRad_ED.columns)))
-                Col_ED=dfRad_ED.columns.values
-            M_ED[i, :, : ] = dfRad_ED.values
+        # if r_ED is not None and len(r_ED)>0:
+        #     dfRad_ED = extract_spanwise_data(ColsInfoED, nrMaxED, df=None, ts=df.iloc[i])
+        #     dfRad_ED = insert_radial_columns(dfRad_ED, r_ED, R=R, IR=IR_ED)
+        #     if i==0:
+        #         M_ED = np.zeros((len(v), len(dfRad_ED), len(dfRad_ED.columns)))
+        #         Col_ED=dfRad_ED.columns.values
+        #     M_ED[i, :, : ] = dfRad_ED.values
         if r_BD is not None and len(r_BD)>0:
             dfRad_BD = extract_spanwise_data(ColsInfoBD, nrMaxBD, df=None, ts=df.iloc[i])
             dfRad_BD = insert_radial_columns(dfRad_BD, r_BD, R=R, IR=IR_BD)

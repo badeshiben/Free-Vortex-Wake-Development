@@ -163,7 +163,7 @@ def createSubmit(fastfiles, FAST_EXE, npf):
         f = open(work_dir + "Submit_" + str(chunks.index(chunk)) + ".txt", "w")
         f.write('#! /bin/bash\n')
         f.write('#SBATCH --job-name=FVWcheck                     # Job name\n')
-        f.write('#SBATCH --time 24:00:00\n')
+        f.write('#SBATCH --time 48:00:00\n')
         f.write('#SBATCH -A bar\n')
         f.write('#SBATCH --nodes=1                               # Number of nodes\n')
         f.write('#SBATCH --ntasks-per-node=36                    # Number of processors per node\n')

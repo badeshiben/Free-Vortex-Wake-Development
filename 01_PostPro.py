@@ -10,7 +10,7 @@ import weio
 WS        = [5 ,10]
 regFactor = np.linspace(0.5, 5, 3)
 work_dir    = 'SampleOutputs/'          # Output folder 
-ExampleFst  = 'BAR/Main_OpenFAST_BAR_00.fst' # Some kind of fst file to get radial data
+ExampleFst  = 'BAR_02_template/OpenFAST_BAR_02.fst' # Some kind of fst file to get radial data
 
 #--- Simple Postprocessing
 # - Open all the output files,
@@ -21,7 +21,7 @@ dfs=[] # results per wind speed
 for ws in WS: 
     outFiles=[]
     for i,reg in enumerate(regFactor): 
-        case     ='ws{:04.1f}_reg{:06.4f}'.format(ws, reg)
+        case     ='ws{:04.1f}_Reg_[m]{:06.4f}'.format(ws, reg)
         filename = os.path.join(work_dir, case + '.outb' )
         outFiles.append(filename)
     dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
