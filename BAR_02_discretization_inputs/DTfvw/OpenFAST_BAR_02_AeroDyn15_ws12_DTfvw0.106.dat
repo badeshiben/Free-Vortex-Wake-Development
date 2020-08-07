@@ -33,8 +33,8 @@ True          TIDrag        - Include the drag term in the tangential-induction 
 ======  OLAF -- cOnvecting LAgrangian Filaments (Free Vortex Wake) Theory Options  ================== [used only when WakeMod=3]
 "OLAF_ws12_DTfvw0.106.dat" FVWFile       - Input file for OLAF [used only when WakeMod=3]
 ======  Beddoes-Leishman Unsteady Airfoil Aerodynamics Options  ===================================== [used only when AFAeroMod=2]
-3             UAMod         - Unsteady Aero Model Switch (switch) {1=Baseline model (Original), 2=Gonzalez's variant (changes in Cn,Cc,Cm), 3=Minemma/Pierce variant (changes in Cc and Cm)} [used only when AFAeroMod=2]
-True          FLookup       - Flag to indicate whether a lookup for f' will be calculated (TRUE) or whether best-fit exponential equations will be used (FALSE); if FALSE S1-S4 must be provided in airfoil input files (flag) [used only when AFAeroMod=2]
+3             UAMod         - Unsteady Aero Model Switch (switch) {1=Baseline model (Original), 2=Gonzalez"s variant (changes in Cn,Cc,Cm), 3=Minemma/Pierce variant (changes in Cc and Cm)} [used only when AFAeroMod=2]
+True          FLookup       - Flag to indicate whether a lookup for f" will be calculated (TRUE) or whether best-fit exponential equations will be used (FALSE); if FALSE S1-S4 must be provided in airfoil input files (flag) [used only when AFAeroMod=2]
 ======  Airfoil Information =========================================================================
 1             AFTabMod      - Interpolation method for multiple airfoil tables {1=1D interpolation on AoA (first table only); 2=2D interpolation on AoA and Re; 3=2D interpolation on AoA and UserProp} (-)
 1             InCol_Alfa    - The column in the airfoil tables that contains the angle of attack (-)
@@ -93,27 +93,11 @@ TwrElev         TwrDiam         TwrCd
             137	 5.53032592e+00	              1
 ======  Tower Influence and Aerodynamics ============================================================= [used only when TwrPotent/=0, TwrShadow=True, or TwrAero=True]
 False         SumPrint      - Generate a summary file listing input options and interpolated properties to "<rootname>.AD.sum"? (flag)
-0             NBlOuts       - Number of blade node outputs [0 - 9] (-)
+9             NBlOuts       - Number of blade node outputs [0 - 9] (-)
 1, 4, 7, 13, 18, 23, 26, 28, 30 BlOutNd - Blade nodes whose values will be output (-)
 0             NTwOuts       - Number of tower node outputs [0 - 9] (-)
 1, 2, 6 TwOutNd - Tower nodes whose values will be output (-)
  OutList The next line(s) contains a list of output parameters.  See OutListParameters.xlsx for a listing of available output channels, (-)
-"RtAeroCp"
-"RtAeroCq"
-"RtAeroCt"
-"RtAeroFxh"
-"RtAeroFyh"
-"RtAeroFzh"
-"RtAeroMxh"
-"RtAeroMyh"
-"RtAeroMzh"
-"RtAeroPwr"
-"RtArea"
-"RtSkew"
-"RtSpeed"
-"RtTSR"
-"RtVAvgxh"
-"RtVAvgyh"
-"RtVAvgzh"
+
 END           of            - input file (the word "END" must appear in the first 3 columns of this last OutList line)
 ---------------------------------------------------------------------------------------

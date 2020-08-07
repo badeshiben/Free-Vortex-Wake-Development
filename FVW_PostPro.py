@@ -1,5 +1,4 @@
 import os
-import glob
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,15 +6,7 @@ import fastlib
 from create_studies import study1, study2, study3, study4, study5, study6
 import weio
 
-
-
-
-# # --- Plotting mean quantities
-# def plotme(study, WS, output, df):
-#     """plot discretization study results
-#     Input wind speed range, study, output to plot, and df to use"""
 """ PLOTTING MEAN QUANTITIES """
-
 ####################################################################################################################
 
 """ RAW DATA """
@@ -202,7 +193,8 @@ def resolution_pDiff_aero(varying, WS, plot):
 
     outlist = ['B1N001AIn_[-]', 'B1N002AIn_[-]', 'B1N003AIn_[-]', 'B1N004AIn_[-]', 'B1N005AIn_[-]',
                'B1N006AIn_[-]', 'B1N007AIn_[-]', 'B1N008AIn_[-]', 'B1N009AIn_[-]',
-               # 'B1N001TnInd', 'B1N002TnInd', 'B1N003TnInd', 'B1N004TnInd', 'B1N005TnInd', 'B1N006TnInd', 'B1N007TnInd', 'B1N008TnInd', 'B1N009TnInd',
+               'B1N001ApI_[-]', 'B1N002ApI_[-]', 'B1N003ApI_[-]', 'B1N004ApI_[-]', 'B1N005ApI_[-]',
+               'B1N006ApI_[-]', 'B1N007ApI_[-]', 'B1N008ApI_[-]', 'B1N009ApI_[-]',
                'B1N001Fn_[N/m]', 'B1N002Fn_[N/m]', 'B1N003Fn_[N/m]', 'B1N004Fn_[N/m]', 'B1N005Fn_[N/m]',
                'B1N006Fn_[N/m]', 'B1N007Fn_[N/m]', 'B1N008Fn_[N/m]', 'B1N009Fn_[N/m]',
                'B1N002Ft_[N/m]', 'B1N003Ft_[N/m]', 'B1N004Ft_[N/m]', 'B1N005Ft_[N/m]',
@@ -246,7 +238,121 @@ def resolution_pDiff_aero(varying, WS, plot):
         plot_name = "Figures/" + varying + "_%diff_AERO" + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
+""" PLOT OUTPUTS ALONG BLADE SPAN, VARYING WS and param """
+def spanwise_vary_both(param, values, WS, plot):
+    """
+    Parameters
+    ----------
+    param:      param to use
+    values:      list of param values
+    WS:         list of wind speeds [m/s]
+    plot:       plot options. [0, 1, 2] - [no plot, show plot, save plot]
 
+    Returns
+    -------
+    plots outputs along blade span
+    """
+
+    fig, ax = plt.subplots(4, 2, sharey=False, sharex=False, figsize=(15, 20))
+    norm_node_r = np.linspace(0, 1, 9)
+    legend_labels = []
+    for ws in WS:
+        for value in values:
+            # pull out spanwise values
+            df = pd.read_csv('Results_ws{:04.1f}'.format(ws) + '_' + param + '.csv', sep='\t')
+            AxInd = df[['B1N001AIn_[-]', 'B1N002AIn_[-]', 'B1N003AIn_[-]', 'B1N004AIn_[-]', 'B1N005AIn_[-]',
+                        'B1N006AIn_[-]', 'B1N007AIn_[-]', 'B1N008AIn_[-]', 'B1N009AIn_[-]']]
+            TnInd = df[['B1N001ApI_[-]', 'B1N002ApI_[-]', 'B1N003ApI_[-]', 'B1N004ApI_[-]', 'B1N005ApI_[-]',
+                        'B1N006ApI_[-]', 'B1N007ApI_[-]', 'B1N008ApI_[-]', 'B1N009ApI_[-]', ]]
+            Fn = df[['B1N001Fn_[N/m]', 'B1N002Fn_[N/m]', 'B1N003Fn_[N/m]', 'B1N004Fn_[N/m]', 'B1N005Fn_[N/m]',
+                     'B1N006Fn_[N/m]', 'B1N007Fn_[N/m]', 'B1N008Fn_[N/m]', 'B1N009Fn_[N/m]']]
+            Ft = df[['B1N001Ft_[N/m]', 'B1N002Ft_[N/m]', 'B1N003Ft_[N/m]', 'B1N004Ft_[N/m]', 'B1N005Ft_[N/m]',
+                     'B1N006Ft_[N/m]', 'B1N007Ft_[N/m]', 'B1N008Ft_[N/m]', 'B1N009Ft_[N/m]']]
+            Fl = df[['B1N001Fl_[N/m]', 'B1N002Fl_[N/m]', 'B1N003Fl_[N/m]', 'B1N004Fl_[N/m]', 'B1N005Fl_[N/m]',
+                     'B1N006Fl_[N/m]', 'B1N007Fl_[N/m]', 'B1N008Fl_[N/m]', 'B1N009Fl_[N/m]']]
+            Fd = df[['B1N001Fd_[N/m]', 'B1N002Fd_[N/m]', 'B1N003Fd_[N/m]', 'B1N004Fd_[N/m]', 'B1N005Fd_[N/m]',
+                     'B1N006Fd_[N/m]', 'B1N007Fd_[N/m]', 'B1N008Fd_[N/m]', 'B1N009Fd_[N/m]']]
+            Circ = df[['B1N001Gam_[m^2/s]', 'B1N002Gam_[m^2/s]', 'B1N003Gam_[m^2/s]', 'B1N004Gam_[m^2/s]', 'B1N005Gam_[m^2/s]',
+                       'B1N006Gam_[m^2/s]', 'B1N007Gam_[m^2/s]', 'B1N008Gam_[m^2/s]', 'B1N009Gam_[m^2/s]']]
+
+            # compute spanwise stats, append to df, and write back to csv
+            AxIndMean = AxInd.mean(axis=1); AxIndMean = AxIndMean.rename('AxIndMean')
+            AxIndMax  = AxInd.max(axis=1);   AxIndMax = AxIndMax.rename('AxIndMax')
+            CircMean  = Circ.mean(axis=1);   CircMean = CircMean.rename('CircMean')
+            CircMax   = Circ.max(axis=1);    CircMax  = CircMax.rename('CircMax')
+            df = pd.concat([df, AxIndMean, AxIndMax, CircMean, CircMax], axis=1)
+            df.to_csv('Results_ws{:04.1f}'.format(ws) + '_' + param + '.csv', sep='\t', index=False)
+            # AxInd = pd.concat([AxInd, mean, max], axis=1)
+            #plot everything
+            i = df.index[df[param] == value][0]
+            ax[0, 0].set_ylabel('Axial Induction')
+            ax[0, 0].plot(norm_node_r, AxInd.iloc[i], 'o-', label='ws = {:}'.format(ws))
+            ax[0, 1].set_ylabel('Tangential Induction')
+            ax[0, 1].plot(norm_node_r, TnInd.iloc[i], 'o-', label='ws = {:}'.format(ws))
+            ax[1, 0].set_ylabel('Normal Force [N]')
+            ax[1, 0].plot(norm_node_r, Fn.iloc[i], 'o-', label='ws = {:}'.format(ws))
+            ax[1, 1].set_ylabel('Tangential Force [N]')
+            ax[1, 1].plot(norm_node_r, Ft.iloc[i], 'o-', label='ws = {:}'.format(ws))
+            ax[2, 0].set_ylabel('Lift Force [N]')
+            ax[2, 0].plot(norm_node_r, Fl.iloc[i], 'o-', label='ws = {:}'.format(ws))
+            ax[2, 1].set_ylabel('Drag Force [N]')
+            ax[2, 1].plot(norm_node_r, Fd.iloc[i], 'o-', label='ws = {:}'.format(ws))
+            ax[3, 0].set_ylabel('Circulation')
+            ax[3, 0].plot(norm_node_r, Circ.iloc[i], 'o-', label='ws = {:}'.format(ws))
+            legend_labels = legend_labels + [param + " = {:04.3f}".format(value) + '; ws_[m/s] = {:}'.format(ws)]
+
+    ax[3, 0].legend(legend_labels, loc='upper left', bbox_to_anchor=(1, 1))
+    ax[0, 0].grid(); ax[0, 1].grid(); ax[1, 0].grid(); ax[1, 1].grid(); ax[2, 0].grid(); ax[2, 1].grid(); ax[3, 0].grid();
+    plt.tick_params(direction='in')
+    plt.delaxes()
+    plt.grid(True)
+    if plot == 1:
+        plt.show()
+        plt.close()
+    elif plot == 2:
+        plot_name = "Figures/" + 'SPANWISE_' + param + ".pdf"
+        # plot_name = "Figures/" + 'SPANWISE_' + param + "{:04.1f}".format(value)  + '_ws{:}'.format(ws) + ".pdf"
+        plt.savefig(plot_name, bbox_inches='tight')
+
+""" RUN RESOLUTION STUDY """
+def run_study(WS, name, values):
+    """ run a resolution study
+    Parameters
+    ----------
+    WS:                 list of wind speeds [m/s]
+    name:               parameter name to vary
+    parameter values:   list of parameter values
+
+    Returns
+    -------
+    plots of % diff between results at current and finest resolution
+    """
+    work_dir = 'SampleOutputs'
+    for wsp in WS:
+        i = WS.index(wsp)
+        outFiles=[]
+        for val in values:
+            case     ='ws{:04.1f}'.format(wsp)+'_'+name+'{:.4f}'.format(val)
+            filename = os.path.join(work_dir, case + '.outb')
+            outFiles.append(filename)
+        dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
+        dfAvg.insert(0,name, values)
+        # --- Save to csv since step above can be expensive
+        dfAvg.to_csv('Results_ws{:04.1f}_'.format(wsp) + name + '.csv', sep='\t', index=False)
+        #print(dfAvg)
+    # resolution_raw(name, WS, 2)
+    # resolution_pDiff_aero(name, WS, 1)
+    spanwise_vary_both(name, values, WS, 1)
+    print('Ran ' + name + ' post processing')
+
+if __name__ == "__main__":
+    run_study(WS=[5, 10], name='Reg_[m]', values=[.5, 2.75, 5])
+
+
+
+
+
+########################################################################################################################
 """ PLOT OUTPUTS ALONG BLADE SPAN, VARYING PARAMS """
 def spanwise_vary_param(varying, WS, plot):
     """
@@ -264,15 +370,22 @@ def spanwise_vary_param(varying, WS, plot):
     fig, ax = plt.subplots(4, 2, sharey=False, sharex=True, figsize=(15, 20))
     norm_node_r = np.linspace(0, 1, 9)
     df = pd.read_csv('Results_ws{:04.1f}'.format(WS) + '_' + varying + '.csv', sep='\t')
-    AxInd = df[['B1N001AxInd', 'B1N002AxInd', 'B1N003AxInd', 'B1N004AxInd', 'B1N005AxInd', 'B1N006AxInd', 'B1N007AxInd',
-                'B1N008AxInd', 'B1N009AxInd']]
-    TnInd = df[['B1N001TnInd', 'B1N002TnInd', 'B1N003TnInd', 'B1N004TnInd', 'B1N005TnInd', 'B1N006TnInd', 'B1N007TnInd',
-                'B1N008TnInd', 'B1N009TnInd']]
-    Fn = df[['B1N001Fn', 'B1N002Fn', 'B1N003Fn', 'B1N004Fn', 'B1N005Fn', 'B1N006Fn', 'B1N007Fn', 'B1N008Fn', 'B1N009Fn']]
-    Ft = df[['B1N001Ft', 'B1N002Ft', 'B1N003Ft', 'B1N004Ft', 'B1N005Ft', 'B1N006Ft', 'B1N007Ft', 'B1N008Ft', 'B1N009Ft']]
-    Fl = df[['B1N001Fl', 'B1N002Fl', 'B1N003Fl', 'B1N004Fl', 'B1N005Fl', 'B1N006Fl', 'B1N007Fl', 'B1N008Fl', 'B1N009Fl']]
-    Fd = df[['B1N001Fd', 'B1N002Fd', 'B1N003Fd', 'B1N004Fd', 'B1N005Fd', 'B1N006Fd', 'B1N007Fd', 'B1N008Fd', 'B1N009Fd']]
-    Circ = df[['Gam001B1', 'Gam002B1', 'Gam003B1', 'Gam004B1', 'Gam005B1', 'Gam006B1', 'Gam007B1', 'Gam008B1', 'Gam009B1']]
+    AxInd = df[
+        ['B1N001AxInd', 'B1N002AxInd', 'B1N003AxInd', 'B1N004AxInd', 'B1N005AxInd', 'B1N006AxInd', 'B1N007AxInd',
+         'B1N008AxInd', 'B1N009AxInd']]
+    TnInd = df[
+        ['B1N001TnInd', 'B1N002TnInd', 'B1N003TnInd', 'B1N004TnInd', 'B1N005TnInd', 'B1N006TnInd', 'B1N007TnInd',
+         'B1N008TnInd', 'B1N009TnInd']]
+    Fn = df[['B1N001Fn', 'B1N002Fn', 'B1N003Fn', 'B1N004Fn', 'B1N005Fn', 'B1N006Fn', 'B1N007Fn', 'B1N008Fn',
+             'B1N009Fn']]
+    Ft = df[['B1N001Ft', 'B1N002Ft', 'B1N003Ft', 'B1N004Ft', 'B1N005Ft', 'B1N006Ft', 'B1N007Ft', 'B1N008Ft',
+             'B1N009Ft']]
+    Fl = df[['B1N001Fl', 'B1N002Fl', 'B1N003Fl', 'B1N004Fl', 'B1N005Fl', 'B1N006Fl', 'B1N007Fl', 'B1N008Fl',
+             'B1N009Fl']]
+    Fd = df[['B1N001Fd', 'B1N002Fd', 'B1N003Fd', 'B1N004Fd', 'B1N005Fd', 'B1N006Fd', 'B1N007Fd', 'B1N008Fd',
+             'B1N009Fd']]
+    Circ = df[['Gam001B1', 'Gam002B1', 'Gam003B1', 'Gam004B1', 'Gam005B1', 'Gam006B1', 'Gam007B1', 'Gam008B1',
+               'Gam009B1']]
 
     for i in range(0, len(df['B1N1Fn'])):
         ax[0, 0].set_ylabel('Axial Induction')
@@ -319,13 +432,20 @@ def spanwise_vary_WS(param, value, WS, plot):
     norm_node_r = np.linspace(0, 1, 9)
     for ws in WS:
         df = pd.read_csv('Results_ws{:04.1f}'.format(ws) + '_' + param + '.csv', sep='\t')
-        AxInd = df[['B1N001AxInd', 'B1N002AxInd', 'B1N003AxInd', 'B1N004AxInd', 'B1N005AxInd', 'B1N006AxInd', 'B1N007AxInd', 'B1N008AxInd', 'B1N009AxInd']]
-        TnInd = df[['B1N001TnInd', 'B1N002TnInd', 'B1N003TnInd', 'B1N004TnInd', 'B1N005TnInd', 'B1N006TnInd', 'B1N007TnInd', 'B1N008TnInd', 'B1N009TnInd']]
-        Fn = df[['B1N001Fn', 'B1N002Fn', 'B1N003Fn', 'B1N004Fn', 'B1N005Fn', 'B1N006Fn', 'B1N007Fn', 'B1N008Fn', 'B1N009Fn']]
-        Ft = df[['B1N001Ft', 'B1N002Ft', 'B1N003Ft', 'B1N004Ft', 'B1N005Ft', 'B1N006Ft', 'B1N007Ft', 'B1N008Ft', 'B1N009Ft']]
-        Fl = df[['B1N001Fl', 'B1N002Fl', 'B1N003Fl', 'B1N004Fl', 'B1N005Fl', 'B1N006Fl', 'B1N007Fl', 'B1N008Fl', 'B1N009Fl']]
-        Fd = df[['B1N001Fd', 'B1N002Fd', 'B1N003Fd', 'B1N004Fd', 'B1N005Fd', 'B1N006Fd', 'B1N007Fd', 'B1N008Fd', 'B1N009Fd']]
-        Circ = df[['Gam001B1', 'Gam002B1', 'Gam003B1', 'Gam004B1', 'Gam005B1', 'Gam006B1', 'Gam007B1', 'Gam008B1', 'Gam009B1']]
+        AxInd = df[['B1N001AxInd', 'B1N002AxInd', 'B1N003AxInd', 'B1N004AxInd', 'B1N005AxInd', 'B1N006AxInd',
+                    'B1N007AxInd', 'B1N008AxInd', 'B1N009AxInd']]
+        TnInd = df[['B1N001TnInd', 'B1N002TnInd', 'B1N003TnInd', 'B1N004TnInd', 'B1N005TnInd', 'B1N006TnInd',
+                    'B1N007TnInd', 'B1N008TnInd', 'B1N009TnInd']]
+        Fn = df[['B1N001Fn', 'B1N002Fn', 'B1N003Fn', 'B1N004Fn', 'B1N005Fn', 'B1N006Fn', 'B1N007Fn', 'B1N008Fn',
+                 'B1N009Fn']]
+        Ft = df[['B1N001Ft', 'B1N002Ft', 'B1N003Ft', 'B1N004Ft', 'B1N005Ft', 'B1N006Ft', 'B1N007Ft', 'B1N008Ft',
+                 'B1N009Ft']]
+        Fl = df[['B1N001Fl', 'B1N002Fl', 'B1N003Fl', 'B1N004Fl', 'B1N005Fl', 'B1N006Fl', 'B1N007Fl', 'B1N008Fl',
+                 'B1N009Fl']]
+        Fd = df[['B1N001Fd', 'B1N002Fd', 'B1N003Fd', 'B1N004Fd', 'B1N005Fd', 'B1N006Fd', 'B1N007Fd', 'B1N008Fd',
+                 'B1N009Fd']]
+        Circ = df[['Gam001B1', 'Gam002B1', 'Gam003B1', 'Gam004B1', 'Gam005B1', 'Gam006B1', 'Gam007B1', 'Gam008B1',
+                   'Gam009B1']]
 
         i = df.index[df[[param] == value]]
         ax[0, 0].set_ylabel('Axial Induction')
@@ -352,177 +472,3 @@ def spanwise_vary_WS(param, value, WS, plot):
     elif plot == 2:
         plot_name = "Figures/" + 'SPANWISE_' + param + "{:04.1f}".format(value) + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
-
-""" PLOT OUTPUTS ALONG BLADE SPAN, VARYING WS and param """
-def spanwise_vary_both(param, values, WS, plot):
-    """
-    Parameters
-    ----------
-    param:      param to use
-    values:      list of param values
-    WS:         list of wind speeds [m/s]
-    plot:       plot options. [0, 1, 2] - [no plot, show plot, save plot]
-
-    Returns
-    -------
-    plots outputs along blade span
-    """
-
-    fig, ax = plt.subplots(4, 2, sharey=False, sharex=False, figsize=(15, 20))
-    norm_node_r = np.linspace(0, 1, 9)
-    legend_labels = []
-    for ws in WS:
-        for value in values:
-            df = pd.read_csv('Results_ws{:04.1f}'.format(ws) + '_' + param + '.csv', sep='\t')
-            AxInd = df[['B1N001AIn_[-]', 'B1N002AIn_[-]', 'B1N003AIn_[-]', 'B1N004AIn_[-]', 'B1N005AIn_[-]',
-                        'B1N006AIn_[-]', 'B1N007AIn_[-]', 'B1N008AIn_[-]', 'B1N009AIn_[-]', ]]
-            # TnInd = df[['B1N001TnInd', 'B1N002TnInd', 'B1N003TnInd', 'B1N004TnInd', 'B1N005TnInd', 'B1N006TnInd',
-            #             'B1N007TnInd', 'B1N008TnInd', 'B1N009TnInd']]
-            Fn = df[['B1N001Fn_[N/m]', 'B1N002Fn_[N/m]', 'B1N003Fn_[N/m]', 'B1N004Fn_[N/m]', 'B1N005Fn_[N/m]',
-                     'B1N006Fn_[N/m]', 'B1N007Fn_[N/m]', 'B1N008Fn_[N/m]', 'B1N009Fn_[N/m]']]
-            Ft = df[['B1N001Ft_[N/m]', 'B1N002Ft_[N/m]', 'B1N003Ft_[N/m]', 'B1N004Ft_[N/m]', 'B1N005Ft_[N/m]',
-                     'B1N006Ft_[N/m]', 'B1N007Ft_[N/m]', 'B1N008Ft_[N/m]', 'B1N009Ft_[N/m]']]
-            Fl = df[['B1N001Fl_[N/m]', 'B1N002Fl_[N/m]', 'B1N003Fl_[N/m]', 'B1N004Fl_[N/m]', 'B1N005Fl_[N/m]',
-                     'B1N006Fl_[N/m]', 'B1N007Fl_[N/m]', 'B1N008Fl_[N/m]', 'B1N009Fl_[N/m]']]
-            Fd = df[['B1N001Fd_[N/m]', 'B1N002Fd_[N/m]', 'B1N003Fd_[N/m]', 'B1N004Fd_[N/m]', 'B1N005Fd_[N/m]',
-                     'B1N006Fd_[N/m]', 'B1N007Fd_[N/m]', 'B1N008Fd_[N/m]', 'B1N009Fd_[N/m]']]
-            Circ = df[['B1N001Gam_[m^2/s]', 'B1N002Gam_[m^2/s]', 'B1N003Gam_[m^2/s]', 'B1N004Gam_[m^2/s]', 'B1N005Gam_[m^2/s]',
-                       'B1N006Gam_[m^2/s]', 'B1N007Gam_[m^2/s]', 'B1N008Gam_[m^2/s]', 'B1N009Gam_[m^2/s]']]
-
-            x = df[param] == value
-            i = df.index[df[param] == value][0]
-            data = AxInd.iloc[i, :]
-            data2 = AxInd.iloc[i]
-            ax[0, 0].set_ylabel('Axial Induction')
-            ax[0, 0].plot(norm_node_r, AxInd.iloc[i], 'o-', label='ws = {:}'.format(ws))
-            # ax[0, 1].set_ylabel('Tangential Induction')
-            # ax[0, 1].plot(norm_node_r, TnInd[i, :], 'o-', label='ws = {:}'.format(ws))
-            ax[1, 0].set_ylabel('Normal Force [N]')
-            ax[1, 0].plot(norm_node_r, Fn.iloc[i], 'o-', label='ws = {:}'.format(ws))
-            ax[1, 1].set_ylabel('Tangential Force [N]')
-            ax[1, 1].plot(norm_node_r, Ft.iloc[i], 'o-', label='ws = {:}'.format(ws))
-            ax[2, 0].set_ylabel('Lift Force [N]')
-            ax[2, 0].plot(norm_node_r, Fl.iloc[i], 'o-', label='ws = {:}'.format(ws))
-            ax[2, 1].set_ylabel('Drag Force [N]')
-            ax[2, 1].plot(norm_node_r, Fd.iloc[i], 'o-', label='ws = {:}'.format(ws))
-            ax[3, 0].set_ylabel('Circulation')
-            ax[3, 0].plot(norm_node_r, Circ.iloc[i], 'o-', label='ws = {:}'.format(ws))
-            legend_labels = legend_labels + [param + " = {:04.3f}".format(value) + '; ws_[m/s] = {:}'.format(ws)]
-
-    ax[3, 0].legend(legend_labels, loc='upper left', bbox_to_anchor=(1, 1))
-    ax[0, 0].grid(); ax[0, 1].grid(); ax[1, 0].grid(); ax[1, 1].grid(); ax[2, 0].grid(); ax[2, 1].grid(); ax[3, 0].grid();
-    plt.tick_params(direction='in')
-    plt.delaxes()
-    plt.grid(True)
-    if plot == 1:
-        plt.show()
-        plt.close()
-    elif plot == 2:
-        plot_name = "Figures/" + 'SPANWISE_' + param + ".pdf"
-        # plot_name = "Figures/" + 'SPANWISE_' + param + "{:04.1f}".format(value)  + '_ws{:}'.format(ws) + ".pdf"
-        plt.savefig(plot_name, bbox_inches='tight')
-""" RUN RESOLUTION STUDY """
-def run_study(WS, name, values):
-    """ run a resolution study
-    Parameters
-    ----------
-    WS:                 list of wind speeds [m/s]
-    name:               parameter name to vary
-    parameter values:   list of parameter values
-
-    Returns
-    -------
-    plots of % diff between results at current and finest resolution
-    """
-    work_dir = 'SampleOutputs'
-    for wsp in WS:
-        i = WS.index(wsp)
-        outFiles=[]
-        for val in values:
-            case     ='ws{:04.1f}'.format(wsp)+'_'+name+'{:.4f}'.format(val)
-            filename = os.path.join(work_dir, case + '.outb')
-            outFiles.append(filename)
-        dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
-        dfAvg.insert(0,name, values)
-        # --- Save to csv since step above can be expensive
-        dfAvg.to_csv('Results_ws{:04.1f}_'.format(wsp) + name + '.csv', sep='\t', index=False)
-        #print(dfAvg)
-    # resolution_raw(name, WS, 2)
-    resolution_pDiff_aero(name, WS, 1)
-    # spanwise_vary_both(name, values, WS, 1)
-    print('Ran ' + name + ' post processing')
-
-
-if __name__ == "__main__":
-    run_study(WS=[5, 10], name='Reg_[m]', values=[.5, 2.75, 5])
-
-
-
-
-
-
-    #--- Simple Postprocessing
-    # - Open all the output files,
-    # - Average the quantities over the last revolution
-    # - Return a dataframe, sorted by Wind Speed
-    # dfs=[] # results per wind speed
-    # Postprocessing files, wind speed per wind speed
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# fig,ax = plt.subplots(1, 1, sharey=False, figsize=(6.4,4.8)) # (6.4,4.8)
-# fig.subplots_adjust(left=0.12, right=0.95, top=0.95, bottom=0.11, hspace=0.20, wspace=0.20)
-# for ws in WS:
-#     df = pd.read_csv('Results_ws{:04.1f}.csv'.format(ws),sep='\t')
-#     num_plots = 7
-#     tags = 420 + np.linspace(1,7,7)
-#     ax.plot(df['Reg_[m]'], df['OoPDefl1_[m]'], 'o-',  label='WS = {:}'.format(ws))
-#     ax.plot(df['Reg_[m]'], df['IPDefl1_[m]'], 'o-', label='WS = {:}'.format(ws))
-#     ax.plot(df['Reg_[m]'], df['TTDspFA_[m]'], 'o-',  label='WS = {:}'.format(ws))
-#     ax.plot(df['Reg_[m]'], df['RootMyb1_[kN-m]'], 'o-', label='WS = {:}'.format(ws))  # in plane
-#     ax.plot(df['Reg_[m]'], df['RootMyb1_[kN-m]'], 'o-', label='WS = {:}'.format(ws))  # out of plane
-#     ax.plot(df['Reg_[m]'], df['RootMzb1_[kN-m]'], 'o-', label='WS = {:}'.format(ws))  # pitching
-#     ax.plot(df['Reg_[m]'], df['RotTorq_[kN-m]'], 'o-', label='WS = {:}'.format(ws))  # LSS torque @ main bearing
-#     ax.plot(df['Reg_[m]'], df['LSSGagMya_[kN-m]'], 'o-', label='WS = {:}'.format(ws))  # LSS bending y @ main bearing
-#     ax.plot(df['Reg_[m]'], df['LSSGagMza_[kN-m]'], 'o-', label='WS = {:}'.format(ws))  # LSS bending z @ main bearing
-#     ax.plot(df['Reg_[m]'], df['YawBrMxp_[kN-m]'], 'o-', label='WS = {:}'.format(ws))  # TT SS moment
-#     ax.plot(df['Reg_[m]'], df['YawBrMyp_[kN-m]'], 'o-', label='WS = {:}'.format(ws))  # TT FA moment
-#     ax.plot(df['Reg_[m]'], df['YawBrMzp_[kN-m]'], 'o-', label='WS = {:}'.format(ws))  # TT yaw moment
-#     ax.plot(df['Reg_[m]'], df['TwrBsMxt_[kN-m]'], 'o-', label='WS = {:}'.format(ws))  # TB SS moment
-#     ax.plot(df['Reg_[m]'], df['TwrBsMyt_[kN-m]'], 'o-', label='WS = {:}'.format(ws))  # TB FA moment
-#     ax.plot(df['Reg_[m]'], df['TwrBsMzt_[kN-m]'], 'o-', label='WS = {:}'.format(ws))  # TB yaw moment
-#     ax.plot(df['Reg_[m]'], df['GenPwr_[kW]'], 'o-', label='WS = {:}'.format(ws))  # Electrical Generator Power
-# ax.set_xlabel('Reg. param [m]')
-# ax.set_ylabel('Thrust [kN]')
-# ax.legend()
-# ax.tick_params(direction='in')
-# plt.show()

@@ -54,93 +54,37 @@ def genericStudy(study, ref_dir, work_dir, main_file):
     # --- Defining the parametric study, parameters that changes (list of dictionnaries with keys as FAST parameters)
     PARAMS=[]
 
-
-
-
-
-    # p = BaseDict.copy()  # Important, create a copy for each simulation
-    # # Parameters for one simulation
-    # p['EDFile|RotSpeed'] = study['RPM']
-    # p['EDFile|BlPitch(1)'] = study['pitch']
-    # p['EDFile|BlPitch(2)'] = study['pitch']
-    # p['EDFile|BlPitch(3)'] = study['pitch']
-    # p['InflowFile|HWindSpeed'] = study['WS']
-    # p['AeroFile|FVWFile|DTfvw'] = study['DTfvw']
-    # p['AeroFile|FVWFile|nNWPanel'] = study['nNWPanel']
-    # p['AeroFile|FVWFile|WakeLength'] = study['WakeLength']
-    # p['AeroFile|FVWFile|WakeRegFactor'] = study['WakeRegFactor']
-    # p['AeroFile|FVWFile|WingRegFactor'] = study['WingRegFactor']
-    # p['AeroFile|FVWFile|CoreSpreadEddyVisc'] = study['CoreSpreadEddyVisc']
-    #
-    #
-    #
-    #
-    # # Name used for inputs files
-    # p['__name__'] = 'ws4_nNWPanel' + str(study['nNWPanel']) + '_test'
-    #
-    # PARAMS.append(p)
-    #
-    # # Add this simulation to the list of simulations
-    # fastfiles = fastlib.templateReplace(PARAMS, ref_dir, workdir=work_dir, RemoveRefSubFiles=True, main_file=main_file,
-    #                                     oneSimPerDir=False)
-
-
     k = 0
-    for wsp, rpm ,pitch, DTfvw, nNWP, WL, WaRF, WiRF, CSEV in zip(study['WS'], study['RPM'], study['pitch'], study['DTfvw'], study['nNWPanel'], study['WakeLength'],\
-                                                 study['WakeRegFactor'], study['WingRegFactor'], study['CoreSpreadEddyVisc']):
-        p=BaseDict.copy() # Important, create a copy for each simulation
-        # Parameters for one simulation
-        p['DT']                     = DTfvw
-        p['DT_Out']                 = DTfvw
-        p['EDFile|RotSpeed']        = rpm
-        p['EDFile|BlPitch(1)']      = pitch
-        p['EDFile|BlPitch(2)']      = pitch
-        p['EDFile|BlPitch(3)']      = pitch
-        p['InflowFile|HWindSpeed']  = wsp
-        p['AeroFile|FVWFile|DTfvw'] = DTfvw
-        p['AeroFile|FVWFile|nNWPanel'] = nNWP
-        p['AeroFile|FVWFile|WakeLength'] = WL
-        p['AeroFile|FVWFile|WakeRegFactor'] = WaRF
-        p['AeroFile|FVWFile|WingRegFactor'] = WiRF
-        p['AeroFile|FVWFile|CoreSpreadEddyVisc'] = CSEV
+    for wsp, rpm ,pitch in zip(study['WS'], study['RPM'], study['pitch']):
+        j = 0
+        for DTfvw, nNWP, WL, WaRF, WiRF, CSEV in zip(study['DTfvw'][k, :], study['nNWPanel'][k, :], study['WakeLength'][k, :],\
+                                                 study['WakeRegFactor'][k, :], study['WingRegFactor'][k, :], study['CoreSpreadEddyVisc'][k, :]):
 
-        # Name used for inputs files
-        p['__name__']='ws{:.0f}_'.format(wsp)+'WakeLength'+'{:.3f}'.format(study['WakeLength'][k])
-
-        PARAMS.append(p)
-
-        # Add this simulation to the list of simulations
-        fastfiles=fastlib.templateReplace(PARAMS,ref_dir,workdir=work_dir,RemoveRefSubFiles=True,main_file=main_file, oneSimPerDir=False)
+            p=BaseDict.copy() # Important, create a copy for each simulation
+            # Parameters for one simulation
+            p['TMax']                   = study['TMax']
+            p['TStart']                 = study['TMax'] - 200
+            p['DT']                     = DTfvw
+            p['DT_Out']                 = DTfvw
+            p['EDFile|RotSpeed']        = rpm
+            p['EDFile|BlPitch(1)']      = pitch
+            p['EDFile|BlPitch(2)']      = pitch
+            p['EDFile|BlPitch(3)']      = pitch
+            p['InflowFile|HWindSpeed']  = wsp
+            p['AeroFile|FVWFile|DTfvw'] = DTfvw
+            p['AeroFile|FVWFile|nNWPanel'] = nNWP
+            p['AeroFile|FVWFile|WakeLength'] = WL
+            p['AeroFile|FVWFile|WakeRegFactor'] = WaRF
+            p['AeroFile|FVWFile|WingRegFactor'] = WiRF
+            p['AeroFile|FVWFile|CoreSpreadEddyVisc'] = CSEV
+            # Name used for inputs filesx =
+            x = study[study['param']][k]
+            p['__name__']='ws{:.0f}_'.format(wsp)+study['param']+'{:.3f}'.format(study[study['param']][k, j])
+            PARAMS.append(p)
+            j += 1
         k += 1
-    # j = 0
-    # for wsp,rpm,pitch in zip(study['WS'], study['RPM'], study['pitch']): # here we zip since these are combined parameters
-    #     k = 0
-    #     for DTfvw, nNWP, WL, WaRF, WiRF, CSEV in zip(study['DTfvw'][j], study['nNWPanel'][j], study['WakeLength'][j],\
-    #                                                  study['WakeRegFactor'][j], study['WingRegFactor'][j], study['CoreSpreadEddyVisc'][j]):
-    #         p=BaseDict.copy() # Important, create a copy for each simulation
-    #         # Parameters for one simulation
-    #         p['EDFile|RotSpeed']        = rpm
-    #         p['EDFile|BlPitch(1)']      = pitch
-    #         p['EDFile|BlPitch(2)']      = pitch
-    #         p['EDFile|BlPitch(3)']      = pitch
-    #         p['InflowFile|HWindSpeed']  = wsp
-    #         p['AeroFile|FVWFile|DTfvw'] = DTfvw
-    #         p['AeroFile|FVWFile|nNWPanel'] = nNWP
-    #         p['AeroFile|FVWFile|WakeLength'] = WL
-    #         p['AeroFile|FVWFile|WakeRegFactor'] = WaRF
-    #         p['AeroFile|FVWFile|WingRegFactor'] = WiRF
-    #         p['AeroFile|FVWFile|CoreSpreadEddyVisc'] = CSEV
-    #
-    #         # Name used for inputs files
-    #         p['__name__']='ws{:.0f}_'.format(wsp)+study['param']+'{:.3f}'.format(study[study['param']][j, k])
-    #
-    #         PARAMS.append(p)
-    #
-    #         # Add this simulation to the list of simulations
-    #         fastfiles=fastlib.templateReplace(PARAMS,ref_dir,workdir=work_dir,RemoveRefSubFiles=True,main_file=main_file, oneSimPerDir=False)
-    #         k += 1
-    #     j += 1
-    # --- Generating all files in a workdir
+    # Add this simulation to the list of simulations
+    fastfiles=fastlib.templateReplace(PARAMS,ref_dir,workdir=work_dir,RemoveRefSubFiles=True,main_file=main_file, oneSimPerDir=False)
 
     return fastfiles
 
@@ -158,9 +102,11 @@ def createSubmit(fastfiles, FAST_EXE, npf):
     nfiles = len(fastfiles)
 
     chunks = list(divide_chunks(fastfiles, npf))
-
+    #one file per submit script
     for chunk in chunks:
-        f = open(work_dir + "Submit_" + str(chunks.index(chunk)) + ".txt", "w")
+        fname = chunk[0].replace(work_dir, '')
+        name = fname[:-4]
+        f = open(work_dir + "Submit_" + name + ".txt", "w")
         f.write('#! /bin/bash\n')
         f.write('#SBATCH --job-name=FVWcheck                     # Job name\n')
         f.write('#SBATCH --time 48:00:00\n')
@@ -174,44 +120,81 @@ def createSubmit(fastfiles, FAST_EXE, npf):
         f.write('module purge\n')
         f.write('ml comp-intel mkl\n')
         f.write('\n')
-        for file in chunk:
-            fname = file.replace(work_dir,'')
-            f.write(FAST_EXE + ' ' + fname + ' &\n')
+        f.write(FAST_EXE + ' ' + fname + '\n')
+
+
         f.write('wait')
         f.close()
 
 
 if __name__=='__main__':
     # --- "Global" Parameters for this script
-    study = test_study
+    study = study1
     ref_dir          = './BAR_02_template/'   # Folder where the fast input files are located (will be copied)
     main_file        = 'OpenFAST_BAR_02.fst'    # Main file in ref_dir, used as a template
     work_dir         = 'BAR_02_discretization_inputs/'+study['param']+'/'          # Output folder (will be created)
     FAST_EXE = '/home/banderso2/openfast/build/glue-codes/openfast/openfast'
-    npf = 4  # number of FAST runs per submission script
+    npf = 1  # number of FAST runs per submission script
     # --- Generate inputs files
     fastfiles = genericStudy(study, ref_dir, work_dir, main_file)
     createSubmit(fastfiles, FAST_EXE, npf)
 
-    # --- Creating a batch script
-    # fastlib.writeBatch(os.path.join(work_dir,'_RUN_ALL.bat'),fastfiles,fastExe=FAST_EXE)
-    # TODO potentially replace by a batch script to submit on eagle..
 
-    # --- Running the simulations locally
-    #fastlib.run_fastfiles(fastfiles, fastExe=FAST_EXE, parallel=True, ShowOutputs=True, nCores=4)
 
-    # --- Simple Postprocessing
-    # - Open all the output files,
-    # - Average the quantities over the last revolution
-    # - Return a dataframe, sorted by Wind Speed
-    #outFiles    = [os.path.splitext(f)[0]+'.outb' for f in fastfiles]
-    #avg_results = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1, ColMap = {'WS_[m/s]':'Wind1VelX_[m/s]'},ColSort='WS_[m/s]')
-    #print(avg_results)
 
-    # nNWPanel = np.array([3, 6, 12, 18, 24, 30, 36, 54, 72, 108, 144, 180, 216, 252])
-    # WakeLength = np.array([107, 142, 178, 213, 249, 285, 320, 356, 391, 427])
+
+#################################################################################################################
+    #IF multiple file per submit script
+    # for chunk in chunks:
+    #     f = open(work_dir + "Submit_" + str(chunks.index(chunk)) + ".txt", "w")
+    #     f.write('#! /bin/bash\n')
+    #     f.write('#SBATCH --job-name=FVWcheck                     # Job name\n')
+    #     f.write('#SBATCH --time 48:00:00\n')
+    #     f.write('#SBATCH -A bar\n')
+    #     f.write('#SBATCH --nodes=1                               # Number of nodes\n')
+    #     f.write('#SBATCH --ntasks-per-node=36                    # Number of processors per node\n')
+    #     f.write('#SBATCH --mail-user benjamin.anderson@nrel.gov\n')
+    #     f.write('#SBATCH --mail-type BEGIN,END,FAIL\n')
+    #     f.write('#SBATCH -o slurm-%x-%j.log                      # Output\n')
+    #     f.write('\n')
+    #     f.write('module purge\n')
+    #     f.write('ml comp-intel mkl\n')
+    #     f.write('\n')
+    #     for file in chunk:
+    #         fname = file.replace(work_dir, '')
+    #         f.write(FAST_EXE + ' ' + fname + ' &\n')
+    #     f.write('wait')
+    #     f.close()
+
 
     def old_functions():
+        def generic_study_params_for_one_sim():
+            x=0
+            # p = BaseDict.copy()  # Important, create a copy for each simulation
+            # # Parameters for one simulation
+            # p['EDFile|RotSpeed'] = study['RPM']
+            # p['EDFile|BlPitch(1)'] = study['pitch']
+            # p['EDFile|BlPitch(2)'] = study['pitch']
+            # p['EDFile|BlPitch(3)'] = study['pitch']
+            # p['InflowFile|HWindSpeed'] = study['WS']
+            # p['AeroFile|FVWFile|DTfvw'] = study['DTfvw']
+            # p['AeroFile|FVWFile|nNWPanel'] = study['nNWPanel']
+            # p['AeroFile|FVWFile|WakeLength'] = study['WakeLength']
+            # p['AeroFile|FVWFile|WakeRegFactor'] = study['WakeRegFactor']
+            # p['AeroFile|FVWFile|WingRegFactor'] = study['WingRegFactor']
+            # p['AeroFile|FVWFile|CoreSpreadEddyVisc'] = study['CoreSpreadEddyVisc']
+            #
+            #
+            #
+            #
+            # # Name used for inputs files
+            # p['__name__'] = 'ws4_nNWPanel' + str(study['nNWPanel']) + '_test'
+            #
+            # PARAMS.append(p)
+            #
+            # # Add this simulation to the list of simulations
+            # fastfiles = fastlib.templateReplace(PARAMS, ref_dir, workdir=work_dir, RemoveRefSubFiles=True, main_file=main_file,
+            #                                     oneSimPerDir=False)
         def WakeDiscretizationStudy(ref_dir, work_dir, main_file):
             """ Generate OpenFAST inputs for wake discretization study
 

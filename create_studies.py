@@ -41,8 +41,11 @@ study1 = {
         'WakeLength'                    : np.outer(WakeLength_default, np.ones(len(dpsi))),
         'WakeRegFactor'                 : WakeRegFactor_default * np.ones([len(WS), len(dpsi)]),
         'WingRegFactor'                 : WingRegFactor_default * np.ones([len(WS), len(dpsi)]),
-        'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones([len(WS), len(dpsi)])
+        'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones([len(WS), len(dpsi)]),
+        'TMax'                          : 400
 }
+study1Maxtime = np.max(WakeLength_default)/np.min(WS)+200
+# rounding up study 1 max time to 400s
 
 """study 2: nNWpanel """
 NWE = np.array([30, 60, 120, 180, 240, 300, 360, 540, 720, 1080, 1440, 1800, 2160, 2520]) * np.pi / 180
