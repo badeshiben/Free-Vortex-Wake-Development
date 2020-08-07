@@ -106,7 +106,7 @@ def createSubmit(fastfiles, FAST_EXE, npf):
     for chunk in chunks:
         fname = chunk[0].replace(work_dir, '')
         name = fname[:-4]
-        f = open(work_dir + "Submit_" + name + ".txt", "w")
+        f = open(work_dir + "Submit_" + name + ".sh", "w")
         f.write('#! /bin/bash\n')
         f.write('#SBATCH --job-name=FVWcheck                     # Job name\n')
         f.write('#SBATCH --time 48:00:00\n')
