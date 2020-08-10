@@ -336,13 +336,10 @@ def run_study(WS, param, paramfull, values):
         i = WS.index(wsp)
         outFiles=[]
         for val in values[i,:]:
-            print(val)
-            print(type(val))
-            print(wsp)
-            print(type(wsp))
             case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.4f}'.format(val)
             filename = os.path.join(work_dir, case + '.outb')
             outFiles.append(filename)
+        print(outFiles)
         dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
         dfAvg.insert(0,paramfull, values[i, :])
         # --- Save to csv since step above can be expensive
