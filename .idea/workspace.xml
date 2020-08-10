@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="969ba336-3df3-42e0-84a1-d82894eabfb8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/FVW_PostPro.py" beforeDir="false" afterPath="$PROJECT_DIR$/FVW_PostPro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_studies.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_studies.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

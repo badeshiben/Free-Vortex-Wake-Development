@@ -315,12 +315,13 @@ def spanwise_vary_both(param, values, WS, plot):
         plt.savefig(plot_name, bbox_inches='tight')
 
 """ RUN RESOLUTION STUDY """
-def run_study(WS, name, values):
+def run_study(WS, param, paramfull, values):
     """ run a resolution study
     Parameters
     ----------
     WS:                 list of wind speeds [m/s]
-    name:               parameter name to vary + _[units]
+    param:              parameter name to vary
+    paramfull:          parameter name to vary + _[units]
     parameter values:   list of parameter values
 
     Returns
@@ -328,33 +329,33 @@ def run_study(WS, name, values):
     plots of % diff between results at current and finest resolution
     """
     cwd = os.getcwd()
-    shortname = name.split('_', 1)[0]  # without _[units]
-    work_dir = 'BAR_02_discretization_inputs/' + shortname + '/'
-    postpro_dir = './PostPro/' + shortname + '/'
+    work_dir = 'BAR_02_discretization_inputs/' + param + '/'
+    postpro_dir = './PostPro/' + param + '/'
     if not os.path.isdir(cwd + postpro_dir[1:]):
         os.mkdir(cwd + postpro_dir[1:])
     for wsp in WS:
         i = WS.index(wsp)
         outFiles=[]
         for val in values:
-            case     ='ws{:.0f}'.format(wsp)+'_'+shortname+'{:.4f}'.format(val)
+            case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.4f}'.format(val)
             filename = os.path.join(work_dir, case + '.outb')
             outFiles.append(filename)
         dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
-        dfAvg.insert(0,name, values)
+        dfAvg.insert(0,paramfull, values)
         # --- Save to csv since step above can be expensive
-        csvname = 'Results_ws{:.0f}_'.format(wsp) + name + '.csv'
+        csvname = 'Results_ws{:.0f}_'.format(wsp) + param + '.csv'
         csvpath = os.path.join(postpro_dir, csvname)
         dfAvg.to_csv(csvpath, sep='\t', index=False)
         #print(dfAvg)
-    # resolution_raw(name, WS, 2)
-    resolution_pDiff(name, WS, 2)
-    resolution_pDiff_aero(name, WS, 2)
-    spanwise_vary_both(name, values, WS, 2)
-    print('Ran ' + name + ' post processing')
+    # resolution_raw(paramfull, WS, 2)
+    resolution_pDiff(paramfull, WS, 2)
+    resolution_pDiff_aero(paramfull, WS, 2)
+    spanwise_vary_both(paramfull, values, WS, 2)
+    print('Ran ' + param + ' post processing')
 
 if __name__ == "__main__":
-    run_study(WS=[5, 10], name='Reg_[m]', values=[.5, 2.75, 5])
+    study = study1
+    run_study(WS=study['WS'], param=study['param'], paramfull=study['paramfull'], values=study[study['param']])
 
 
 

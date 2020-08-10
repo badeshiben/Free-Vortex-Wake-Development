@@ -33,6 +33,7 @@ dpsi = np.array([2.5, 5, 7.5, 10, 12.5, 15]) * np.pi / 180  # rad
 DTfvw = np.round(np.outer(1/rotSpd, dpsi), decimals=3)
 study1 = {
         'param'                         : 'DTfvw',
+        'paramfull'                     : 'DTfvw_[s]',
         'WS'                            : WS,
         'RPM'                           : RPM,
         'pitch'                         : Pitch,
