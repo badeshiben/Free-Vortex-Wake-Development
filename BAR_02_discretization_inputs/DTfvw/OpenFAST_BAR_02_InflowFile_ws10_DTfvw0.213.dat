@@ -19,7 +19,7 @@ False         Echo          - Echo input data to <RootName>.ech (flag)
 ================== Parameters for Binary TurbSim Full-Field files   [used only for WindType = 3] ==============
 "NA"          FilenameT3    - Name of the Full field wind file to use (.bts)
 ================== Parameters for Binary Bladed-style Full-Field files   [used only for WindType = 4] =========
-"NA           FilenameT4    - Rootname of the full-field wind file to use (.wnd, .sum)
+"NA"          FilenameT4    - Rootname of the full-field wind file to use (.wnd, .sum)
 False         TowerFile     - Have tower file (.twr) (flag)
 ================== Parameters for HAWC-format binary files  [Only used with WindType = 5] =====================
 "NA"          FileName_u    - name of the file containing the u-component fluctuating wind (.bin)
