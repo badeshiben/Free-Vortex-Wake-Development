@@ -336,7 +336,7 @@ def run_study(WS, param, paramfull, values):
         i = WS.index(wsp)
         outFiles=[]
         for val in values[i,:]:
-            case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.4f}'.format(val)
+            case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.3f}'.format(val)
             filename = os.path.join(work_dir, case + '.outb')
             outFiles.append(filename)
         print(outFiles)
