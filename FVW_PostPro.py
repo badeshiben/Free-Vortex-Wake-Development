@@ -111,8 +111,6 @@ def resolution_pDiff(varying, WS, plot):
     for ws in WS:
         df = pd.read_csv('Results_ws{:04.1f}.csv'.format(ws), sep='\t')
         n = len(df[varying])
-        a = df[varying]
-        b = df[varying][n-1]
         df_fine = df.loc[n-1]
         dfpdiff = (df - df_fine) / df_fine * 100
         dfpdiff = dfpdiff.fillna(0)
@@ -257,7 +255,8 @@ def spanwise_vary_both(param, values, WS, plot):
     norm_node_r = np.linspace(0, 1, 9)
     legend_labels = []
     for ws in WS:
-        for value in values:
+        i = WS.index(ws)
+        for value in values[i, :]:
             # pull out spanwise values
             df = pd.read_csv('Results_ws{:04.1f}'.format(ws) + '_' + param + '.csv', sep='\t')
             AxInd = df[['B1N001AIn_[-]', 'B1N002AIn_[-]', 'B1N003AIn_[-]', 'B1N004AIn_[-]', 'B1N005AIn_[-]',
@@ -336,12 +335,16 @@ def run_study(WS, param, paramfull, values):
     for wsp in WS:
         i = WS.index(wsp)
         outFiles=[]
-        for val in values:
+        for val in values[i,:]:
+            print(val)
+            print(type(val))
+            print(wsp)
+            print(type(wsp))
             case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.4f}'.format(val)
             filename = os.path.join(work_dir, case + '.outb')
             outFiles.append(filename)
         dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
-        dfAvg.insert(0,paramfull, values)
+        dfAvg.insert(0,paramfull, values[i, :])
         # --- Save to csv since step above can be expensive
         csvname = 'Results_ws{:.0f}_'.format(wsp) + param + '.csv'
         csvpath = os.path.join(postpro_dir, csvname)
