@@ -90,7 +90,7 @@ def resolution_raw(varying, WS, plot):
         plt.show()
         plt.close()
     elif plot == 2:
-        plot_name = "Figures/" + varying + "_raw" + ".pdf"
+        plot_name = "PostPro/" + varying + "_raw" + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
 """ DIFF VS FINEST RESOLUTION non aero quantities """
@@ -174,7 +174,7 @@ def resolution_pDiff(varying, WS, plot):
         plt.show()
         plt.close()
     elif plot == 2:
-        plot_name = "Figures/" + varying + "_%diff" + ".pdf"
+        plot_name = "PostPro/" + varying.split('_', 1)[0] + '/' + varying.split('_', 1)[0] + "_%diff" + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
 def resolution_pDiff_aero(varying, WS, plot):
@@ -235,7 +235,7 @@ def resolution_pDiff_aero(varying, WS, plot):
         plt.show()
         plt.close()
     elif plot == 2:
-        plot_name = "Figures/" + varying + "_%diff_AERO" + ".pdf"
+        plot_name = "PostPro/" + varying.split('_', 1)[0] + '/' + varying.split('_', 1)[0] + "_%diff_AERO" + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
 """ PLOT OUTPUTS ALONG BLADE SPAN, VARYING WS and param """
@@ -310,7 +310,7 @@ def spanwise_vary_both(param, values, WS, plot):
         plt.show()
         plt.close()
     elif plot == 2:
-        plot_name = "Figures/" + 'SPANWISE_' + param + ".pdf"
+        plot_name = "PostPro/" + param.split('_', 1)[0] + '/SPANWISE_' + param.split('_', 1)[0] + ".pdf"
         # plot_name = "Figures/" + 'SPANWISE_' + param + "{:04.1f}".format(value)  + '_ws{:}'.format(ws) + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
@@ -320,29 +320,37 @@ def run_study(WS, name, values):
     Parameters
     ----------
     WS:                 list of wind speeds [m/s]
-    name:               parameter name to vary
+    name:               parameter name to vary + _[units]
     parameter values:   list of parameter values
 
     Returns
     -------
     plots of % diff between results at current and finest resolution
     """
-    work_dir = 'SampleOutputs'
+    cwd = os.getcwd()
+    shortname = name.split('_', 1)[0]  # without _[units]
+    work_dir = 'BAR_02_discretization_inputs/' + shortname + '/'
+    postpro_dir = './PostPro/' + shortname + '/'
+    if not os.path.isdir(cwd + postpro_dir[1:]):
+        os.mkdir(cwd + postpro_dir[1:])
     for wsp in WS:
         i = WS.index(wsp)
         outFiles=[]
         for val in values:
-            case     ='ws{:04.1f}'.format(wsp)+'_'+name+'{:.4f}'.format(val)
+            case     ='ws{:.0f}'.format(wsp)+'_'+shortname+'{:.4f}'.format(val)
             filename = os.path.join(work_dir, case + '.outb')
             outFiles.append(filename)
         dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
         dfAvg.insert(0,name, values)
         # --- Save to csv since step above can be expensive
-        dfAvg.to_csv('Results_ws{:04.1f}_'.format(wsp) + name + '.csv', sep='\t', index=False)
+        csvname = 'Results_ws{:.0f}_'.format(wsp) + name + '.csv'
+        csvpath = os.path.join(postpro_dir, csvname)
+        dfAvg.to_csv(csvpath, sep='\t', index=False)
         #print(dfAvg)
     # resolution_raw(name, WS, 2)
-    # resolution_pDiff_aero(name, WS, 1)
-    spanwise_vary_both(name, values, WS, 1)
+    resolution_pDiff(name, WS, 2)
+    resolution_pDiff_aero(name, WS, 2)
+    spanwise_vary_both(name, values, WS, 2)
     print('Ran ' + name + ' post processing')
 
 if __name__ == "__main__":
