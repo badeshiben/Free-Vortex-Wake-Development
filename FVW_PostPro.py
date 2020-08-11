@@ -322,7 +322,7 @@ def run_study(WS, paramfull, values):
     -------
     plots of % diff between results at current and finest resolution
     """
-    # param = paramfull.split('_', 1)[0]  # param name w/o units
+    param = paramfull.split('_', 1)[0]  # param name w/o units
     cwd = os.getcwd()
     work_dir = 'BAR_02_discretization_inputs/' + paramfull + '/'
     postpro_dir = './PostPro/' + paramfull + '/'
@@ -332,7 +332,7 @@ def run_study(WS, paramfull, values):
         i = WS.index(wsp)
         outFiles=[]
         for val in values[i,:]:
-            case     ='ws{:.0f}'.format(wsp)+'_'+paramfull+'{:.3f}'.format(val)
+            case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.3f}'.format(val)
             filename = os.path.join(work_dir, case + '.outb')
             outFiles.append(filename)
         # print(outFiles)
