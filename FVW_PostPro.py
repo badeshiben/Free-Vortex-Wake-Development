@@ -30,7 +30,7 @@ def resolution_raw(paramfull, WS, plot):
     # nplots = len(outputs)
     fig, ax = plt.subplots(6, 3, sharey=False, sharex = True, figsize=(15, 20))  # (6.4,4.8)
     for ws in WS:
-        df = pd.read_csv('Results_ws{:04.1f}.csv'.format(ws),sep='\t')
+        df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
         oo = df[['OoPDefl1_[m]', 'IPDefl1_[m]']]
         """ Deflections"""
         ax[0, 0].set_ylabel('Deflection [m]')
@@ -109,7 +109,7 @@ def resolution_pDiff(paramfull, WS, plot):
     """
     fig, ax = plt.subplots(6, 3, sharey=False, sharex=True, figsize=(15, 20))  # (6.4,4.8)
     for ws in WS:
-        df = pd.read_csv('Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
+        df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
         n = len(df[paramfull])
         df_fine = df.loc[n-1]
         dfpdiff = (df - df_fine) / df_fine * 100
@@ -209,7 +209,7 @@ def resolution_pDiff_aero(paramfull, WS, plot):
     fig, ax = plt.subplots(n_row, n_col, sharey=False, sharex=True, figsize=(8.5, 11))  # (6.4,4.8)
 
     for ws in WS:
-        df = pd.read_csv('Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
+        df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
         n = len(df[paramfull])
         df_fine = df.loc[n - 1]
         dfpdiff = (df - df_fine) / df_fine * 100
@@ -255,7 +255,7 @@ def spanwise_vary_both(paramfull, values, WS, plot):
         i = WS.index(ws)
         for value in values[i, :]:
             # pull out spanwise values
-            df = pd.read_csv('Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
+            df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
             AxInd = df[['B1N001AIn_[-]', 'B1N002AIn_[-]', 'B1N003AIn_[-]', 'B1N004AIn_[-]', 'B1N005AIn_[-]',
                         'B1N006AIn_[-]', 'B1N007AIn_[-]', 'B1N008AIn_[-]', 'B1N009AIn_[-]']]
             TnInd = df[['B1N001ApI_[-]', 'B1N002ApI_[-]', 'B1N003ApI_[-]', 'B1N004ApI_[-]', 'B1N005ApI_[-]',
