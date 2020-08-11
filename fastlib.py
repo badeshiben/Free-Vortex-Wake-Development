@@ -1440,7 +1440,7 @@ def bin_mean_DF(df, xbins, colBin ):
     df2       = df2.reindex(xmid)
     return df2
 
-def azimuthal_average_DF(df, psiBin=None, colPsi='Azimuth_[deg]', tStart=None, colTime='Time_[s]'):
+def azimuthal_average_DF(df, psiBin=None, colPsi='LSSTipP_[deg]', tStart=None, colTime='Time_[s]'):
     """ 
     Average a dataframe based on azimuthal value
     Returns a dataframe with same amount of columns as input, and azimuthal values as index
@@ -1487,10 +1487,10 @@ def averageDF(df,avgMethod='periods',avgParam=None,ColMap=None,ColKeep=None,ColS
             tStart =tEnd-avgParam
     elif avgMethod.lower()=='periods':
         # --- Using azimuth to find periods
-        if 'Azimuth_[deg]' not in df.columns:
-            raise Exception('The sensor `Azimuth_[deg]` does not appear to be in the output file. You cannot use the averaging method by `periods`, use `constantwindow` instead.')
+        if 'LSSTipP_[deg]' not in df.columns:
+            raise Exception('The sensor `LSSTipP_[deg]` does not appear to be in the output file. You cannot use the averaging method by `periods`, use `constantwindow` instead.')
         # NOTE: potentially we could average over each period and then average
-        psi=df['Azimuth_[deg]'].values
+        psi=df['LSSTipP_[deg]'].values
         _,iBef = _zero_crossings(psi-psi[-10],direction='up')
         if len(iBef)==0:
             _,iBef = _zero_crossings(psi-180,direction='up')
