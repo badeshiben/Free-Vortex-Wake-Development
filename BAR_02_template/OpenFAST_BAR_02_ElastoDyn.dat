@@ -132,7 +132,7 @@ True                   TabDelim    - Use tab delimiters in text tabular output f
 "TTDspSS"                 - Tower fore-aft and side-to-side displacements and top twist
 "TTDspPtch"               - Tower fore-aft and side-to-side displacements and top twist
 "RootMIP1"                - In-plane bending, out-of-plane bending, and pitching moments at the root of blade 1
-"RootMOoP1"                - In-plane bending, out-of-plane bending, and pitching moments at the root of blade 1
+"RootMOoP1"               - In-plane bending, out-of-plane bending, and pitching moments at the root of blade 1
 "RootMzb1"                - In-plane bending, out-of-plane bending, and pitching moments at the root of blade 1
 "RotTorq"                 - Rotor torque and low-speed shaft 0- and 90-bending moments at the main bearing
 "LSSGagMya"               - Rotor torque and low-speed shaft 0- and 90-bending moments at the main bearing
