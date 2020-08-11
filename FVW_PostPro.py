@@ -107,11 +107,10 @@ def resolution_pDiff(paramfull, WS, plot):
     plots of % diff between results at current and finest resolution
 
     """
-    param = paramfull.split('_', 1)[0]
     fig, ax = plt.subplots(6, 3, sharey=False, sharex=True, figsize=(15, 20))  # (6.4,4.8)
     for ws in WS:
         df = pd.read_csv('Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
-        n = len(df[param])
+        n = len(df[paramfull])
         df_fine = df.loc[n-1]
         dfpdiff = (df - df_fine) / df_fine * 100
         dfpdiff = dfpdiff.fillna(0)
@@ -173,7 +172,7 @@ def resolution_pDiff(paramfull, WS, plot):
         plt.show()
         plt.close()
     elif plot == 2:
-        plot_name = "PostPro/" + param + '/' + param + "_%diff" + ".pdf"
+        plot_name = "PostPro/" + paramfull + '/' + paramfull + "_%diff" + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
 def resolution_pDiff_aero(paramfull, WS, plot):
@@ -190,7 +189,6 @@ def resolution_pDiff_aero(paramfull, WS, plot):
 
     """
 
-    param = paramfull.split('_', 1)[0]
     outlist = ['B1N001AIn_[-]', 'B1N002AIn_[-]', 'B1N003AIn_[-]', 'B1N004AIn_[-]', 'B1N005AIn_[-]',
                'B1N006AIn_[-]', 'B1N007AIn_[-]', 'B1N008AIn_[-]', 'B1N009AIn_[-]',
                'B1N001ApI_[-]', 'B1N002ApI_[-]', 'B1N003ApI_[-]', 'B1N004ApI_[-]', 'B1N005ApI_[-]',
@@ -212,7 +210,7 @@ def resolution_pDiff_aero(paramfull, WS, plot):
 
     for ws in WS:
         df = pd.read_csv('Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
-        n = len(df[param])
+        n = len(df[paramfull])
         df_fine = df.loc[n - 1]
         dfpdiff = (df - df_fine) / df_fine * 100
         dfpdiff = dfpdiff.fillna(0)
@@ -233,7 +231,7 @@ def resolution_pDiff_aero(paramfull, WS, plot):
         plt.show()
         plt.close()
     elif plot == 2:
-        plot_name = "PostPro/" + param + '/' + param + "_%diff_AERO" + ".pdf"
+        plot_name = "PostPro/" + paramfull + '/' + paramfull + "_%diff_AERO" + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
 """ PLOT OUTPUTS ALONG BLADE SPAN, VARYING WS and param """
@@ -250,7 +248,6 @@ def spanwise_vary_both(paramfull, values, WS, plot):
     -------
     plots outputs along blade span
     """
-    param = paramfull.split('_', 1)[0]
     fig, ax = plt.subplots(4, 2, sharey=False, sharex=False, figsize=(15, 20))
     norm_node_r = np.linspace(0, 1, 9)
     legend_labels = []
@@ -258,7 +255,7 @@ def spanwise_vary_both(paramfull, values, WS, plot):
         i = WS.index(ws)
         for value in values[i, :]:
             # pull out spanwise values
-            df = pd.read_csv('Results_ws{:.0f}_'.format(ws) + param + '.csv', sep='\t')
+            df = pd.read_csv('Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
             AxInd = df[['B1N001AIn_[-]', 'B1N002AIn_[-]', 'B1N003AIn_[-]', 'B1N004AIn_[-]', 'B1N005AIn_[-]',
                         'B1N006AIn_[-]', 'B1N007AIn_[-]', 'B1N008AIn_[-]', 'B1N009AIn_[-]']]
             TnInd = df[['B1N001ApI_[-]', 'B1N002ApI_[-]', 'B1N003ApI_[-]', 'B1N004ApI_[-]', 'B1N005ApI_[-]',
@@ -280,7 +277,7 @@ def spanwise_vary_both(paramfull, values, WS, plot):
             CircMean  = Circ.mean(axis=1);   CircMean = CircMean.rename('CircMean')
             CircMax   = Circ.max(axis=1);    CircMax  = CircMax.rename('CircMax')
             df = pd.concat([df, AxIndMean, AxIndMax, CircMean, CircMax], axis=1)
-            df.to_csv('Results_ws{:04.1f}'.format(ws) + '_' + param + '.csv', sep='\t', index=False)
+            df.to_csv('Results_ws{:04.1f}'.format(ws) + '_' + paramfull + '.csv', sep='\t', index=False)
             # AxInd = pd.concat([AxInd, mean, max], axis=1)
             #plot everything
             i = df.index[df[paramfull] == value][0]
@@ -309,7 +306,7 @@ def spanwise_vary_both(paramfull, values, WS, plot):
         plt.show()
         plt.close()
     elif plot == 2:
-        plot_name = "PostPro/" + param + '/SPANWISE_' + param + ".pdf"
+        plot_name = "PostPro/" + paramfull + '/SPANWISE_' + paramfull + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
 """ RUN RESOLUTION STUDY """
@@ -325,24 +322,24 @@ def run_study(WS, paramfull, values):
     -------
     plots of % diff between results at current and finest resolution
     """
-    param = paramfull.split('_', 1)[0]  # param name w/o units
+    # param = paramfull.split('_', 1)[0]  # param name w/o units
     cwd = os.getcwd()
-    work_dir = 'BAR_02_discretization_inputs/' + param + '/'
-    postpro_dir = './PostPro/' + param + '/'
+    work_dir = 'BAR_02_discretization_inputs/' + paramfull + '/'
+    postpro_dir = './PostPro/' + paramfull + '/'
     if not os.path.isdir(cwd + postpro_dir[1:]):
         os.mkdir(cwd + postpro_dir[1:])
     for wsp in WS:
         i = WS.index(wsp)
         outFiles=[]
         for val in values[i,:]:
-            case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.3f}'.format(val)
+            case     ='ws{:.0f}'.format(wsp)+'_'+paramfull+'{:.3f}'.format(val)
             filename = os.path.join(work_dir, case + '.outb')
             outFiles.append(filename)
         # print(outFiles)
         dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
         dfAvg.insert(0,paramfull, values[i, :])
         # --- Save to csv since step above can be expensive
-        csvname = 'Results_ws{:.0f}_'.format(wsp) + param + '.csv'
+        csvname = 'Results_ws{:.0f}_'.format(wsp) + paramfull + '.csv'
         csvpath = os.path.join(postpro_dir, csvname)
         dfAvg.to_csv(csvpath, sep='\t', index=False)
         #print(dfAvg)
@@ -351,7 +348,7 @@ def run_study(WS, paramfull, values):
     resolution_pDiff(paramfull, WS, 2)
     resolution_pDiff_aero(paramfull, WS, 2)
     spanwise_vary_both(paramfull, values, WS, 2)
-    print('Ran ' + param + ' post processing')
+    print('Ran ' + paramfull + ' post processing')
 
 if __name__ == "__main__":
     study = study1
