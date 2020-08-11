@@ -155,14 +155,14 @@ def resolution_pDiff(paramfull, WS, plot):
         ax[4, 2].plot(df[paramfull], dfpdiff['TwrBsMzt_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
         ax[4, 2].text(.5, .5, 'TwrBsMzt', transform=ax[4, 2].transAxes)
         ax[4, 2].set_xlabel(paramfull)
-        """Generator power"""
+        """HSS power"""
         ax[5, 0].set_ylabel('% Difference')
-        ax[5, 0].plot(df[paramfull], dfpdiff['GenPwr_[kW]'], 'o-', label='WS = {:}'.format(ws))
+        ax[5, 0].plot(df[paramfull], dfpdiff['HSShftPwr_[kW]'], 'o-', label='WS = {:}'.format(ws))
         ax[5, 0].text(.5, .5, 'GenPwr', transform=ax[5, 0].transAxes)
         ax[5, 0].set_xlabel(paramfull)
-        """Generator torque"""
+        """HSS torque"""
         ax[5, 1].set_ylabel('Torque [kN-m]')
-        ax[5, 1].plot(df[paramfull], df['GenTq_[kN-m]'], 'o-',  label='WS = {:}'.format(ws))
+        ax[5, 1].plot(df[paramfull], df['HSShftTq_[kN-m]'], 'o-',  label='WS = {:}'.format(ws))
         ax[5, 1].text(.5, .5, 'GenTq', transform=ax[5, 1].transAxes)
         ax[5, 1].set_xlabel(paramfull)
     plt.delaxes()
