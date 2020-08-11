@@ -124,6 +124,7 @@ True          TabDelim      - Use tab delimiters in text tabular output file? (f
 "HSSBrTq"
 "HSShftTq"
 "HSShftPwr"
+"LSSTipP"                 - Rotor azimuth
 "OoPDefl1"                - Blade 1 out-of-plane and in-plane deflections and tip twist
 "IPDefl1"                 - Blade 1 out-of-plane and in-plane deflections and tip twist
 "RotSpeed"                - Low-speed shaft and high-speed shaft speeds
