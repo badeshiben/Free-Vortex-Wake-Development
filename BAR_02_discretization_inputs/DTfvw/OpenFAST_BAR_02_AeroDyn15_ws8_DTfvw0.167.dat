@@ -124,6 +124,6 @@ END           of            - Outlist (the word "END" must appear in the first 3
 "Ft"
 "Vx"
 "Vy"
-"Gamma"
+"Gam"
 END           of            - input file (the word "END" must appear in the first 3 columns of this last OutList line)
 ---------------------------------------------------------------------------------------
