@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import fastlib
 from create_studies import study1, study2, study3, study4, study5, study6
+import math
 import weio
 
 """ PLOTTING MEAN QUANTITIES """
@@ -188,21 +189,10 @@ def resolution_pDiff_aero(paramfull, WS, plot):
     plots of % diff between results at current and finest resolution
 
     """
-
-    outlist = ['B1N001AIn_[-]', 'B1N002AIn_[-]', 'B1N003AIn_[-]', 'B1N004AIn_[-]', 'B1N005AIn_[-]',
-               'B1N006AIn_[-]', 'B1N007AIn_[-]', 'B1N008AIn_[-]', 'B1N009AIn_[-]',
-               'B1N001ApI_[-]', 'B1N002ApI_[-]', 'B1N003ApI_[-]', 'B1N004ApI_[-]', 'B1N005ApI_[-]',
-               'B1N006ApI_[-]', 'B1N007ApI_[-]', 'B1N008ApI_[-]', 'B1N009ApI_[-]',
-               'B1N001Fn_[N/m]', 'B1N002Fn_[N/m]', 'B1N003Fn_[N/m]', 'B1N004Fn_[N/m]', 'B1N005Fn_[N/m]',
-               'B1N006Fn_[N/m]', 'B1N007Fn_[N/m]', 'B1N008Fn_[N/m]', 'B1N009Fn_[N/m]',
-               'B1N002Ft_[N/m]', 'B1N003Ft_[N/m]', 'B1N004Ft_[N/m]', 'B1N005Ft_[N/m]',
-               'B1N001Ft_[N/m]', 'B1N006Ft_[N/m]', 'B1N007Ft_[N/m]', 'B1N008Ft_[N/m]', 'B1N009Ft_[N/m]',
-               'B1N001Fl_[N/m]', 'B1N002Fl_[N/m]', 'B1N003Fl_[N/m]', 'B1N004Fl_[N/m]', 'B1N005Fl_[N/m]',
-               'B1N006Fl_[N/m]', 'B1N007Fl_[N/m]', 'B1N008Fl_[N/m]', 'B1N009Fl_[N/m]',
-               'B1N001Fd_[N/m]', 'B1N002Fd_[N/m]', 'B1N003Fd_[N/m]', 'B1N004Fd_[N/m]', 'B1N005Fd_[N/m]',
-               'B1N006Fd_[N/m]', 'B1N007Fd_[N/m]', 'B1N008Fd_[N/m]', 'B1N009Fd_[N/m]',
-               'B1N001Gam_[m^2/s]', 'B1N002Gam_[m^2/s]', 'B1N003Gam_[m^2/s]', 'B1N004Gam_[m^2/s]', 'B1N005Gam_[m^2/s]',
-               'B1N006Gam_[m^2/s]', 'B1N007Gam_[m^2/s]', 'B1N008Gam_[m^2/s]', 'B1N009Gam_[m^2/s]']
+    #  use nodes 8, 23 @ 25%, 75%
+    outlist = ['HSShftPwr_[kW]', 'RootMIP1_[kN-m]', 'RootMOoP1_[kN-m]', 'RootMzb1_[kN-m]', 'TwrBsMxt_[kN-m]',
+               'TwrBsMyt_[kN-m]', 'TwrBsMzt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]', 'AB1N008TnInd_[-]',
+               'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
     n_plot = len(outlist)
     n_col = 3
     n_row = int(np.ceil(n_plot/n_col))
@@ -217,7 +207,9 @@ def resolution_pDiff_aero(paramfull, WS, plot):
         for i in range(0, n_row):
             for j in range(0, n_col):
                 idx = i*n_col + j
-                ax[i, j].plot(df[paramfull], dfpdiff[outlist[idx]], 'o-', label='WS = {:}'.format(ws))
+                if idx == n_plot:
+                    break
+                ax[i, j].plot(df[paramfull], dfpdiff[outlist[idx]], '-', label='WS = {:}'.format(ws))
                 ax[i, j].text(.5, .5, outlist[idx], transform=ax[i, j].transAxes)
                 if j==0:
                     ax[i, j].set_ylabel('% Difference')
@@ -249,27 +241,35 @@ def spanwise_vary_both(paramfull, values, WS, plot):
     plots outputs along blade span
     """
     fig, ax = plt.subplots(4, 2, sharey=False, sharex=False, figsize=(15, 20))
-    norm_node_r = np.linspace(0, 1, 9)
+    norm_node_r = np.array([0.000000000000000e+00, 3.448147165807185e+00, 6.896294331614371e+00, 1.034444149742155e+01, 1.379258866322874e+01,
+                            1.724073582903592e+01, 2.068888299484311e+01, 2.413703016065029e+01, 2.758517732645748e+01, 3.103332449226467e+01,
+                            3.448147165807185e+01, 3.792961882387903e+01, 4.137776598968622e+01, 4.482591315549340e+01, 4.827406032130058e+01,
+                            5.172220748710778e+01, 5.517035465291496e+01, 5.861850181872214e+01, 6.206664898452934e+01, 6.551479615033651e+01,
+                            6.896294331614371e+01, 7.241109048195088e+01, 7.585923764775806e+01, 7.930738481356525e+01, 8.275553197937244e+01,
+                            8.620367914517962e+01, 8.965182631098681e+01, 9.309997347679399e+01, 9.654812064260116e+01, 9.999626780840836e+01]) / 103
     legend_labels = []
+    legend_handles = []
     for ws in WS:
         i = WS.index(ws)
+        a = 0
         for value in values[i, :]:
             # pull out spanwise values
             df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
-            AxInd = df[['B1N001AIn_[-]', 'B1N002AIn_[-]', 'B1N003AIn_[-]', 'B1N004AIn_[-]', 'B1N005AIn_[-]',
-                        'B1N006AIn_[-]', 'B1N007AIn_[-]', 'B1N008AIn_[-]', 'B1N009AIn_[-]']]
-            TnInd = df[['B1N001ApI_[-]', 'B1N002ApI_[-]', 'B1N003ApI_[-]', 'B1N004ApI_[-]', 'B1N005ApI_[-]',
-                        'B1N006ApI_[-]', 'B1N007ApI_[-]', 'B1N008ApI_[-]', 'B1N009ApI_[-]', ]]
-            Fn = df[['B1N001Fn_[N/m]', 'B1N002Fn_[N/m]', 'B1N003Fn_[N/m]', 'B1N004Fn_[N/m]', 'B1N005Fn_[N/m]',
-                     'B1N006Fn_[N/m]', 'B1N007Fn_[N/m]', 'B1N008Fn_[N/m]', 'B1N009Fn_[N/m]']]
-            Ft = df[['B1N001Ft_[N/m]', 'B1N002Ft_[N/m]', 'B1N003Ft_[N/m]', 'B1N004Ft_[N/m]', 'B1N005Ft_[N/m]',
-                     'B1N006Ft_[N/m]', 'B1N007Ft_[N/m]', 'B1N008Ft_[N/m]', 'B1N009Ft_[N/m]']]
-            Fl = df[['B1N001Fl_[N/m]', 'B1N002Fl_[N/m]', 'B1N003Fl_[N/m]', 'B1N004Fl_[N/m]', 'B1N005Fl_[N/m]',
-                     'B1N006Fl_[N/m]', 'B1N007Fl_[N/m]', 'B1N008Fl_[N/m]', 'B1N009Fl_[N/m]']]
-            Fd = df[['B1N001Fd_[N/m]', 'B1N002Fd_[N/m]', 'B1N003Fd_[N/m]', 'B1N004Fd_[N/m]', 'B1N005Fd_[N/m]',
-                     'B1N006Fd_[N/m]', 'B1N007Fd_[N/m]', 'B1N008Fd_[N/m]', 'B1N009Fd_[N/m]']]
-            Circ = df[['B1N001Gam_[m^2/s]', 'B1N002Gam_[m^2/s]', 'B1N003Gam_[m^2/s]', 'B1N004Gam_[m^2/s]', 'B1N005Gam_[m^2/s]',
-                       'B1N006Gam_[m^2/s]', 'B1N007Gam_[m^2/s]', 'B1N008Gam_[m^2/s]', 'B1N009Gam_[m^2/s]']]
+            cols = df.columns.tolist()
+            axind_cols = [j for j in cols if 'AxInd' in j]
+            AxInd = df[axind_cols]
+            tanind_cols = [j for j in cols if 'TnInd' in j]
+            TnInd = df[tanind_cols]
+            fn_cols = [j for j in cols if 'Fn' in j]
+            Fn = df[fn_cols]
+            ft_cols = [j for j in cols if 'Ft' in j]
+            Ft = df[ft_cols]
+            fl_cols = [j for j in cols if 'Fl' in j]
+            Fl = df[fl_cols]
+            fd_cols = [j for j in cols if 'Fd' in j]
+            Fd = df[fd_cols]
+            gam_cols = [j for j in cols if 'Gam' in j]
+            Circ = df[gam_cols]
 
             # compute spanwise stats, append to df, and write back to csv
             AxIndMean = AxInd.mean(axis=1); AxIndMean = AxIndMean.rename('AxIndMean')
@@ -280,23 +280,27 @@ def spanwise_vary_both(paramfull, values, WS, plot):
             df.to_csv('Results_ws{:04.1f}'.format(ws) + '_' + paramfull + '.csv', sep='\t', index=False)
             # AxInd = pd.concat([AxInd, mean, max], axis=1)
             #plot everything
-            i = df.index[df[paramfull] == value][0]
+            k = df.index[abs(df[paramfull]-value)<1e-5][0]  # assert almost equal
+            linestyle = [':', '-.', '--', '-', ':']
+            linewidth = [1, 1, 1, 1, 2]
+            colors = ['xkcd:blue', 'xkcd:green', 'xkcd:red', 'xkcd:orange', 'xkcd:cyan', 'xkcd:magenta']
+            #(0, (3, 5, 1, 5, 1, 5))
             ax[0, 0].set_ylabel('Axial Induction')
-            ax[0, 0].plot(norm_node_r, AxInd.iloc[i], 'o-', label='ws = {:}'.format(ws))
+            ax[0, 0].plot(norm_node_r, AxInd.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
             ax[0, 1].set_ylabel('Tangential Induction')
-            ax[0, 1].plot(norm_node_r, TnInd.iloc[i], 'o-', label='ws = {:}'.format(ws))
+            ax[0, 1].plot(norm_node_r, TnInd.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
             ax[1, 0].set_ylabel('Normal Force [N]')
-            ax[1, 0].plot(norm_node_r, Fn.iloc[i], 'o-', label='ws = {:}'.format(ws))
+            ax[1, 0].plot(norm_node_r, Fn.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
             ax[1, 1].set_ylabel('Tangential Force [N]')
-            ax[1, 1].plot(norm_node_r, Ft.iloc[i], 'o-', label='ws = {:}'.format(ws))
+            ax[1, 1].plot(norm_node_r, Ft.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
             ax[2, 0].set_ylabel('Lift Force [N]')
-            ax[2, 0].plot(norm_node_r, Fl.iloc[i], 'o-', label='ws = {:}'.format(ws))
+            ax[2, 0].plot(norm_node_r, Fl.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
             ax[2, 1].set_ylabel('Drag Force [N]')
-            ax[2, 1].plot(norm_node_r, Fd.iloc[i], 'o-', label='ws = {:}'.format(ws))
+            ax[2, 1].plot(norm_node_r, Fd.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
             ax[3, 0].set_ylabel('Circulation')
-            ax[3, 0].plot(norm_node_r, Circ.iloc[i], 'o-', label='ws = {:}'.format(ws))
+            ax[3, 0].plot(norm_node_r, Circ.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a], label='ws = {:}'.format(ws))
             legend_labels = legend_labels + [paramfull + " = {:04.3f}".format(value) + '; ws_[m/s] = {:}'.format(ws)]
-
+            a+=1
     ax[3, 0].legend(legend_labels, loc='upper left', bbox_to_anchor=(1, 1))
     ax[0, 0].grid(); ax[0, 1].grid(); ax[1, 0].grid(); ax[1, 1].grid(); ax[2, 0].grid(); ax[2, 1].grid(); ax[3, 0].grid();
     plt.tick_params(direction='in')
@@ -345,9 +349,9 @@ def run_study(WS, paramfull, values):
         #print(dfAvg)
     # resolution_raw(paramfull, WS, 2)
     print('created all csvs ')
-    resolution_pDiff(paramfull, WS, 2)
+    # resolution_pDiff(paramfull, WS, 2)
     resolution_pDiff_aero(paramfull, WS, 2)
-    spanwise_vary_both(paramfull, values, WS, 2)
+    # spanwise_vary_both(paramfull, values, WS, 2)
     print('Ran ' + paramfull + ' post processing')
 
 if __name__ == "__main__":
