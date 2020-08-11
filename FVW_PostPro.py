@@ -109,7 +109,7 @@ def resolution_pDiff(varying, WS, plot):
     """
     fig, ax = plt.subplots(6, 3, sharey=False, sharex=True, figsize=(15, 20))  # (6.4,4.8)
     for ws in WS:
-        df = pd.read_csv('Results_ws{:.0f}.csv'.format(ws), sep='\t')
+        df = pd.read_csv('Results_ws{:.0f}_'.format(ws) + varying + '.csv', sep='\t')
         n = len(df[varying])
         df_fine = df.loc[n-1]
         dfpdiff = (df - df_fine) / df_fine * 100
@@ -209,7 +209,7 @@ def resolution_pDiff_aero(varying, WS, plot):
     fig, ax = plt.subplots(n_row, n_col, sharey=False, sharex=True, figsize=(8.5, 11))  # (6.4,4.8)
 
     for ws in WS:
-        df = pd.read_csv('Results_ws{:.0f}.csv'.format(ws), sep='\t')
+        df = pd.read_csv('Results_ws{:.0f}_'.format(ws) + varying + '.csv', sep='\t')
         n = len(df[varying])
         a = df[varying]
         b = df[varying][n - 1]
@@ -258,7 +258,7 @@ def spanwise_vary_both(param, values, WS, plot):
         i = WS.index(ws)
         for value in values[i, :]:
             # pull out spanwise values
-            df = pd.read_csv('Results_ws{:.0f}'.format(ws) + '_' + param + '.csv', sep='\t')
+            df = pd.read_csv('Results_ws{:.0f}_'.format(ws) + param + '.csv', sep='\t')
             AxInd = df[['B1N001AIn_[-]', 'B1N002AIn_[-]', 'B1N003AIn_[-]', 'B1N004AIn_[-]', 'B1N005AIn_[-]',
                         'B1N006AIn_[-]', 'B1N007AIn_[-]', 'B1N008AIn_[-]', 'B1N009AIn_[-]']]
             TnInd = df[['B1N001ApI_[-]', 'B1N002ApI_[-]', 'B1N003ApI_[-]', 'B1N004ApI_[-]', 'B1N005ApI_[-]',
@@ -339,7 +339,7 @@ def run_study(WS, param, paramfull, values):
             case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.3f}'.format(val)
             filename = os.path.join(work_dir, case + '.outb')
             outFiles.append(filename)
-        print(outFiles)
+        # print(outFiles)
         dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
         dfAvg.insert(0,paramfull, values[i, :])
         # --- Save to csv since step above can be expensive

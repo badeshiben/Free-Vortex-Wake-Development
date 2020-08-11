@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="969ba336-3df3-42e0-84a1-d82894eabfb8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FVW_PostPro.py" beforeDir="false" afterPath="$PROJECT_DIR$/FVW_PostPro.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
