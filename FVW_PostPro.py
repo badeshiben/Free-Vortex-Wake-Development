@@ -124,9 +124,9 @@ def resolution_pDiff(paramfull, WS, plot):
         ax[0, 2].text(.5, .5, 'TTDspFA', transform=ax[0, 2].transAxes)
         """Blade root moments"""
         ax[1, 0].set_ylabel('% Difference')
-        ax[1, 0].plot(df[paramfull], dfpdiff['RootMxb1_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
+        ax[1, 0].plot(df[paramfull], dfpdiff['RootMIP1_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
         ax[1, 0].text(.5, .5, 'RootMxb1', transform=ax[1, 0].transAxes)
-        ax[1, 1].plot(df[paramfull], dfpdiff['RootMyb1_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
+        ax[1, 1].plot(df[paramfull], dfpdiff['RootMOoP1_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
         ax[1, 1].text(.5, .5, 'RootMyb1', transform=ax[1, 1].transAxes)
         ax[1, 2].plot(df[paramfull], dfpdiff['RootMzb1_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
         ax[1, 2].text(.5, .5, 'RootMzb1', transform=ax[1, 2].transAxes)
