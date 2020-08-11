@@ -207,23 +207,24 @@ def resolution_pDiff_aero(paramfull, WS, plot):
         for i in range(0, n_row):
             for j in range(0, n_col):
                 idx = i*n_col + j
-                if idx == n_plot:
-                    break
-                ax[i, j].plot(df[paramfull], dfpdiff[outlist[idx]], '-', label='WS = {:}'.format(ws))
-                ax[i, j].text(.5, .5, outlist[idx], transform=ax[i, j].transAxes)
-                if j==0:
-                    ax[i, j].set_ylabel('% Difference')
-                if i==n_row-1:
-                    ax[i, j].set_xlabel(paramfull)
-                if (i+1)*(j+1)==len(outlist):
-                    ax[i, j].legend(loc='upper left', bbox_to_anchor=(1, 1))
+                if idx < n_plot:
+                    ax[i, j].plot(df[paramfull], dfpdiff[outlist[idx]], '-', label='WS = {:}'.format(ws))
+                    ax[i, j].set_title(outlist[idx], fontsize=10)
+                        # text(.5, .5, outlist[idx], transform=ax[i, j].transAxes)
+                    if j==0:
+                        ax[i, j].set_ylabel('% Difference')
+                    if i==n_row-1:
+                        ax[i, j].set_xlabel(paramfull)
+                    if idx==(n_plot-1):
+                        ax[i, j].legend(loc='upper left', bbox_to_anchor=(1, 1))
 
     plt.tick_params(direction='in')
+    plt.delaxes()
     if plot == 1:
         plt.show()
         plt.close()
     elif plot == 2:
-        plot_name = "PostPro/" + paramfull + '/' + paramfull + "_%diff_AERO" + ".pdf"
+        plot_name = "PostPro/" + paramfull + '/' + paramfull + "_%diff" + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
 """ PLOT OUTPUTS ALONG BLADE SPAN, VARYING WS and param """
@@ -240,7 +241,7 @@ def spanwise_vary_both(paramfull, values, WS, plot):
     -------
     plots outputs along blade span
     """
-    fig, ax = plt.subplots(4, 2, sharey=False, sharex=False, figsize=(15, 20))
+    fig, ax = plt.subplots(3, 2, sharey=False, sharex=False, figsize=(15, 20))
     norm_node_r = np.array([0.000000000000000e+00, 3.448147165807185e+00, 6.896294331614371e+00, 1.034444149742155e+01, 1.379258866322874e+01,
                             1.724073582903592e+01, 2.068888299484311e+01, 2.413703016065029e+01, 2.758517732645748e+01, 3.103332449226467e+01,
                             3.448147165807185e+01, 3.792961882387903e+01, 4.137776598968622e+01, 4.482591315549340e+01, 4.827406032130058e+01,
@@ -293,16 +294,16 @@ def spanwise_vary_both(paramfull, values, WS, plot):
             ax[1, 0].plot(norm_node_r, Fn.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
             ax[1, 1].set_ylabel('Tangential Force [N]')
             ax[1, 1].plot(norm_node_r, Ft.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
-            ax[2, 0].set_ylabel('Lift Force [N]')
-            ax[2, 0].plot(norm_node_r, Fl.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
-            ax[2, 1].set_ylabel('Drag Force [N]')
-            ax[2, 1].plot(norm_node_r, Fd.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
-            ax[3, 0].set_ylabel('Circulation')
-            ax[3, 0].plot(norm_node_r, Circ.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a], label='ws = {:}'.format(ws))
+            # ax[2, 0].set_ylabel('Lift Force [N]')
+            # ax[2, 0].plot(norm_node_r, Fl.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
+            # ax[2, 1].set_ylabel('Drag Force [N]')
+            # ax[2, 1].plot(norm_node_r, Fd.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
+            ax[2, 0].set_ylabel('Circulation')
+            ax[2, 0].plot(norm_node_r, Circ.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a], label='ws = {:}'.format(ws))
             legend_labels = legend_labels + [paramfull + " = {:04.3f}".format(value) + '; ws_[m/s] = {:}'.format(ws)]
             a+=1
-    ax[3, 0].legend(legend_labels, loc='upper left', bbox_to_anchor=(1, 1))
-    ax[0, 0].grid(); ax[0, 1].grid(); ax[1, 0].grid(); ax[1, 1].grid(); ax[2, 0].grid(); ax[2, 1].grid(); ax[3, 0].grid();
+    ax[2, 0].legend(legend_labels, loc='upper left', bbox_to_anchor=(1, 1))
+    ax[0, 0].grid(); ax[0, 1].grid(); ax[1, 0].grid(); ax[1, 1].grid(); ax[2, 0].grid();
     plt.tick_params(direction='in')
     plt.delaxes()
     plt.grid(True)
@@ -350,7 +351,7 @@ def run_study(WS, paramfull, values):
     # resolution_raw(paramfull, WS, 2)
     print('created all csvs ')
     # resolution_pDiff(paramfull, WS, 2)
-    resolution_pDiff_aero(paramfull, WS, 2)
+    resolution_pDiff_aero(paramfull, WS, 1)
     # spanwise_vary_both(paramfull, values, WS, 2)
     print('Ran ' + paramfull + ' post processing')
 
