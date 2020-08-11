@@ -355,7 +355,7 @@ def run_study(WS, paramfull, values):
 
 if __name__ == "__main__":
     study = study1
-    run_study(WS=study['WS'], param=study['param'], paramfull=study['paramfull'], values=study[study['param']])
+    run_study(WS=study['WS'], paramfull=study['paramfull'], values=study[study['param']])
 
 
 
