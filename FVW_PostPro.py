@@ -324,7 +324,7 @@ def run_study(WS, paramfull, values):
     """
     param = paramfull.split('_', 1)[0]  # param name w/o units
     cwd = os.getcwd()
-    work_dir = 'BAR_02_discretization_inputs/' + paramfull + '/'
+    work_dir = 'BAR_02_discretization_inputs/' + param + '/'
     postpro_dir = './PostPro/' + paramfull + '/'
     if not os.path.isdir(cwd + postpro_dir[1:]):
         os.mkdir(cwd + postpro_dir[1:])
