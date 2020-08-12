@@ -17,6 +17,7 @@ WakeRegFactor_default = 3
 WingRegFactor_default = 3
 CoreSpreadEddyVisc_default = 100
 
+""" FILL THESE IN BASED ON DISCRETIZATION STUDY RESULTS """
 DTfvw_cvg = np.ones(5)  # TODO
 dpsi_cvg = np.ones(5)  # TODO
 nNWPanel_cvg = np.ones(5)  # TODO
@@ -26,7 +27,7 @@ WakeLength_cvg = np.ones(5)  # TODO
 WakeRegFactor_cvg = np.ones(5)  # TODO
 WingRegFactor_cvg = np.ones(5)  # TODO
 
-# TODO make arrays of vectors.....
+
 """ study 1: DTfvw """
 dpsi = np.array([2.5, 5, 7.5, 10, 12.5, 15]) * np.pi / 180  # rad
 
@@ -82,20 +83,7 @@ study3 = {
         'WingRegFactor'                 : WingRegFactor_default * np.ones([len(WS), len(FWE)]),
         'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones([len(WS), len(FWE)])
 }
-"""test study: WakeLength """
-WakeLength = np.round(FWE[-4:]*rotSpd[0]/WS[0]/dpsi[0], decimals=0)
-test_study = {
-        'param'                         : 'TEST',
-        'WS'                            : WS[0] * np.ones(len(WakeLength)),
-        'RPM'                           : RPM[0] * np.ones(len(WakeLength)),
-        'pitch'                         : Pitch[0] * np.ones(len(WakeLength)),
-        'DTfvw'                         : DTfvw[0, 0] * np.ones(len(WakeLength)),
-        'nNWPanel'                      : np.round(NWE[-1]/DTfvw[0, 0]/rotSpd[0], decimals=0) * np.ones(len(WakeLength)),
-        'WakeLength'                    : np.round(WakeLength, decimals=0),
-        'WakeRegFactor'                 : WakeRegFactor_default * np.ones(len(WakeLength)),
-        'WingRegFactor'                 : WingRegFactor_default * np.ones(len(WakeLength)),
-        'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones(len(WakeLength))
-}
+
 """study 4: WakeRegFactor"""
 WaRF = np.array([0, 0.1, 0.5, 1, 1.5, 2, 2.5, 3, 5])
 WakeRegFactor = np.outer(np.ones(len(WS)), WaRF)
@@ -148,6 +136,17 @@ study6 = {
         'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc
 }
 
-
-m=0
-n = m+1
+"""test study: WakeLength """
+WakeLength = np.round(FWE[-4:]*rotSpd[0]/WS[0]/dpsi[0], decimals=0)
+test_study = {
+        'param'                         : 'TEST',
+        'WS'                            : WS[0] * np.ones(len(WakeLength)),
+        'RPM'                           : RPM[0] * np.ones(len(WakeLength)),
+        'pitch'                         : Pitch[0] * np.ones(len(WakeLength)),
+        'DTfvw'                         : DTfvw[0, 0] * np.ones(len(WakeLength)),
+        'nNWPanel'                      : np.round(NWE[-1]/DTfvw[0, 0]/rotSpd[0], decimals=0) * np.ones(len(WakeLength)),
+        'WakeLength'                    : np.round(WakeLength, decimals=0),
+        'WakeRegFactor'                 : WakeRegFactor_default * np.ones(len(WakeLength)),
+        'WingRegFactor'                 : WingRegFactor_default * np.ones(len(WakeLength)),
+        'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones(len(WakeLength))
+}

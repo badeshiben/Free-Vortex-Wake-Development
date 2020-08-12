@@ -11,95 +11,58 @@ import weio
 ####################################################################################################################
 
 """ RAW DATA """
-def resolution_raw(paramfull, WS, plot):
+def resolution_raw_all(paramfull, outlist, WS, plot):
     """
     Parameters
     ----------
-    paramfull:    parameter varied in study
+    paramfull:  parameter varied in study [str]
+    outlist:    list of output parameters to plot [str]
     WS:         list of wind speeds [m/s]
     plot:       plot options. [0, 1, 2] - [no plot, show plot, save plot]
-    outputs:    list of fastlib df output names [str]
 
     Returns
     -------
-    plots results vs resolution
+    plots results
 
     """
-    # outputs = ['OoPDefl1_[m]', 'IPDefl1_[m]', 'TTDspFA_[m]', 'RootMxb1_[kN-m]', 'RootMyb1_[kN-m]', 'RootMzb1_[kN-m]',\
-    #            'RotTorq_[kN-m]', 'LSSGagMya_[kN-m]', 'LSSGagMza_[kN-m]', 'YawBrMxp_[kN-m]', 'YawBrMyp_[kN-m]',\
-    #            'YawBrMzp_[kN-m]', 'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'TwrBsMzt_[kN-m]', 'GenPwr_[kW]', 'RotTorq_[kN-m]']
-    # nplots = len(outputs)
-    fig, ax = plt.subplots(6, 3, sharey=False, sharex = True, figsize=(15, 20))  # (6.4,4.8)
+    #  use nodes 8, 23 @ 25%, 75%
+    n_plot = len(outlist)
+    n_col = 3
+    n_row = int(np.ceil(n_plot / n_col))
+    fig, ax = plt.subplots(n_row, n_col, sharey=False, sharex=True, figsize=(8.5, 11))  # (6.4,4.8)
+
     for ws in WS:
-        df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
-        oo = df[['OoPDefl1_[m]', 'IPDefl1_[m]']]
-        """ Deflections"""
-        ax[0, 0].set_ylabel('Deflection [m]')
-        ax[0, 0].plot(df[paramfull], df['OoPDefl1_[m]'], 'o-',  label='WS = {:}'.format(ws))
-        ax[0, 0].text(.5, .5, 'OoPDefl1', transform=ax[0, 0].transAxes)
-        ax[0, 1].plot(df[paramfull], df['IPDefl1_[m]'], 'o-',  label='WS = {:}'.format(ws))
-        ax[0, 1].text(.5, .5, 'IPDefl1', transform=ax[0, 1].transAxes)
-        ax[0, 2].plot(df[paramfull], df['TTDspFA_[m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[0, 2].text(.5, .5, 'TTDspFA', transform=ax[0, 2].transAxes)
-        """Blade root moments"""
-        ax[1, 0].set_ylabel('Moment [kN-m]')
-        ax[1, 0].plot(df[paramfull], df['RootMIP1_[kN-m]'], 'o-',  label='WS = {:}'.format(ws))
-        ax[1, 0].text(.5, .5, 'RootMxb1', transform=ax[1, 0].transAxes)
-        ax[1, 1].plot(df[paramfull], df['RootMOoP1_[kN-m]'], 'o-',  label='WS = {:}'.format(ws))
-        ax[1, 1].text(.5, .5, 'RootMyb1', transform=ax[1, 1].transAxes)
-        ax[1, 2].plot(df[paramfull], df['RootMzb1_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[1, 2].text(.5, .5, 'RootMzb1', transform=ax[1, 2].transAxes)
-        """LSS moments"""
-        ax[2, 0].set_ylabel('Moment [kN-m]')
-        ax[2, 0].plot(df[paramfull], df['RotTorq_[kN-m]'], 'o-',  label='WS = {:}'.format(ws))
-        ax[2, 0].text(.5, .5, 'RotTorq', transform=ax[2, 0].transAxes)
-        ax[2, 1].plot(df[paramfull], df['LSSGagMya_[kN-m]'], 'o-',  label='WS = {:}'.format(ws))
-        ax[2, 1].text(.5, .5, 'LSSGagMya', transform=ax[2, 1].transAxes)
-        ax[2, 2].plot(df[paramfull], df['LSSGagMza_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[2, 2].text(.5, .5, 'LSSGagMza', transform=ax[2, 2].transAxes)
-        """Tower top moments"""
-        ax[3, 0].set_ylabel('Moment [kN-m]')
-        ax[3, 0].plot(df[paramfull], df['YawBrMxp_[kN-m]'], 'o-',  label='WS = {:}'.format(ws))
-        ax[3, 0].text(.5, .5, 'YawBrMxp', transform=ax[3, 0].transAxes)
-        ax[3, 1].plot(df[paramfull], df['YawBrMyp_[kN-m]'], 'o-',  label='WS = {:}'.format(ws))
-        ax[3, 1].text(.5, .5, 'YawBrMyp', transform=ax[3, 1].transAxes)
-        ax[3, 2].plot(df[paramfull], df['YawBrMzp_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[3, 2].text(.5, .5, 'YawBrMzp', transform=ax[3, 2].transAxes)
-        """Tower base moments"""
-        ax[4, 0].set_ylabel('Moment [kN-m]')
-        ax[4, 0].plot(df[paramfull], df['TwrBsMxt_[kN-m]'], 'o-',  label='WS = {:}'.format(ws))
-        ax[4, 0].text(.5, .5, 'TwrBsMxt', transform=ax[4, 0].transAxes)
-        ax[4, 1].plot(df[paramfull], df['TwrBsMyt_[kN-m]'], 'o-',  label='WS = {:}'.format(ws))
-        ax[4, 1].text(.5, .5, 'TwrBsMyt', transform=ax[4, 1].transAxes)
-        ax[4, 2].plot(df[paramfull], df['TwrBsMzt_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[4, 2].text(.5, .5, 'TwrBsMzt', transform=ax[4, 2].transAxes)
-        ax[4, 2].set_xlabel(paramfull)
-        """Generator power"""
-        ax[5, 0].set_ylabel('Power [kW]')
-        ax[5, 0].plot(df[paramfull], df['GenPwr_[kW]'], 'o-',  label='WS = {:}'.format(ws))
-        ax[5, 0].text(.5, .5, 'GenPwr', transform=ax[5, 0].transAxes)
-        ax[5, 0].set_xlabel(paramfull)
-        """Generator torque"""
-        ax[5, 1].set_ylabel('Torque [kN-m]')
-        ax[5, 1].plot(df[paramfull], df['GenTq_[kN-m]'], 'o-',  label='WS = {:}'.format(ws))
-        ax[5, 1].text(.5, .5, 'GenTq', transform=ax[5, 1].transAxes)
-        ax[5, 1].set_xlabel(paramfull)
-    plt.delaxes()
-    ax[5, 1].legend(loc='upper left', bbox_to_anchor=(1, 1))
+        df = pd.read_csv('./PostPro/' + paramfull + '/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
+        df = df.fillna(0)
+        for i in range(0, n_row):
+            for j in range(0, n_col):
+                idx = i * n_col + j
+                if idx < n_plot:
+                    ax[i, j].plot(df[paramfull], df[outlist[idx]], '-', label='WS = {:}'.format(ws))
+                    ax[i, j].set_title(outlist[idx], fontsize=10)
+                    ax[i, j].grid()
+                    # text(.5, .5, outlist[idx], transform=ax[i, j].transAxes)
+                    if i == n_row - 1:
+                        ax[i, j].set_xlabel(paramfull)
+                    if idx == (n_plot - 1):
+                        ax[i, j].legend(loc='upper left', bbox_to_anchor=(1, 1))
+
     plt.tick_params(direction='in')
+    plt.delaxes()
     if plot == 1:
         plt.show()
         plt.close()
     elif plot == 2:
-        plot_name = "PostPro/" + paramfull + "_raw" + ".pdf"
+        param = paramfull.split('_', 1)[0]
+        plot_name = "PostPro/" + paramfull + '/' + param + "_ALL_RAW" + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
-""" DIFF VS FINEST RESOLUTION non aero quantities """
-def resolution_pDiff(paramfull, WS, plot):
+def resolution_pDiff_single(paramfull, out, WS, plot):
     """
     Parameters
     ----------
-    paramfull:    parameter varied in study
+    paramfull:  parameter varied in study [str]
+    out:        single output parameter to plot [str]
     WS:         list of wind speeds [m/s]
     plot:       plot options. [0, 1, 2] - [no plot, show plot, save plot]
 
@@ -108,79 +71,35 @@ def resolution_pDiff(paramfull, WS, plot):
     plots of % diff between results at current and finest resolution
 
     """
-    fig, ax = plt.subplots(6, 3, sharey=False, sharex=True, figsize=(15, 20))  # (6.4,4.8)
+    fig, ax = plt.subplots(1, figsize=(8.5, 11))  # (6.4,4.8)
+    param = paramfull.split('_', 1)[0]
+    outname = out.split('_', 1)[0]
     for ws in WS:
         df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
         n = len(df[paramfull])
-        df_fine = df.loc[n-1]
+        df_fine = df.loc[n - 1]
         dfpdiff = (df - df_fine) / df_fine * 100
         dfpdiff = dfpdiff.fillna(0)
-        """ Deflections"""
-        ax[0, 0].set_ylabel('% Difference')
-        ax[0, 0].plot(df[paramfull], dfpdiff['OoPDefl1_[m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[0, 0].text(.5, .5, 'OoPDefl1', transform=ax[0, 0].transAxes)
-        ax[0, 1].plot(df[paramfull], dfpdiff['IPDefl1_[m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[0, 1].text(.5, .5, 'IPDefl1', transform=ax[0, 1].transAxes)
-        ax[0, 2].plot(df[paramfull], dfpdiff['TTDspFA_[m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[0, 2].text(.5, .5, 'TTDspFA', transform=ax[0, 2].transAxes)
-        """Blade root moments"""
-        ax[1, 0].set_ylabel('% Difference')
-        ax[1, 0].plot(df[paramfull], dfpdiff['RootMIP1_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[1, 0].text(.5, .5, 'RootMxb1', transform=ax[1, 0].transAxes)
-        ax[1, 1].plot(df[paramfull], dfpdiff['RootMOoP1_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[1, 1].text(.5, .5, 'RootMyb1', transform=ax[1, 1].transAxes)
-        ax[1, 2].plot(df[paramfull], dfpdiff['RootMzb1_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[1, 2].text(.5, .5, 'RootMzb1', transform=ax[1, 2].transAxes)
-        """LSS moments"""
-        ax[2, 0].set_ylabel('% Difference')
-        ax[2, 0].plot(df[paramfull], dfpdiff['RotTorq_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[2, 0].text(.5, .5, 'RotTorq', transform=ax[2, 0].transAxes)
-        ax[2, 1].plot(df[paramfull], dfpdiff['LSSGagMya_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[2, 1].text(.5, .5, 'LSSGagMya', transform=ax[2, 1].transAxes)
-        ax[2, 2].plot(df[paramfull], dfpdiff['LSSGagMza_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[2, 2].text(.5, .5, 'LSSGagMza', transform=ax[2, 2].transAxes)
-        """Tower top moments"""
-        ax[3, 0].set_ylabel('% Difference')
-        ax[3, 0].plot(df[paramfull], dfpdiff['YawBrMxp_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[3, 0].text(.5, .5, 'YawBrMxp', transform=ax[3, 0].transAxes)
-        ax[3, 1].plot(df[paramfull], dfpdiff['YawBrMyp_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[3, 1].text(.5, .5, 'YawBrMyp', transform=ax[3, 1].transAxes)
-        ax[3, 2].plot(df[paramfull], dfpdiff['YawBrMzp_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[3, 2].text(.5, .5, 'YawBrMzp', transform=ax[3, 2].transAxes)
-        """Tower base moments"""
-        ax[4, 0].set_ylabel('% Difference')
-        ax[4, 0].plot(df[paramfull], dfpdiff['TwrBsMxt_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[4, 0].text(.5, .5, 'TwrBsMxt', transform=ax[4, 0].transAxes)
-        ax[4, 1].plot(df[paramfull], dfpdiff['TwrBsMyt_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[4, 1].text(.5, .5, 'TwrBsMyt', transform=ax[4, 1].transAxes)
-        ax[4, 2].plot(df[paramfull], dfpdiff['TwrBsMzt_[kN-m]'], 'o-', label='WS = {:}'.format(ws))
-        ax[4, 2].text(.5, .5, 'TwrBsMzt', transform=ax[4, 2].transAxes)
-        ax[4, 2].set_xlabel(paramfull)
-        """HSS power"""
-        ax[5, 0].set_ylabel('% Difference')
-        ax[5, 0].plot(df[paramfull], dfpdiff['HSShftPwr_[kW]'], 'o-', label='WS = {:}'.format(ws))
-        ax[5, 0].text(.5, .5, 'GenPwr', transform=ax[5, 0].transAxes)
-        ax[5, 0].set_xlabel(paramfull)
-        """HSS torque"""
-        ax[5, 1].set_ylabel('Torque [kN-m]')
-        ax[5, 1].plot(df[paramfull], df['HSShftTq_[kN-m]'], 'o-',  label='WS = {:}'.format(ws))
-        ax[5, 1].text(.5, .5, 'GenTq', transform=ax[5, 1].transAxes)
-        ax[5, 1].set_xlabel(paramfull)
-    plt.delaxes()
-    ax[5, 1].legend(loc='upper left', bbox_to_anchor=(1, 1))
+        ax.plot(df[paramfull], dfpdiff[out], '-', label='WS = {:}'.format(ws))
+    ax.set_title(outname, fontsize=10)
+    ax.grid()
+    ax.set_ylabel('% Difference')
+    ax.set_xlabel(paramfull)
     plt.tick_params(direction='in')
+    ax.legend(loc='best')
     if plot == 1:
         plt.show()
         plt.close()
     elif plot == 2:
-        plot_name = "PostPro/" + paramfull + '/' + paramfull + "_%diff" + ".pdf"
+        plot_name = "PostPro/" + paramfull + '/' + param + '_' + outname + "_%diff" + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
-def resolution_pDiff_aero(paramfull, WS, plot):
+def resolution_pDiff_all(paramfull, outlist, WS, plot):
     """
     Parameters
     ----------
-    paramfull:    parameter varied in study
+    paramfull:  parameter varied in study [str]
+    outlist:    list of output parameters to plot [str]
     WS:         list of wind speeds [m/s]
     plot:       plot options. [0, 1, 2] - [no plot, show plot, save plot]
 
@@ -190,9 +109,6 @@ def resolution_pDiff_aero(paramfull, WS, plot):
 
     """
     #  use nodes 8, 23 @ 25%, 75%
-    outlist = ['HSShftPwr_[kW]', 'RootMIP1_[kN-m]', 'RootMOoP1_[kN-m]', 'RootMzb1_[kN-m]', 'TwrBsMxt_[kN-m]',
-               'TwrBsMyt_[kN-m]', 'TwrBsMzt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]', 'AB1N008TnInd_[-]',
-               'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
     n_plot = len(outlist)
     n_col = 3
     n_row = int(np.ceil(n_plot/n_col))
@@ -209,7 +125,8 @@ def resolution_pDiff_aero(paramfull, WS, plot):
                 idx = i*n_col + j
                 if idx < n_plot:
                     ax[i, j].plot(df[paramfull], dfpdiff[outlist[idx]], '-', label='WS = {:}'.format(ws))
-                    ax[i, j].set_title(outlist[idx], fontsize=10)
+                    ax[i, j].set_title(outlist[idx].split('_', 1)[0], fontsize=10)
+                    ax[i, j].grid()
                         # text(.5, .5, outlist[idx], transform=ax[i, j].transAxes)
                     if j==0:
                         ax[i, j].set_ylabel('% Difference')
@@ -224,7 +141,8 @@ def resolution_pDiff_aero(paramfull, WS, plot):
         plt.show()
         plt.close()
     elif plot == 2:
-        plot_name = "PostPro/" + paramfull + '/' + paramfull + "_%diff" + ".pdf"
+        param = paramfull.split('_', 1)[0]
+        plot_name = "PostPro/" + paramfull + '/' + param + "_ALL_%diff" + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
 """ PLOT OUTPUTS ALONG BLADE SPAN, VARYING WS and param """
@@ -294,11 +212,13 @@ def spanwise_vary_both(paramfull, values, WS, plot):
             ax[1, 0].plot(norm_node_r, Fn.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
             ax[1, 1].set_ylabel('Tangential Force [N]')
             ax[1, 1].plot(norm_node_r, Ft.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
+            ax[1, 1].set_xlabel('r/R')
             # ax[2, 0].set_ylabel('Lift Force [N]')
             # ax[2, 0].plot(norm_node_r, Fl.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
             # ax[2, 1].set_ylabel('Drag Force [N]')
             # ax[2, 1].plot(norm_node_r, Fd.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
             ax[2, 0].set_ylabel('Circulation')
+            ax[2, 0].set_xlabel('r/R')
             ax[2, 0].plot(norm_node_r, Circ.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a], label='ws = {:}'.format(ws))
             legend_labels = legend_labels + [paramfull + " = {:04.3f}".format(value) + '; ws_[m/s] = {:}'.format(ws)]
             a+=1
@@ -311,7 +231,7 @@ def spanwise_vary_both(paramfull, values, WS, plot):
         plt.show()
         plt.close()
     elif plot == 2:
-        plot_name = "PostPro/" + paramfull + '/SPANWISE_' + paramfull + ".pdf"
+        plot_name = "PostPro/" + paramfull + '/' + paramfull + "SPANWISE.pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
 """ RUN RESOLUTION STUDY """
@@ -350,9 +270,14 @@ def run_study(WS, paramfull, values):
         #print(dfAvg)
     # resolution_raw(paramfull, WS, 2)
     print('created all csvs ')
-    # resolution_pDiff(paramfull, WS, 2)
-    resolution_pDiff_aero(paramfull, WS, 1)
-    # spanwise_vary_both(paramfull, values, WS, 2)
+    outlist = ['HSShftPwr_[kW]', 'RootMIP1_[kN-m]', 'RootMOoP1_[kN-m]', 'RootMzb1_[kN-m]', 'RotThrust_[kN]',
+               'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'TwrBsMzt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',
+               'AB1N008TnInd_[-]', 'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
+    for out in outlist:
+        resolution_pDiff_single(paramfull, out, WS, 2)
+    resolution_raw_all(paramfull, outlist, WS, 2)
+    resolution_pDiff_all(paramfull, outlist, WS, 2)
+    spanwise_vary_both(paramfull, values, WS, 2)
     print('Ran ' + paramfull + ' post processing')
 
 if __name__ == "__main__":
