@@ -1,7 +1,7 @@
 import numpy as np
 
 """ DEFAULTS """
-# dpsi_default = 10*np.pi/180  # rad
+dpsi = np.array([2.5, 5, 7.5, 10, 12.5, 15]) * np.pi / 180  # rad
 wakeLengthD = 6
 rot_D = 102.996267808408*2 # m
 nearWakeExtent = 540*np.pi/180  # rad
@@ -14,6 +14,9 @@ FWE = wakeLengthD * rot_D # m
 WakeRegFactor_default = 3
 WingRegFactor_default = 3
 CoreSpreadEddyVisc_default = 100
+rotSpdM = np.outer(rotSpd, np.ones(len(dpsi)))
+WSM = np.outer(WS, np.ones(len(dpsi)))
+dpsiM = np.outer(np.ones(len(WS)), dpsi)
 
 """ FILL THESE IN BASED ON DISCRETIZATION STUDY RESULTS """
 DTfvw_cvg = np.ones(5)  # TODO
@@ -25,17 +28,13 @@ WakeLength_cvg = np.ones(5)  # TODO
 WakeRegFactor_cvg = np.ones(5)  # TODO
 WingRegFactor_cvg = np.ones(5)  # TODO
 
+dpsi_cvgM = np.outer(np.ones(len(WS)), dpsi_cvg)
+WakeLength1 = np.round(FWE * rotSpdM/WSM/dpsiM, decimals=0)  # Npanels
+WakeLength2 = np.round(FWE * rotSpd/WS/dpsi_cvg, decimals=0)  # Npanels
 
 """ study 1: DTfvw """
-dpsi = np.array([2.5, 5, 7.5, 10, 12.5, 15]) * np.pi / 180  # rad
 DTfvw = np.round(np.outer(1/rotSpd, dpsi), decimals=3)
-rotSpdM = np.outer(rotSpd, np.ones(len(dpsi)))
-WSM = np.outer(WS, np.ones(len(dpsi)))
-dpsiM = np.outer(np.ones(len(WS)), dpsi)
-nNWPanel_default = np.round(nearWakeExtent/(np.multiply(rotSpdM, DTfvw)), decimals=0)
-WakeLength_default = np.round(FWE * rotSpdM/WSM/dpsiM, decimals=0)  # Npanels
-
-
+nNWPanel1 = np.round(nearWakeExtent/(np.multiply(rotSpdM, DTfvw)), decimals=0)
 study1 = {
         'param'                         : 'DTfvw',
         'paramfull'                     : 'DTfvw_[s]',
@@ -43,21 +42,21 @@ study1 = {
         'RPM'                           : RPM,
         'pitch'                         : Pitch,
         'DTfvw'                         : DTfvw,
-        'nNWPanel'                      : nNWPanel_default,
-        'WakeLength'                    : WakeLength_default,
+        'nNWPanel'                      : nNWPanel1,
+        'WakeLength'                    : WakeLength1,
         'WakeRegFactor'                 : WakeRegFactor_default * np.ones([len(WS), len(dpsi)]),
         'WingRegFactor'                 : WingRegFactor_default * np.ones([len(WS), len(dpsi)]),
         'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones([len(WS), len(dpsi)]),
         'TMax'                          : 400
 }
-study1Maxtime = np.max(WakeLength_default)/np.min(WS)+200
+study1Maxtime = 2 * np.max(WakeLength1)/np.min(WS)+200
 # rounding up study 1 max time to 400s
 
 """study 2: nNWpanel """
+
 NWE = np.array([30, 60, 120, 180, 240, 300, 360, 540, 720, 1080, 1440, 1800, 2160, 2520]) * np.pi / 180
 prod = DTfvw_cvg * rotSpd
 nNWPanel = np.round(np.outer(1/prod, NWE), decimals=0)
-WakeLength_rev = np.round(FWE*rotSpd/WS/dpsi_cvg, decimals=0)  # Npanels# revised wakelength based on dpsi_cvg
 study2 = {
         'param'                         : 'nNWPanel',
         'WS'                            : WS,
@@ -65,7 +64,7 @@ study2 = {
         'pitch'                         : Pitch,
         'DTfvw'                         : np.outer(DTfvw_cvg, np.ones(len(NWE))),
         'nNWPanel'                      : nNWPanel,
-        'WakeLength'                    : np.outer(WakeLength_rev, np.ones(len(NWE))),
+        'WakeLength'                    : np.outer(WakeLength2, np.ones(len(NWE))),
         'WakeRegFactor'                 : WakeRegFactor_default * np.ones([len(WS), len(NWE)]),
         'WingRegFactor'                 : WingRegFactor_default * np.ones([len(WS), len(NWE)]),
         'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones([len(WS), len(NWE)])
