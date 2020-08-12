@@ -15,8 +15,6 @@ vtk
 *_bkp
 *_old
 *_Old
-Regularization_1/
-Regularization_2/
-Regularization_3/
+*.DS_Store
+*.csv
 SampleOutputs/
-Wake_Discretization/

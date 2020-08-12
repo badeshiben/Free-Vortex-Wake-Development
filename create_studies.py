@@ -1,7 +1,7 @@
 import numpy as np
 
 """ DEFAULTS """
-dpsi_default = 10*np.pi/180  # rad
+# dpsi_default = 10*np.pi/180  # rad
 wakeLengthD = 6
 rot_D = 102.996267808408*2 # m
 nearWakeExtent = 540*np.pi/180  # rad
@@ -9,10 +9,8 @@ WS = [4, 6, 8, 10, 12]
 RPM = np.array([4, 5.5, 7.5, 7.84, 7.85])
 rotSpd = RPM * 0.104719755  # rad/s
 Pitch = [0, 0, 0, 6, 10]  # deg
-DTfvw_default = np.round(dpsi_default/rotSpd, decimals=3) # sec
-nNWPanel_default = np.round(nearWakeExtent/(DTfvw_default * rotSpd), decimals=0)
+# DTfvw_default = np.round(dpsi_default/rotSpd, decimals=3) # sec
 FWE = wakeLengthD * rot_D # m
-WakeLength_default = np.round(FWE * rotSpd/WS/dpsi_default, decimals=0)  # Npanels
 WakeRegFactor_default = 3
 WingRegFactor_default = 3
 CoreSpreadEddyVisc_default = 100
@@ -30,8 +28,14 @@ WingRegFactor_cvg = np.ones(5)  # TODO
 
 """ study 1: DTfvw """
 dpsi = np.array([2.5, 5, 7.5, 10, 12.5, 15]) * np.pi / 180  # rad
-
 DTfvw = np.round(np.outer(1/rotSpd, dpsi), decimals=3)
+rotSpdM = np.outer(rotSpd, np.ones(len(dpsi)))
+WSM = np.outer(WS, np.ones(len(dpsi)))
+dpsiM = np.outer(np.ones(len(WS)), dpsi)
+nNWPanel_default = np.round(nearWakeExtent/(np.multiply(rotSpdM, DTfvw)), decimals=0)
+WakeLength_default = np.round(FWE * rotSpdM/WSM/dpsiM, decimals=0)  # Npanels
+
+
 study1 = {
         'param'                         : 'DTfvw',
         'paramfull'                     : 'DTfvw_[s]',
