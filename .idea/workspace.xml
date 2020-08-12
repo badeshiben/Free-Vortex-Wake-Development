@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="969ba336-3df3-42e0-84a1-d82894eabfb8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BAR_02_template/OLAF.dat" beforeDir="false" afterPath="$PROJECT_DIR$/BAR_02_template/OLAF.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_AB1N008AxInd_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_AB1N008AxInd_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_AB1N008Gam_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_AB1N008Gam_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_AB1N008TnInd_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_AB1N008TnInd_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_AB1N023AxInd_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_AB1N023AxInd_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_AB1N023Gam_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_AB1N023Gam_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_AB1N023TnInd_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_AB1N023TnInd_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_ALL_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_ALL_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_ALL_RAW.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_ALL_RAW.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_HSShftPwr_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_HSShftPwr_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_RootMIP1_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_RootMIP1_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_RootMOoP1_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_RootMOoP1_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_RootMzb1_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_RootMzb1_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_RotThrust_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_RotThrust_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_TwrBsMxt_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_TwrBsMxt_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_TwrBsMyt_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_TwrBsMyt_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_TwrBsMzt_%diff.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_TwrBsMzt_%diff.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_[s]SPANWISE.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/PostPro/DTfvw_[s]/DTfvw_[s]SPANWISE.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results_ws04.0_DTfvw_[s].csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results_ws04.0_DTfvw_[s].csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results_ws06.0_DTfvw_[s].csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results_ws06.0_DTfvw_[s].csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results_ws08.0_DTfvw_[s].csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results_ws08.0_DTfvw_[s].csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results_ws10.0_DTfvw_[s].csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results_ws10.0_DTfvw_[s].csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results_ws12.0_DTfvw_[s].csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results_ws12.0_DTfvw_[s].csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
