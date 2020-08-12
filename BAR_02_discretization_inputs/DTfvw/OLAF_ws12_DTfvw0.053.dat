@@ -19,7 +19,7 @@ default       CircSolvMaxIter - Maximum number of iterations for circulation sol
 default       FreeWakeLength - Wake length that is free (D) {default: WakeLength}
 default       FWShedVorticity - Include shed vorticity in the far wake {default: False}
 ------------------- WAKE REGULARIZATIONS AND DIFFUSION -----------------------------------------
-1             DiffusionMethod - Diffusion method to account for viscous effects {0: None, 1: Core Spreading, "default": 0}
+0             DiffusionMethod - Diffusion method to account for viscous effects {0: None, 1: Core Spreading, "default": 0}
 0             RegDeterMethod - Method to determine the regularization parameters {0: Manual, 1: Optimized, default: 0 }
 3             RegFunction   - Viscous diffusion function {0: None, 1: Rankine, 2: LambOseen, 3: Vatistas, 4: Denominator, "default": 3} (switch)
 3             WakeRegMethod - Wake regularization method {1: Constant, 2: Stretching, 3: Age, default: 1} (switch)
