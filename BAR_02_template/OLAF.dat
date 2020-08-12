@@ -2,7 +2,7 @@
 Free wake input file for the BAR turbine
 --------------------------- GENERAL OPTIONS ---------------------------------------------------
 default IntMethod          Integration method {4: 2nd order Predictor/Corrector, 5: Forward Euler 1st order, default: 5} (switch)
-0     DTfvw              Time interval for wake propagation. {default: dtaero} (s)
+0       DTfvw              Time interval for wake propagation. {default: dtaero} (s)
 0.0     FreeWakeStart      Time when wake is free. (-) value = always free. {default: 0.0} (s)
 1.0     FullCircStart      Time at which full circulation is reached. {default: 0.0} (s)
 --------------------------- CIRCULATION SPECIFICATIONS ----------------------------------------
@@ -19,7 +19,7 @@ default CircSolvMaxIter    Maximum number of iterations for circulation solving 
 default FreeWakeLength     Wake length that is free (D) {default: WakeLength}
 default FWShedVorticity    Include shed vorticity in the far wake {default: False}
 ------------------- WAKE REGULARIZATIONS AND DIFFUSION -----------------------------------------
-0       DiffusionMethod    Diffusion method to account for viscous effects {0: None, 1: Core Spreading, "default": 0}
+1       DiffusionMethod    Diffusion method to account for viscous effects {0: None, 1: Core Spreading, "default": 0}
 1       RegDeterMethod     Method to determine the regularization parameters {0:  Manual, 1: Optimized, default: 0 }
 default RegFunction        Viscous diffusion function {0: None, 1: Rankine, 2: LambOseen, 3: Vatistas, 4: Denominator, "default": 3} (switch)
 3       WakeRegMethod      Wake regularization method {1: Constant, 2: Stretching, 3: Age, default: 1} (switch)
