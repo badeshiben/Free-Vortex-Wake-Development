@@ -66,7 +66,8 @@ study2 = {
         'WakeLength'                    : np.outer(WakeLength2, np.ones(len(NWE))),
         'WakeRegFactor'                 : WakeRegFactor_default * np.ones([len(WS), len(NWE)]),
         'WingRegFactor'                 : WingRegFactor_default * np.ones([len(WS), len(NWE)]),
-        'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones([len(WS), len(NWE)])
+        'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones([len(WS), len(NWE)]),
+        'TMax'                          : 900
 }
 
 """study 3: WakeLength"""

@@ -63,7 +63,7 @@ def genericStudy(study, ref_dir, work_dir, main_file):
             p=BaseDict.copy() # Important, create a copy for each simulation
             # Parameters for one simulation
             p['TMax']                   = study['TMax']
-            # p['TStart']                 = study['TMax'] - 200
+            p['TStart']                 = study['TMax'] - 200
             p['DT']                     = DTfvw
             p['DT_Out']                 = DTfvw
             p['EDFile|RotSpeed']        = rpm
@@ -131,7 +131,7 @@ def createSubmit(fastfiles, FAST_EXE, npf):
 
 if __name__=='__main__':
     # --- "Global" Parameters for this script
-    study = study1
+    study = study2
     ref_dir          = './BAR_02_template/'   # Folder where the fast input files are located (will be copied)
     main_file        = 'OpenFAST_BAR_02.fst'    # Main file in ref_dir, used as a template
     work_dir         = 'BAR_02_discretization_inputs/'+study['param']+'/'          # Output folder (will be created)
