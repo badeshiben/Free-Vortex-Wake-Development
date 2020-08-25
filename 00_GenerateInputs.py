@@ -63,7 +63,7 @@ def genericStudy(study, ref_dir, work_dir, main_file):
             p=BaseDict.copy() # Important, create a copy for each simulation
             # Parameters for one simulation
             p['TMax']                   = study['TMax']
-            p['TStart']                 = study['TMax'] - 200
+            # p['TStart']                 = study['TMax'] - 200
             p['DT']                     = DTfvw
             p['DT_Out']                 = DTfvw
             p['EDFile|RotSpeed']        = rpm
