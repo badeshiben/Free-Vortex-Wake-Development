@@ -1,7 +1,7 @@
 import numpy as np
 
 """ DEFAULTS """
-dpsi = np.array([2.5, 5, 7.5, 10, 12.5, 15]) * np.pi / 180  # rad
+dpsi = np.array([2.5, 3.75, 5, 7.5, 10, 12.5]) * np.pi / 180  # rad
 wakeLengthD = 6
 rot_D = 102.996267808408*2 # m
 nearWakeExtent = 540*np.pi/180  # rad
@@ -19,8 +19,8 @@ WSM = np.outer(WS, np.ones(len(dpsi)))
 dpsiM = np.outer(np.ones(len(WS)), dpsi)
 
 """ FILL THESE IN BASED ON DISCRETIZATION STUDY RESULTS """
-DTfvw_cvg = np.ones(5)  # TODO
-dpsi_cvg = np.ones(5)  # TODO
+dpsi_cvg = 5*np.pi/180*np.ones(5)
+DTfvw_cvg = np.round(np.multiply(1/rotSpd, dpsi_cvg), decimals=3)
 nNWPanel_cvg = np.ones(5)  # TODO
 nNWPanel_cvg = np.ones(5)  # TODO
 nNWPanel_cvg = np.ones(5)  # TODO

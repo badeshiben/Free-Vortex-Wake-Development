@@ -28,7 +28,6 @@ import weio
 
 
 FAST_EXE='openfast'
-
 # --------------------------------------------------------------------------------}
 # ---  
 # --------------------------------------------------------------------------------{
@@ -62,8 +61,6 @@ def createStepWind(filename,WSstep=1,WSmin=3,WSmax=25,tstep=100,dt=0.5,tmin=0,tm
     #pass
 #createStepWind('test.wnd',tstep=200,WSmax=28)
 # createStepWind('test.wnd',tstep=200,WSmin=5,WSmax=7,WSstep=2)
-
-
 # --------------------------------------------------------------------------------}
 # --- Tools for executing FAST
 # --------------------------------------------------------------------------------{
@@ -152,7 +149,6 @@ def run_cmd(input_file, exe, wait=True, ShowOutputs=False, ShowCommand=True):
     p.exe            = exe
     return p
 # --- END cmd.py
-
 def run_fastfiles(fastfiles, fastExe=None, parallel=True, ShowOutputs=True, nCores=None, ShowCommand=True, ReRun=True):
     if fastExe is None:
         fastExe=FAST_EXE
@@ -175,7 +171,6 @@ def run_fast(input_file, fastExe=None, wait=True, ShowOutputs=False, ShowCommand
         fastExe=FAST_EXE
     return run_cmd(input_file, fastExe, wait=wait, ShowOutputs=ShowOutputs, ShowCommand=ShowCommand)
 
-
 def writeBatch(batchfile, fastfiles, fastExe=None):
     """ Write batch file, everything is written relative to the batch file"""
     if fastExe is None:
@@ -191,7 +186,6 @@ def writeBatch(batchfile, fastfiles, fastExe=None):
             l = fastExe_rel + ' '+ ff_rel
             f.write("%s\n" % l)
 
-
 def removeFASTOuputs(workdir):
     # Cleaning folder
     for f in glob.glob(os.path.join(workdir,'*.out')):
@@ -202,7 +196,6 @@ def removeFASTOuputs(workdir):
         os.remove(f)
     for f in glob.glob(os.path.join(workdir,'*.sum')):
         os.remove(f)
-
 # --------------------------------------------------------------------------------}
 # --- Tools for IO 
 # --------------------------------------------------------------------------------{
@@ -243,8 +236,6 @@ def ED_TwrStations(ED):
     twr_fract    = np.arange(1./nTwrNodes/2., 1, 1./nTwrNodes)
     h_nodes      = twr_fract*(ED['TowerHt']-ED['TowerBsHt']) + ED['TowerBsHt']
     return twr_fract, h_nodes
-
-
 
 def ED_BldGag(ED):
     """ Returns the radial position of ElastoDyn blade gages 
@@ -289,7 +280,6 @@ def ED_TwrGag(ED):
         Inodes = np.array([ED['TwrGagNd']])
     h_gag = h_nodes[ Inodes[:nOuts] -1]
     return h_gag
-
 
 def AD14_BldGag(AD):
     """ Returns the radial position of AeroDyn 14 blade gages (based on "print" in column 6)
@@ -368,11 +358,9 @@ def BD_BldGag(BD):
         Inodes = np.array([BD['OutNd']])
     r_gag = r_nodes[ Inodes[:nOuts] -1]
     return r_gag, Inodes, r_nodes
-
 # 
 # 
 # 1, 7, 14, 21, 30, 36, 43, 52, 58 BldGagNd List of blade nodes that have strain gages [1 to BldNodes] (-) [unused if NBlGages=0]
-
 # --------------------------------------------------------------------------------}
 # --- Helper functions for radial data  
 # --------------------------------------------------------------------------------{
@@ -642,8 +630,6 @@ def insert_extra_columns_AD(dfRad, tsAvg, vr=None, rho=None, R=None, nB=None, ch
             pass
     return dfRad
 
-
-
 def spanwisePostPro(FST_In=None,avgMethod='constantwindow',avgParam=5,out_ext='.outb',df=None):
     """
     Postprocess FAST radial data
@@ -711,8 +697,6 @@ def spanwisePostPro(FST_In=None,avgMethod='constantwindow',avgParam=5,out_ext='.
         return dfRad_ED , dfRad_AD, dfRad_BD, df
     else:
         return dfRad_ED , dfRad_AD, dfRad_BD
-
-
 
 def spanwisePostProRows(df, FST_In=None):
     """ 
@@ -783,7 +767,6 @@ def spanwisePostProRows(df, FST_In=None):
                 Col_BD=dfRad_BD.columns.values
             M_BD[i, :, : ] = dfRad_BD.values
     return M_AD, Col_AD, M_ED, Col_ED, M_BD, Col_BD
-
 
 def FASTRadialOutputs(FST_In, OutputCols=None):
     """ Returns radial positions where FAST has outputs
@@ -857,8 +840,6 @@ def FASTRadialOutputs(FST_In, OutputCols=None):
                     raise Exception('AeroDyn version unknown')
     return r_AD, r_ED, r_BD, IR_AD, IR_ED, IR_BD, R, r_hub, fst
 
-
-
 def addToOutlist(OutList, Signals):
     if not isinstance(Signals,list):
         raise Exception('Signals must be a list')
@@ -868,9 +849,6 @@ def addToOutlist(OutList, Signals):
         if not AlreadyIn:
             OutList.append(s)
     return OutList
-
-
-
 # --------------------------------------------------------------------------------}
 # --- Generic df 
 # --------------------------------------------------------------------------------{
@@ -930,7 +908,6 @@ def remap_df(df, ColMap, bColKeepNewOnly=False, inPlace=False):
             print('[WARN] Signals missing and omitted for ColKeep:\n       '+'\n       '.join(ColKeepMiss))
         df=df[ColKeepSafe]
     return df
-
 # --------------------------------------------------------------------------------}
 # --- Template replace 
 # --------------------------------------------------------------------------------{
@@ -947,7 +924,6 @@ def handleRemoveReadonlyWin(func, path, exc_info):
         func(path)
     else:
         raise
-
 
 def copyTree(src, dst):
     """ 
@@ -990,7 +966,6 @@ def copyTree(src, dst):
                 copyTree(s, d)
             else:
                 forceMergeFlatDir(s, d)
-
 
 def templateReplaceGeneral(PARAMS, template_dir=None, output_dir=None, main_file=None, RemoveAllowed=False, RemoveRefSubFiles=False, oneSimPerDir=False):
     """ Generate inputs files by replacing different parameters from a template file.
@@ -1193,7 +1168,6 @@ def templateReplace(PARAMS, template_dir, workdir=None, main_file=None, RemoveAl
     
     return templateReplaceGeneral(PARAMS, template_dir, output_dir=workdir, main_file=main_file, 
             RemoveAllowed=RemoveAllowed, RemoveRefSubFiles=RemoveRefSubFiles, oneSimPerDir=oneSimPerDir)
-
 # --------------------------------------------------------------------------------}
 # --- Tools for template replacement 
 # --------------------------------------------------------------------------------{
@@ -1223,7 +1197,6 @@ def paramsControllerDLL(p=dict()):
     p['ServoFile|YCMode']   = 5;
     p['EDFile|GenDOF']      = 'True';
     return p
-
 
 def paramsStiff(p=dict()):
     p['EDFile|FlapDOF1']  = 'False'
@@ -1287,8 +1260,6 @@ def paramsWS_RPM_Pitch(WS,RPM,Pitch,BaseDict=None,FlatInputs=False):
         i=i+1
         PARAMS.append(p)
     return PARAMS
-
-
 # --------------------------------------------------------------------------------}
 # --- Tools for PostProcessing one or several simulations
 # --------------------------------------------------------------------------------{
@@ -1353,8 +1324,6 @@ def find_matching_pattern(List, pattern):
             MatchedElements.append(l)
             MatchedStrings.append(match.groups(1)[0])
     return MatchedElements, MatchedStrings
-
-        
 
 def extractSpanTSReg(ts, col_pattern, colname, IR=None):
     """ Helper function to extract spanwise results, like B1N1Cl B1N2Cl etc. 
@@ -1459,7 +1428,6 @@ def azimuthal_average_DF(df, psiBin=None, colPsi='LSSTipP_[deg]', tStart=None, c
 
     return dfPsi
 
-
 def averageDF(df,avgMethod='periods',avgParam=None,ColMap=None,ColKeep=None,ColSort=None,stats=['mean']):
     """
     See average PostPro for documentation, same interface, just does it for one dataframe
@@ -1555,8 +1523,6 @@ def averageDF(df,avgMethod='periods',avgParam=None,ColMap=None,ColKeep=None,ColS
         raise NotImplementedError()
     return MeanValues
 
-
-
 def averagePostPro(outFiles,avgMethod='periods',avgParam=None,ColMap=None,ColKeep=None,ColSort=None,stats=['mean']):
     """ Opens a list of FAST output files, perform average of its signals and return a panda dataframe
     For now, the scripts only computes the mean within a time window which may be a constant or a time that is a function of the rotational speed (see `avgMethod`).
@@ -1608,8 +1574,7 @@ def averagePostPro(outFiles,avgMethod='periods',avgParam=None,ColMap=None,ColKee
         print('[WARN] There were {} missing/invalid files: {}'.format(len(invalidFiles),invalidFiles))
 
 
-    return result 
-
+    return result
 # --------------------------------------------------------------------------------}
 # --- Tools for typical wind turbine study 
 # --------------------------------------------------------------------------------{
@@ -1707,8 +1672,6 @@ def CPCT_LambdaPitch(refdir,main_fastfile,Lambda=None,Pitch=np.linspace(-10,40,5
     MaxVal={'CP_max':MCP[i,j],'lambda_opt':LAMBDA[j,i],'pitch_opt':PITCH[j,i]}
 
     return  MCP,MCT,Lambda,Pitch,MaxVal,result
-
-
 # def detectFastFiles(workdir):
 #     FstFiles=glob.glob(os.path.join(workdir,'*.fst'))+glob.glob(os.path.join(workdir,'*.FST'))
 #     DatFiles=glob.glob(os.path.join(workdir,'*.dat'))+glob.glob(os.path.join(workdir,'*.DAT'))
@@ -1728,9 +1691,6 @@ def CPCT_LambdaPitch(refdir,main_fastfile,Lambda=None,Pitch=np.linspace(-10,40,5
 #     fastfile_ref = 'Turbine.fst';
 #     elasfile_ref = 'ElastoDyn.dat';
 #         remove
-   
-
-
 if __name__=='__main__':
     pass
     # --- Test of templateReplace

@@ -113,11 +113,13 @@ def resolution_pDiff_all(paramfull, outlist, WS, plot):
     n_col = 3
     n_row = int(np.ceil(n_plot/n_col))
     fig, ax = plt.subplots(n_row, n_col, sharey=False, sharex=True, figsize=(8.5, 11))  # (6.4,4.8)
+    fsize = 8
 
     for ws in WS:
         df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
-        n = len(df[paramfull])
-        df_fine = df.loc[n - 1]
+        # n = len(df[paramfull])
+        loc = 0  # TODO this changes by study. NEED TO CHANGE EXPLICITLY HERE!!!!!!!!!!!!!!!!!!!
+        df_fine = df.loc[loc]
         dfpdiff = (df - df_fine) / df_fine * 100
         dfpdiff = dfpdiff.fillna(0)
         for i in range(0, n_row):
@@ -125,15 +127,16 @@ def resolution_pDiff_all(paramfull, outlist, WS, plot):
                 idx = i*n_col + j
                 if idx < n_plot:
                     ax[i, j].plot(df[paramfull], dfpdiff[outlist[idx]], '-', label='WS = {:}'.format(ws))
-                    ax[i, j].set_title(outlist[idx].split('_', 1)[0], fontsize=10)
+                    ax[i, j].set_title(outlist[idx].split('_', 1)[0], fontsize=fsize)
+                    ax[i, j].tick_params(axis='both', labelsize=fsize)
                     ax[i, j].grid()
                         # text(.5, .5, outlist[idx], transform=ax[i, j].transAxes)
                     if j==0:
-                        ax[i, j].set_ylabel('% Difference')
+                        ax[i, j].set_ylabel('% Difference', fontsize=fsize)
                     if i==n_row-1:
-                        ax[i, j].set_xlabel(paramfull)
+                        ax[i, j].set_xlabel(paramfull, fontsize=fsize)
                     if idx==(n_plot-1):
-                        ax[i, j].legend(loc='upper left', bbox_to_anchor=(1, 1))
+                        ax[i, j].legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize=fsize)
 
     plt.tick_params(direction='in')
     plt.delaxes()

@@ -70,6 +70,8 @@ def genericStudy(study, ref_dir, work_dir, main_file):
             p['EDFile|BlPitch(1)']      = pitch
             p['EDFile|BlPitch(2)']      = pitch
             p['EDFile|BlPitch(3)']      = pitch
+            if study['param'] == 'DTfvw':
+                p['EDFile|ShftTilt'] = 0
             p['InflowFile|HWindSpeed']  = wsp
             p['AeroFile|FVWFile|DTfvw'] = DTfvw
             p['AeroFile|FVWFile|nNWPanel'] = int(nNWP)
