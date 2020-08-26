@@ -30,6 +30,7 @@ def resolution_raw_all(paramfull, outlist, WS, plot):
     n_col = 3
     n_row = int(np.ceil(n_plot / n_col))
     fig, ax = plt.subplots(n_row, n_col, sharey=False, sharex=True, figsize=(8.5, 11))  # (6.4,4.8)
+    fsize = 8
 
     for ws in WS:
         df = pd.read_csv('./PostPro/' + paramfull + '/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
@@ -38,16 +39,25 @@ def resolution_raw_all(paramfull, outlist, WS, plot):
             for j in range(0, n_col):
                 idx = i * n_col + j
                 if idx < n_plot:
-                    ax[i, j].plot(df[paramfull], df[outlist[idx]], '-', label='WS = {:}'.format(ws))
-                    ax[i, j].set_title(outlist[idx], fontsize=10)
+                    if paramfull == 'DTfvw_[s]':
+                        ax[i, j].plot(df[paramfull] * df['RotSpeed_[rpm]'] * 0.104719755, df[outlist[idx]], '-o',
+                                label='WS = {:}'.format(ws))
+                    else:
+                        ax[i, j].plot(df[paramfull], df[outlist[idx]], '-o', label='WS = {:}'.format(ws))
+                    ax[i, j].set_title(outlist[idx], fontsize=fsize)
                     ax[i, j].grid()
+                    ax[i, j].tick_params(direction='in', labelsize=6.5)
                     # text(.5, .5, outlist[idx], transform=ax[i, j].transAxes)
                     if i == n_row - 1:
                         ax[i, j].set_xlabel(paramfull)
+                        if paramfull == 'DTfvw_[s]':
+                            ax[i, j].set_xlabel('DTfvw *'+r'$\omega$'+'[rad]', fontsize=fsize)
+                        else:
+                            ax[i, j].set_xlabel(paramfull, fontsize=fsize)
                     if idx == (n_plot - 1):
                         ax[i, j].legend(loc='upper left', bbox_to_anchor=(1, 1))
 
-    plt.tick_params(direction='in')
+    plt.tick_params(direction='in', labelsize=2)
     plt.delaxes()
     if plot == 1:
         plt.show()
@@ -80,11 +90,17 @@ def resolution_pDiff_single(paramfull, out, WS, plot):
         df_fine = df.loc[n - 1]
         dfpdiff = (df - df_fine) / df_fine * 100
         dfpdiff = dfpdiff.fillna(0)
-        ax.plot(df[paramfull], dfpdiff[out], '-', label='WS = {:}'.format(ws))
+        if paramfull=='DTfvw_[s]':
+            ax.plot(df[paramfull]*df['RotSpeed_[rpm]']*0.104719755, dfpdiff[out], '-o', label='WS = {:}'.format(ws))
+        else:
+            ax.plot(df[paramfull], dfpdiff[out], '-o', label='WS = {:}'.format(ws))
     ax.set_title(outname, fontsize=10)
     ax.grid()
     ax.set_ylabel('% Difference')
-    ax.set_xlabel(paramfull)
+    if paramfull == 'DTfvw_[s]':
+        ax.set_xlabel('DTfvw *'+r'$\omega$'+'[rad]')
+    else:
+        ax.set_xlabel(paramfull)
     plt.tick_params(direction='in')
     ax.legend(loc='best')
     if plot == 1:
@@ -126,7 +142,11 @@ def resolution_pDiff_all(paramfull, outlist, WS, plot):
             for j in range(0, n_col):
                 idx = i*n_col + j
                 if idx < n_plot:
-                    ax[i, j].plot(df[paramfull], dfpdiff[outlist[idx]], '-', label='WS = {:}'.format(ws))
+                    if paramfull == 'DTfvw_[s]':
+                        ax[i, j].plot(df[paramfull] * df['RotSpeed_[rpm]'] * 0.104719755, dfpdiff[outlist[idx]], '-o',
+                                label='WS = {:}'.format(ws))
+                    else:
+                        ax[i, j].plot(df[paramfull], dfpdiff[outlist[idx]], '-o', label='WS = {:}'.format(ws))
                     ax[i, j].set_title(outlist[idx].split('_', 1)[0], fontsize=fsize)
                     ax[i, j].tick_params(axis='both', labelsize=fsize)
                     ax[i, j].grid()
@@ -134,11 +154,15 @@ def resolution_pDiff_all(paramfull, outlist, WS, plot):
                     if j==0:
                         ax[i, j].set_ylabel('% Difference', fontsize=fsize)
                     if i==n_row-1:
-                        ax[i, j].set_xlabel(paramfull, fontsize=fsize)
+                        if paramfull == 'DTfvw_[s]':
+                            ax[i, j].set_xlabel('DTfvw *'+r'$\omega$'+'[rad]', fontsize=fsize)
+                        else:
+                            ax[i, j].set_xlabel(df[paramfull], fontsize=fsize)
                     if idx==(n_plot-1):
                         ax[i, j].legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize=fsize)
 
     plt.tick_params(direction='in')
+    plt.delaxes()
     plt.delaxes()
     if plot == 1:
         plt.show()
@@ -254,6 +278,10 @@ def run_study(WS, paramfull, values):
     cwd = os.getcwd()
     work_dir = 'BAR_02_discretization_inputs/' + param + '/'
     postpro_dir = './PostPro/' + paramfull + '/'
+    ##for DTfvw###############################
+    RPM = np.array([4, 5.5, 7.5, 7.84, 7.85])
+    rotSpd = RPM * 0.104719755  # rad/s
+    ##########################################
     if not os.path.isdir(cwd + postpro_dir[1:]):
         os.mkdir(cwd + postpro_dir[1:])
     for wsp in WS:
@@ -276,10 +304,13 @@ def run_study(WS, paramfull, values):
     outlist = ['HSShftPwr_[kW]', 'RootMIP1_[kN-m]', 'RootMOoP1_[kN-m]', 'RootMzb1_[kN-m]', 'RotThrust_[kN]',
                'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'TwrBsMzt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',
                'AB1N008TnInd_[-]', 'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
-    for out in outlist:
+    outlist_pd = ['HSShftPwr_[kW]', 'RootMOoP1_[kN-m]', 'RootMzb1_[kN-m]', 'RotThrust_[kN]',
+               'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'TwrBsMzt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',
+               'AB1N008TnInd_[-]', 'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
+    for out in outlist_pd:
         resolution_pDiff_single(paramfull, out, WS, 2)
     resolution_raw_all(paramfull, outlist, WS, 2)
-    resolution_pDiff_all(paramfull, outlist, WS, 2)
+    resolution_pDiff_all(paramfull, outlist_pd, WS, 2)
     spanwise_vary_both(paramfull, values, WS, 2)
     print('Ran ' + paramfull + ' post processing')
 

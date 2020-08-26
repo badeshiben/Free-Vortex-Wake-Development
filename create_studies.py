@@ -1,7 +1,8 @@
 import numpy as np
 
 """ DEFAULTS """
-dpsi = np.array([2.5, 3.75, 5, 7.5, 10, 12.5]) * np.pi / 180  # rad
+# dpsi = np.array([2.5, 3.75, 5, 7.5, 10, 12.5]) * np.pi / 180  # rad
+dpsi = np.array([2.5, 5, 7.5, 10, 12.5, 15]) * np.pi / 180  # rad
 wakeLengthD = 6
 rot_D = 102.996267808408*2 # m
 nearWakeExtent = 540*np.pi/180  # rad
