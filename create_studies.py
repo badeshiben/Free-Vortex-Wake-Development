@@ -1,7 +1,7 @@
 import numpy as np
 
 """ DEFAULTS """
-# dpsi = np.array([2.5, 3.75, 5, 7.5, 10, 12.5]) * np.pi / 180  # rad
+dpsi1 = np.array([2.5, 3.75, 5, 7.5, 10, 12.5]) * np.pi / 180  # rad
 dpsi = np.array([2.5, 5, 7.5, 10, 12.5, 15]) * np.pi / 180  # rad
 wakeLengthD = 6
 rot_D = 102.996267808408*2 # m
@@ -17,7 +17,7 @@ WingRegFactor_default = 3
 CoreSpreadEddyVisc_default = 100
 rotSpdM = np.outer(rotSpd, np.ones(len(dpsi)))
 WSM = np.outer(WS, np.ones(len(dpsi)))
-dpsiM = np.outer(np.ones(len(WS)), dpsi)
+dpsiM1 = np.outer(np.ones(len(WS)), dpsi1)
 
 """ FILL THESE IN BASED ON DISCRETIZATION STUDY RESULTS """
 dpsi_cvg = 5*np.pi/180*np.ones(5)
@@ -30,11 +30,11 @@ WakeRegFactor_cvg = np.ones(5)  # TODO
 WingRegFactor_cvg = np.ones(5)  # TODO
 
 dpsi_cvgM = np.outer(np.ones(len(WS)), dpsi_cvg)
-WakeLength1 = np.round(FWE * rotSpdM/WSM/dpsiM, decimals=0)  # Npanels
+WakeLength1 = np.round(FWE * rotSpdM/WSM/dpsiM1, decimals=0)  # Npanels
 WakeLength2 = np.round(FWE * rotSpd/WS/dpsi_cvg, decimals=0)  # Npanels
 
 """ study 1: DTfvw """
-DTfvw = np.round(np.outer(1/rotSpd, dpsi), decimals=3)
+DTfvw = np.round(np.outer(1/rotSpd, dpsi1), decimals=3)
 nNWPanel1 = np.round(nearWakeExtent/(np.multiply(rotSpdM, DTfvw)), decimals=0)
 study1 = {
         'param'                         : 'DTfvw',

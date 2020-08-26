@@ -17,7 +17,7 @@ default       CircSolvMaxIter - Maximum number of iterations for circulation sol
 24            nNWPanel      - Number of near-wake panels (-)
 1163          WakeLength    - Total wake distance (D)
 default       FreeWakeLength - Wake length that is free (D) {default: WakeLength}
-default       FWShedVorticity - Include shed vorticity in the far wake {default: False}
+True          FWShedVorticity - Include shed vorticity in the far wake {default: False}
 ------------------- WAKE REGULARIZATIONS AND DIFFUSION -----------------------------------------
 0             DiffusionMethod - Diffusion method to account for viscous effects {0: None, 1: Core Spreading, "default": 0}
 0             RegDeterMethod - Method to determine the regularization parameters {0: Manual, 1: Optimized, default: 0 }
