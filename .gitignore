@@ -17,4 +17,5 @@ vtk
 *_Old
 *.DS_Store
 *.csv
+*.log
 SampleOutputs/

@@ -54,7 +54,7 @@ study1Maxtime = 2 * wakeLengthD*rot_D/np.min(WS)+200
 # rounding up study 1 max time to 400s
 
 """study 2: nNWpanel """
-NWE = np.array([30, 60, 120, 180, 240, 300, 360, 540, 720, 1080, 1440, 1800, 2160, 2520]) * np.pi / 180
+NWE = np.array([180, 240, 300, 360, 540, 720, 1080, 1440, 1800, 2160, 2520]) * np.pi / 180
 prod = DTfvw_cvg * rotSpd
 nNWPanel = np.round(np.outer(1/prod, NWE), decimals=0)
 study2 = {
@@ -76,6 +76,7 @@ study2 = {
 FWE = np.array([3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) * rot_D  # m
 part = rotSpd / WS / dpsi_cvg
 WakeLength = np.round(np.outer(part, FWE), decimals=0)
+wlt = FWE[-1]*rotSpd[0]/WS[0]/dpsi_cvg[0]
 study3 = {
         'param'                         : 'WakeLength',
         'paramfull'                     : 'WakeLength_[-]',

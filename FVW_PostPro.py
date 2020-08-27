@@ -229,7 +229,8 @@ def spanwise_vary_both(paramfull, values, WS, plot):
             k = df.index[abs(df[paramfull]-value)<1e-5][0]  # assert almost equal
             linestyle = [':', '-.', '--', '-', ':']
             linewidth = [1, 1, 1, 1, 2]
-            colors = ['xkcd:blue', 'xkcd:green', 'xkcd:red', 'xkcd:orange', 'xkcd:cyan', 'xkcd:magenta']
+            colors = ['xkcd:blue', 'xkcd:green', 'xkcd:red', 'xkcd:orange', 'xkcd:black', 'xkcd:magenta', 'xkcd:cyan',
+                      'xkcd:mustard', 'xkcd:lime green', 'xkcd:pink', 'xkcd:light brown', 'xkcd:grey', 'xkcd:sky blue', 'xkcd:sea green']
             #(0, (3, 5, 1, 5, 1, 5))
             ax[0, 0].set_ylabel('Axial Induction')
             ax[0, 0].plot(norm_node_r, AxInd.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
