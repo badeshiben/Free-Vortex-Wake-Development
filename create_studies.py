@@ -1,4 +1,7 @@
 import numpy as np
+import pandas as pd
+import re
+import matplotlib.pyplot as plt
 
 """ DEFAULTS """
 dpsi1 = np.array([2.5, 3.75, 5, 7.5, 10, 12.5]) * np.pi / 180  # rad
@@ -159,3 +162,52 @@ test_study = {
         'WingRegFactor'                 : WingRegFactor_default * np.ones(len(WakeLength)),
         'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones(len(WakeLength))
 }
+
+def calc_sim_times(paramfull, plot):
+    """calculate and plot simulation times for each run"""
+    param = paramfull.split('_', 1)[0]
+    timefile = './BAR_02_discretization_inputs/'+param+'/times.txt'
+    runsfile = './BAR_02_discretization_inputs/'+param+'/runs.txt'
+    CPU_hrs = []
+    ws = []
+    val = []
+    """extract values to plot"""
+    data = pd.read_csv(timefile, delimiter=r"\s+", header=None)
+    data.columns = ['fname','-','-','-','time','unit']
+    for row in data.iterrows():
+            if row[1]['unit'] == 'minutes':
+                    CPU_hrs = CPU_hrs + [row[1]['time']/60]
+            elif row[1]['unit'] == 'hours':
+                    CPU_hrs = CPU_hrs + [row[1]['time']]
+            elif row[1]['unit'] == 'days':
+                    CPU_hrs = CPU_hrs + [row[1]['time']*24]
+    runs = pd.read_csv(runsfile, delimiter=r"\s+", header=None)
+    runs = runs.iloc[:, -1]
+    for run in runs:
+            numbers = re.findall(r'\d+(?:\.\d+)?', run)
+            ws += [int(numbers[0])]
+            val += [float(numbers[1])]
+    ws = np.array(ws)
+    wsuq = np.unique(ws)
+
+    """plot stuff"""
+    fig, ax = plt.subplots(1, figsize=(8.5, 11))
+    for w in wsuq:
+            idxs = np.where(ws==w)[0]
+            idxs = idxs.tolist()
+            CPU_hrs_i = [CPU_hrs[i] for i in idxs]
+            val_i = [val[i] for i in idxs]
+            ax.plot(val_i, CPU_hrs_i, '-o', label='WS = {:}'.format(w))
+    ax.set_title('Simulation Time', fontsize=10)
+    ax.grid()
+    ax.legend(loc='best')
+    ax.set_ylabel('CPU hours')
+    ax.set_xlabel(paramfull)
+    if plot == 1:
+        plt.show()
+        plt.close()
+    elif plot == 2:
+        plot_name = "PostPro/" + paramfull + '/' + param + "_simtime" + ".pdf"
+        plt.savefig(plot_name, bbox_inches='tight')
+
+calc_sim_times('DTfvw_[s]', 2)
