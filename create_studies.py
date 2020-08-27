@@ -23,8 +23,8 @@ dpsiM1 = np.outer(np.ones(len(WS)), dpsi1)
 dpsi_cvg = 5*np.pi/180*np.ones(5)
 DTfvw_cvg = np.round(np.multiply(1/rotSpd, dpsi_cvg), decimals=3)
 nNWPanel_cvg = np.ones(5)  # TODO
-nNWPanel_cvg = np.ones(5)  # TODO
-nNWPanel_cvg = np.ones(5)  # TODO
+nearWakeExtent_cvg = 1080*np.pi/180  # rad
+nNWPanel_cvg = np.round(nearWakeExtent_cvg/(np.multiply(rotSpd, DTfvw_cvg)), decimals=0)
 WakeLength_cvg = np.ones(5)  # TODO
 WakeRegFactor_cvg = np.ones(5)  # TODO
 WingRegFactor_cvg = np.ones(5)  # TODO
@@ -59,6 +59,7 @@ prod = DTfvw_cvg * rotSpd
 nNWPanel = np.round(np.outer(1/prod, NWE), decimals=0)
 study2 = {
         'param'                         : 'nNWPanel',
+        'paramfull'                     : 'nNWPanel_[-]',
         'WS'                            : WS,
         'RPM'                           : RPM,
         'pitch'                         : Pitch,
@@ -77,6 +78,7 @@ part = rotSpd / WS / dpsi_cvg
 WakeLength = np.round(np.outer(part, FWE), decimals=0)
 study3 = {
         'param'                         : 'WakeLength',
+        'paramfull'                     : 'WakeLength_[-]',
         'WS'                            : WS,
         'RPM'                           : RPM,
         'pitch'                         : Pitch,
@@ -85,8 +87,10 @@ study3 = {
         'WakeLength'                    : WakeLength,
         'WakeRegFactor'                 : WakeRegFactor_default * np.ones([len(WS), len(FWE)]),
         'WingRegFactor'                 : WingRegFactor_default * np.ones([len(WS), len(FWE)]),
-        'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones([len(WS), len(FWE)])
+        'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones([len(WS), len(FWE)]),
+        'TMax'                          : 1450
 }
+study1Maxtime = 2*max(FWE)/np.min(WS)+200
 
 """study 4: WakeRegFactor"""
 WaRF = np.array([0, 0.1, 0.5, 1, 1.5, 2, 2.5, 3, 5])

@@ -157,7 +157,7 @@ def resolution_pDiff_all(paramfull, outlist, WS, plot):
                         if paramfull == 'DTfvw_[s]':
                             ax[i, j].set_xlabel('DTfvw *'+r'$\omega$'+'[rad]', fontsize=fsize)
                         else:
-                            ax[i, j].set_xlabel(df[paramfull], fontsize=fsize)
+                            ax[i, j].set_xlabel(paramfull, fontsize=fsize)
                     if idx==(n_plot-1):
                         ax[i, j].legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize=fsize)
 
@@ -315,7 +315,7 @@ def run_study(WS, paramfull, values):
     print('Ran ' + paramfull + ' post processing')
 
 if __name__ == "__main__":
-    study = study1
+    study = study2
     run_study(WS=study['WS'], paramfull=study['paramfull'], values=study[study['param']])
 
 
