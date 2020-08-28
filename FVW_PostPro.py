@@ -35,20 +35,38 @@ def calc_sim_times(paramfull, plot):
             val += [float(numbers[1])]
     ws = np.array(ws)
     wsuq = np.unique(ws)
+    RPM = np.array([4, 5.5, 7.5, 7.84, 7.85])
 
     """plot stuff"""
     fig, ax = plt.subplots(1, figsize=(8.5, 11))
     for w in wsuq:
+            wi = np.where(wsuq==w)
+            RPMi = RPM[wi]
             idxs = np.where(ws==w)[0]
             idxs = idxs.tolist()
             CPU_hrs_i = [CPU_hrs[i] for i in idxs]
             val_i = [val[i] for i in idxs]
-            ax.plot(val_i, CPU_hrs_i, '-o', label='WS = {:}'.format(w))
+            val_i = np.asarray(val_i)
+            if paramfull == 'DTfvw_[s]':
+                ax.plot(val_i * RPMi * 6, CPU_hrs_i, '-o', label='WS = {:}'.format(w))
+            elif paramfull == 'nNWPanel_[-]':
+                ax.plot(val_i*5, CPU_hrs_i, 'o', label='WS = {:}'.format(w))  # TODO asssume dpsi_cvg=5deg
+            elif paramfull == 'WakeLength_[-]':
+                ax.plot(val_i*w*5/(RPMi*6*102.996267808408*2), CPU_hrs_i, 'o', label='WS = {:}'.format(w))  # TODO asssume dpsi_cvg=5deg
+            else:
+                ax.plot(val_i, CPU_hrs_i, 'o', label='WS = {:}'.format(w))
     ax.set_title('Simulation Time', fontsize=10)
     ax.grid()
     ax.legend(loc='best')
     ax.set_ylabel('CPU hours')
-    ax.set_xlabel(paramfull)
+    if paramfull == 'DTfvw_[s]':
+        ax.set_xlabel('dpsi [deg]')
+    elif paramfull == 'nNWPanel_[-]':
+        ax.set_xlabel('NearWakeExtent [deg]')
+    elif paramfull == 'WakeLength_[-]':
+        ax.set_xlabel('FarWakeExtent [D]')
+    else:
+        ax.set_xlabel(paramfull)
     if plot == 1:
         plt.show()
         plt.close()
@@ -86,7 +104,7 @@ def resolution_raw_all(paramfull, outlist, WS, plot):
                 idx = i * n_col + j
                 if idx < n_plot:
                     if paramfull == 'DTfvw_[s]':
-                        ax[i, j].plot(df[paramfull] * df['RotSpeed_[rpm]'] * 0.104719755, df[outlist[idx]], '-o',
+                        ax[i, j].plot(df[paramfull] * df['RotSpeed_[rpm]']*6, df[outlist[idx]], '-o',
                                 label='WS = {:}'.format(ws))
                     else:
                         ax[i, j].plot(df[paramfull], df[outlist[idx]], '-o', label='WS = {:}'.format(ws))
@@ -97,7 +115,7 @@ def resolution_raw_all(paramfull, outlist, WS, plot):
                     if i == n_row - 1:
                         ax[i, j].set_xlabel(paramfull)
                         if paramfull == 'DTfvw_[s]':
-                            ax[i, j].set_xlabel('DTfvw *'+r'$\omega$'+'[rad]', fontsize=fsize)
+                            ax[i, j].set_xlabel('dpsi [deg]', fontsize=fsize)
                         else:
                             ax[i, j].set_xlabel(paramfull, fontsize=fsize)
                     if idx == (n_plot - 1):
@@ -132,18 +150,26 @@ def resolution_pDiff_single(paramfull, out, WS, loc, plot):
     outname = out.split('_', 1)[0]
     for ws in WS:
         df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
-        df_fine = df.loc[loc]
+        df_fine = df.iloc[loc]
         dfpdiff = (df - df_fine) / df_fine * 100
         dfpdiff = dfpdiff.fillna(0)
         if paramfull=='DTfvw_[s]':
-            ax.plot(df[paramfull]*df['RotSpeed_[rpm]']*0.104719755, dfpdiff[out], '-o', label='WS = {:}'.format(ws))
+            ax.plot(df[paramfull]*df['RotSpeed_[rpm]']*6, dfpdiff[out], '-o', label='WS = {:}'.format(ws))
+        elif paramfull == 'nNWPanel_[-]':
+            ax.plot(df[paramfull]*5, dfpdiff[out], '-o', label='WS = {:}'.format(ws))  # TODO asssume dpsi_cvg=5deg
+        elif paramfull == 'WakeLength_[-]':
+            ax.plot(df[paramfull]*ws*5/(df['RotSpeed_[rpm]']*6*102.996267808408*2), dfpdiff[out], '-o', label='WS = {:}'.format(ws))  # TODO asssume dpsi_cvg=5deg
         else:
             ax.plot(df[paramfull], dfpdiff[out], '-o', label='WS = {:}'.format(ws))
     ax.set_title(outname, fontsize=10)
     ax.grid()
     ax.set_ylabel('% Difference')
     if paramfull == 'DTfvw_[s]':
-        ax.set_xlabel('DTfvw *'+r'$\omega$'+'[rad]')
+        ax.set_xlabel('dpsi [deg]')
+    elif paramfull == 'nNWPanel_[-]':
+        ax.set_xlabel('NearWakeExtent [deg]')
+    elif paramfull == 'WakeLength_[-]':
+        ax.set_xlabel('FarWakeExtent [D]')
     else:
         ax.set_xlabel(paramfull)
     plt.tick_params(direction='in')
@@ -178,7 +204,7 @@ def resolution_pDiff_all(paramfull, outlist, WS, loc, plot):
 
     for ws in WS:
         df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
-        df_fine = df.loc[loc]
+        df_fine = df.iloc[loc]
         dfpdiff = (df - df_fine) / df_fine * 100
         dfpdiff = dfpdiff.fillna(0)
         for i in range(0, n_row):
@@ -186,8 +212,14 @@ def resolution_pDiff_all(paramfull, outlist, WS, loc, plot):
                 idx = i*n_col + j
                 if idx < n_plot:
                     if paramfull == 'DTfvw_[s]':
-                        ax[i, j].plot(df[paramfull] * df['RotSpeed_[rpm]'] * 0.104719755, dfpdiff[outlist[idx]], '-o',
-                                label='WS = {:}'.format(ws))
+                        ax[i, j].plot(df[paramfull] * df['RotSpeed_[rpm]'] * 6, dfpdiff[outlist[idx]], '-o',
+                            label='WS = {:}'.format(ws))
+                    if paramfull == 'nNWPanel_[-]':
+                        ax[i, j].plot(df[paramfull] * 5, dfpdiff[outlist[idx]], '-o',
+                                      label='WS = {:}'.format(ws))
+                    elif paramfull == 'WakeLength_[-]':
+                        ax[i, j].plot(df[paramfull] * ws * 5 / (df['RotSpeed_[rpm]'] * 6 * 102.996267808408 * 2),
+                                dfpdiff[outlist[idx]], '-o', label='WS = {:}'.format(ws))  # TODO asssume dpsi_cvg=5deg
                     else:
                         ax[i, j].plot(df[paramfull], dfpdiff[outlist[idx]], '-o', label='WS = {:}'.format(ws))
                     ax[i, j].set_title(outlist[idx].split('_', 1)[0], fontsize=fsize)
@@ -198,7 +230,11 @@ def resolution_pDiff_all(paramfull, outlist, WS, loc, plot):
                         ax[i, j].set_ylabel('% Difference', fontsize=fsize)
                     if i==n_row-1:
                         if paramfull == 'DTfvw_[s]':
-                            ax[i, j].set_xlabel('DTfvw *'+r'$\omega$'+'[rad]', fontsize=fsize)
+                            ax[i, j].set_xlabel('dpsi [deg]', fontsize=fsize)
+                        elif paramfull == 'nNWPanel_[-]':
+                            ax[i, j].set_xlabel('NearWakeExtent [deg]')
+                        elif paramfull == 'WakeLength_[-]':
+                            ax[i, j].set_xlabel('FarWakeExtent [D]')
                         else:
                             ax[i, j].set_xlabel(paramfull, fontsize=fsize)
                     if idx==(n_plot-1):
@@ -340,22 +376,22 @@ def run_study(WS, paramfull, values):
     elif paramfull == 'CoreSpreadEddyViscosity_[-]':
         loc = -1
 
-    if not os.path.isdir(cwd + postpro_dir[1:]):
-        os.mkdir(cwd + postpro_dir[1:])
-    for wsp in WS:
-        i = WS.index(wsp)
-        outFiles=[]
-        for val in values[i,:]:
-            case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.3f}'.format(val)
-            filename = os.path.join(work_dir, case + '.outb')
-            outFiles.append(filename)
-        # print(outFiles)
-        dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
-        dfAvg.insert(0,paramfull, values[i, :])
-        # --- Save to csv since step above can be expensive
-        csvname = 'Results_ws{:.0f}_'.format(wsp) + paramfull + '.csv'
-        csvpath = os.path.join(postpro_dir, csvname)
-        dfAvg.to_csv(csvpath, sep='\t', index=False)
+    # if not os.path.isdir(cwd + postpro_dir[1:]):
+    #     os.mkdir(cwd + postpro_dir[1:])
+    # for wsp in WS:
+    #     i = WS.index(wsp)
+    #     outFiles=[]
+    #     for val in values[i,:]:
+    #         case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.3f}'.format(val)
+    #         filename = os.path.join(work_dir, case + '.outb')
+    #         outFiles.append(filename)
+    #     # print(outFiles)
+    #     dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
+    #     dfAvg.insert(0,paramfull, values[i, :])
+    #     # --- Save to csv since step above can be expensive
+    #     csvname = 'Results_ws{:.0f}_'.format(wsp) + paramfull + '.csv'
+    #     csvpath = os.path.join(postpro_dir, csvname)
+    #     dfAvg.to_csv(csvpath, sep='\t', index=False)
         #print(dfAvg)
     # resolution_raw(paramfull, WS, 2)
     print('created all csvs ')
@@ -365,16 +401,17 @@ def run_study(WS, paramfull, values):
     outlist_pd = ['HSShftPwr_[kW]', 'RootMOoP1_[kN-m]', 'RootMzb1_[kN-m]', 'RotThrust_[kN]',
                'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'TwrBsMzt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',
                'AB1N008TnInd_[-]', 'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
-    # for out in outlist_pd:
-    #     resolution_pDiff_single(paramfull, out, WS, loc, 2)
-    # resolution_raw_all(paramfull, outlist, WS, 2)
-    # resolution_pDiff_all(paramfull, outlist_pd, WS, loc, 2)
-    # spanwise_vary_both(paramfull, values, WS, 2)
     calc_sim_times(paramfull, 2)
+    for out in outlist_pd:
+        resolution_pDiff_single(paramfull, out, WS, loc, 2)
+    resolution_raw_all(paramfull, outlist, WS, 2)
+    resolution_pDiff_all(paramfull, outlist_pd, WS, loc, 2)
+    spanwise_vary_both(paramfull, values, WS, 2)
+
     print('Ran ' + paramfull + ' post processing')
 
 if __name__ == "__main__":
-    study = study1
+    study = study3
     run_study(WS=study['WS'], paramfull=study['paramfull'], values=study[study['param']])
 
 

@@ -14,7 +14,7 @@ default       CircSolvMaxIter - Maximum number of iterations for circulation sol
 ===============================================================================================
 --------------------------- WAKE OPTIONS ------------------------------------------------------
 ------------------- WAKE EXTENT AND DISCRETIZATION --------------------------------------------
-144           nNWPanel      - Number of near-wake panels (-)
+72            nNWPanel      - Number of near-wake panels (-)
 1159          WakeLength    - Total wake distance (D)
 default       FreeWakeLength - Wake length that is free (D) {default: WakeLength}
 default       FWShedVorticity - Include shed vorticity in the far wake {default: False}

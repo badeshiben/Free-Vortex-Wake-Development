@@ -26,7 +26,7 @@ dpsiM1 = np.outer(np.ones(len(WS)), dpsi1)
 dpsi_cvg = 5*np.pi/180*np.ones(5)
 DTfvw_cvg = np.round(np.multiply(1/rotSpd, dpsi_cvg), decimals=3)
 nNWPanel_cvg = np.ones(5)  # TODO
-nearWakeExtent_cvg = 1080*np.pi/180  # rad
+nearWakeExtent_cvg = 360*np.pi/180  # rad
 nNWPanel_cvg = np.round(nearWakeExtent_cvg/(np.multiply(rotSpd, DTfvw_cvg)), decimals=0)
 WakeLength_cvg = np.ones(5)  # TODO
 WakeRegFactor_cvg = np.ones(5)  # TODO
@@ -57,7 +57,7 @@ study1Maxtime = 2 * wakeLengthD*rot_D/np.min(WS)+200
 # rounding up study 1 max time to 400s
 
 """study 2: nNWpanel """
-NWE = np.array([180, 240, 300, 360, 540, 720, 1080, 1440, 1800, 2160, 2520]) * np.pi / 180
+NWE = np.array([30, 60, 120, 180, 240, 300, 360, 540, 720, 1080, 1440, 1800, 2160, 2520]) * np.pi / 180
 prod = DTfvw_cvg * rotSpd
 nNWPanel = np.round(np.outer(1/prod, NWE), decimals=0)
 study2 = {
@@ -197,7 +197,7 @@ def calc_sim_times(paramfull, plot):
             idxs = idxs.tolist()
             CPU_hrs_i = [CPU_hrs[i] for i in idxs]
             val_i = [val[i] for i in idxs]
-            ax.plot(val_i, CPU_hrs_i, '-o', label='WS = {:}'.format(w))
+            ax.scatter(val_i, CPU_hrs_i, marker='o', label='WS = {:}'.format(w))
     ax.set_title('Simulation Time', fontsize=10)
     ax.grid()
     ax.legend(loc='best')
