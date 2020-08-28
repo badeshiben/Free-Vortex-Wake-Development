@@ -125,15 +125,13 @@ def createSubmit(fastfiles, FAST_EXE, npf):
         f.write('ml comp-intel mkl\n')
         f.write('\n')
         f.write(FAST_EXE + ' ' + fname + '\n')
-
-
         f.write('wait')
         f.close()
 
 
 if __name__=='__main__':
     # --- "Global" Parameters for this script
-    study = study3
+    study = study4
     ref_dir          = './BAR_02_template/'   # Folder where the fast input files are located (will be copied)
     main_file        = 'OpenFAST_BAR_02.fst'    # Main file in ref_dir, used as a template
     work_dir         = 'BAR_02_discretization_inputs/'+study['param']+'/'          # Output folder (will be created)
