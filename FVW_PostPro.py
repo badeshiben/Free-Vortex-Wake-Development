@@ -376,24 +376,23 @@ def run_study(WS, paramfull, values):
     elif paramfull == 'CoreSpreadEddyViscosity_[-]':
         loc = -1
 
-    # if not os.path.isdir(cwd + postpro_dir[1:]):
-    #     os.mkdir(cwd + postpro_dir[1:])
-    # for wsp in WS:
-    #     i = WS.index(wsp)
-    #     outFiles=[]
-    #     for val in values[i,:]:
-    #         case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.3f}'.format(val)
-    #         filename = os.path.join(work_dir, case + '.outb')
-    #         outFiles.append(filename)
-    #     # print(outFiles)
-    #     dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
-    #     dfAvg.insert(0,paramfull, values[i, :])
-    #     # --- Save to csv since step above can be expensive
-    #     csvname = 'Results_ws{:.0f}_'.format(wsp) + paramfull + '.csv'
-    #     csvpath = os.path.join(postpro_dir, csvname)
-    #     dfAvg.to_csv(csvpath, sep='\t', index=False)
-        #print(dfAvg)
-    # resolution_raw(paramfull, WS, 2)
+    if not os.path.isdir(cwd + postpro_dir[1:]):
+        os.mkdir(cwd + postpro_dir[1:])
+    for wsp in WS:
+        i = WS.index(wsp)
+        outFiles=[]
+        for val in values[i,:]:
+            case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.3f}'.format(val)
+            filename = os.path.join(work_dir, case + '.outb')
+            outFiles.append(filename)
+        # print(outFiles)
+        dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
+        dfAvg.insert(0,paramfull, values[i, :])
+        # --- Save to csv since step above can be expensive
+        csvname = 'Results_ws{:.0f}_'.format(wsp) + paramfull + '.csv'
+        csvpath = os.path.join(postpro_dir, csvname)
+        dfAvg.to_csv(csvpath, sep='\t', index=False)
+        print(dfAvg)
     print('created all csvs ')
     outlist = ['HSShftPwr_[kW]', 'RootMIP1_[kN-m]', 'RootMOoP1_[kN-m]', 'RootMzb1_[kN-m]', 'RotThrust_[kN]',
                'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'TwrBsMzt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',
@@ -402,16 +401,16 @@ def run_study(WS, paramfull, values):
                'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'TwrBsMzt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',
                'AB1N008TnInd_[-]', 'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
     calc_sim_times(paramfull, 2)
-    for out in outlist_pd:
-        resolution_pDiff_single(paramfull, out, WS, loc, 2)
-    resolution_raw_all(paramfull, outlist, WS, 2)
-    resolution_pDiff_all(paramfull, outlist_pd, WS, loc, 2)
-    spanwise_vary_both(paramfull, values, WS, 2)
+    # for out in outlist_pd:
+    #     resolution_pDiff_single(paramfull, out, WS, loc, 2)
+    # resolution_raw_all(paramfull, outlist, WS, 2)
+    # resolution_pDiff_all(paramfull, outlist_pd, WS, loc, 2)
+    # spanwise_vary_both(paramfull, values, WS, 2)
 
     print('Ran ' + paramfull + ' post processing')
 
 if __name__ == "__main__":
-    study = study3
+    study = study4
     run_study(WS=study['WS'], paramfull=study['paramfull'], values=study[study['param']])
 
 
