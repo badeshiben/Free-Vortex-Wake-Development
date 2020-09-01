@@ -1,0 +1,8 @@
+slurm-FVWcheck-4118403.log:  Total CPU Time:        22.113 hours
+slurm-FVWcheck-4118404.log:  Total CPU Time:        18.398 hours
+slurm-FVWcheck-4118405.log:  Total CPU Time:        1.0011 days
+slurm-FVWcheck-4118406.log:  Total CPU Time:        20.241 hours
+slurm-FVWcheck-4118407.log:  Total CPU Time:        14.771 hours
+slurm-FVWcheck-4118408.log:  Total CPU Time:        12.112 hours
+slurm-FVWcheck-4118409.log:  Total CPU Time:        16.116 hours
+slurm-FVWcheck-4118410.log:  Total CPU Time:        13.442 hours
