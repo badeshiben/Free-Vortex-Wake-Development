@@ -123,6 +123,7 @@ def resolution_raw_all(paramfull, outlist, WS, plot):
 
     plt.tick_params(direction='in', labelsize=2)
     plt.delaxes()
+    plt.delaxes()
     if plot == 1:
         plt.show()
         plt.close()
@@ -214,7 +215,7 @@ def resolution_pDiff_all(paramfull, outlist, WS, loc, plot):
                     if paramfull == 'DTfvw_[s]':
                         ax[i, j].plot(df[paramfull] * df['RotSpeed_[rpm]'] * 6, dfpdiff[outlist[idx]], '-o',
                             label='WS = {:}'.format(ws))
-                    if paramfull == 'nNWPanel_[-]':
+                    elif paramfull == 'nNWPanel_[-]':
                         ax[i, j].plot(df[paramfull] * 5, dfpdiff[outlist[idx]], '-o',
                                       label='WS = {:}'.format(ws))
                     elif paramfull == 'WakeLength_[-]':
@@ -237,12 +238,10 @@ def resolution_pDiff_all(paramfull, outlist, WS, loc, plot):
                             ax[i, j].set_xlabel('FarWakeExtent [D]')
                         else:
                             ax[i, j].set_xlabel(paramfull, fontsize=fsize)
-                    if idx==(n_plot-1):
-                        ax[i, j].legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize=fsize)
+                    if idx==2:
+                        ax[i, j].legend(loc='best', fontsize=fsize)
 
     plt.tick_params(direction='in')
-    plt.delaxes()
-    plt.delaxes()
     if plot == 1:
         plt.show()
         plt.close()
@@ -256,7 +255,7 @@ def spanwise_vary_both(paramfull, values, WS, plot):
     """
     Parameters
     ----------
-    paramfull:      param to use
+    paramfull:   param to use
     values:      list of param values
     WS:         list of wind speeds [m/s]
     plot:       plot options. [0, 1, 2] - [no plot, show plot, save plot]
@@ -265,6 +264,11 @@ def spanwise_vary_both(paramfull, values, WS, plot):
     -------
     plots outputs along blade span
     """
+
+    WSM = np.outer(WS, np.ones(len(values[0, :])))
+    RPM = np.array([4, 5.5, 7.5, 7.84, 7.85])
+    RPMM = np.outer(RPM, np.ones(len(values[0, :])))
+
     fig, ax = plt.subplots(3, 2, sharey=False, sharex=False, figsize=(15, 20))
     norm_node_r = np.array([0.000000000000000e+00, 3.448147165807185e+00, 6.896294331614371e+00, 1.034444149742155e+01, 1.379258866322874e+01,
                             1.724073582903592e+01, 2.068888299484311e+01, 2.413703016065029e+01, 2.758517732645748e+01, 3.103332449226467e+01,
@@ -327,7 +331,22 @@ def spanwise_vary_both(paramfull, values, WS, plot):
             ax[2, 0].set_ylabel('Circulation')
             ax[2, 0].set_xlabel('r/R')
             ax[2, 0].plot(norm_node_r, Circ.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a], label='ws = {:}'.format(ws))
-            legend_labels = legend_labels + [paramfull + " = {:04.3f}".format(value) + '; ws_[m/s] = {:}'.format(ws)]
+
+            """for display, change values to desired"""
+            if paramfull == 'DTfvw_[s]':
+                legend_value = np.round(value * RPM[i] * 6, 1)
+                legend_paramfull = 'dpsi_[deg]'
+            elif paramfull == 'nNWPanel_[-]':
+                legend_value = np.round(value * 5, 0)
+                legend_paramfull = 'NearWakeExtent_[deg]'
+            elif paramfull == 'WakeLength_[-]':
+                legend_value = np.round(value * ws * 5 / (RPM[i] * 6 * 102.996267808408 * 2), 0)
+                legend_paramfull = 'FarWakeExtent_[D]'
+            else:
+                legend_value = value
+                legend_paramfull = paramfull
+
+            legend_labels = legend_labels + [legend_paramfull + " = {:04.1f}".format(legend_value) + '; ws_[m/s] = {:}'.format(ws)]
             a+=1
     ax[2, 0].legend(legend_labels, loc='upper left', bbox_to_anchor=(1, 1))
     ax[0, 0].grid(); ax[0, 1].grid(); ax[1, 0].grid(); ax[1, 1].grid(); ax[2, 0].grid();
@@ -373,44 +392,44 @@ def run_study(WS, paramfull, values):
         loc = 0
     elif paramfull == 'WingRegFactor_[-]':
         loc = 0
-    elif paramfull == 'CoreSpreadEddyViscosity_[-]':
+    elif paramfull == 'CoreSpreadEddyVisc_[-]':
         loc = -1
 
-    if not os.path.isdir(cwd + postpro_dir[1:]):
-        os.mkdir(cwd + postpro_dir[1:])
-    for wsp in WS:
-        i = WS.index(wsp)
-        outFiles=[]
-        for val in values[i,:]:
-            case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.3f}'.format(val)
-            filename = os.path.join(work_dir, case + '.outb')
-            outFiles.append(filename)
-        # print(outFiles)
-        dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
-        dfAvg.insert(0,paramfull, values[i, :])
-        # --- Save to csv since step above can be expensive
-        csvname = 'Results_ws{:.0f}_'.format(wsp) + paramfull + '.csv'
-        csvpath = os.path.join(postpro_dir, csvname)
-        dfAvg.to_csv(csvpath, sep='\t', index=False)
-        print(dfAvg)
-    print('created all csvs ')
+    # if not os.path.isdir(cwd + postpro_dir[1:]):
+    #     os.mkdir(cwd + postpro_dir[1:])
+    # for wsp in WS:
+    #     i = WS.index(wsp)
+    #     outFiles=[]
+    #     for val in values[i,:]:
+    #         case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.3f}'.format(val)
+    #         filename = os.path.join(work_dir, case + '.outb')
+    #         outFiles.append(filename)
+    #     # print(outFiles)
+    #     dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
+    #     dfAvg.insert(0,paramfull, values[i, :])
+    #     # --- Save to csv since step above can be expensive
+    #     csvname = 'Results_ws{:.0f}_'.format(wsp) + paramfull + '.csv'
+    #     csvpath = os.path.join(postpro_dir, csvname)
+    #     dfAvg.to_csv(csvpath, sep='\t', index=False)
+    #     print(dfAvg)
+    # print('created all csvs ')
     outlist = ['HSShftPwr_[kW]', 'RootMIP1_[kN-m]', 'RootMOoP1_[kN-m]', 'RootMzb1_[kN-m]', 'RotThrust_[kN]',
-               'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'TwrBsMzt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',
+               'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',
                'AB1N008TnInd_[-]', 'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
     outlist_pd = ['HSShftPwr_[kW]', 'RootMOoP1_[kN-m]', 'RootMzb1_[kN-m]', 'RotThrust_[kN]',
-               'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'TwrBsMzt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',
+               'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',
                'AB1N008TnInd_[-]', 'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
-    calc_sim_times(paramfull, 2)
+    # calc_sim_times(paramfull, 2)
     # for out in outlist_pd:
     #     resolution_pDiff_single(paramfull, out, WS, loc, 2)
-    # resolution_raw_all(paramfull, outlist, WS, 2)
-    # resolution_pDiff_all(paramfull, outlist_pd, WS, loc, 2)
+    resolution_raw_all(paramfull, outlist, WS, 2)
+    resolution_pDiff_all(paramfull, outlist_pd, WS, loc, 2)
     # spanwise_vary_both(paramfull, values, WS, 2)
 
     print('Ran ' + paramfull + ' post processing')
 
 if __name__ == "__main__":
-    study = study4
+    study = study2
     run_study(WS=study['WS'], paramfull=study['paramfull'], values=study[study['param']])
 
 

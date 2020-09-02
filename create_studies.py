@@ -122,7 +122,7 @@ WiRF = np.array([0.1, 0.5, 1, 1.5, 2, 2.5, 3, 5])
 WingRegFactor = np.outer(np.ones(len(WS)), WiRF)
 study5 = {
         'param'                         : 'WingRegFactor',
-        'paramfull'                     : 'WakeRegFactor_[-]',
+        'paramfull'                     : 'WingRegFactor_[-]',
         'WS'                            : WS,
         'RPM'                           : RPM,
         'pitch'                         : Pitch,
