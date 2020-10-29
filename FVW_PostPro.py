@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import fastlib
+import weio
 from create_studies import study1, study2, study3, study4, study5, study6
 import re
 
@@ -48,7 +49,7 @@ def calc_sim_times(paramfull, plot):
             val_i = [val[i] for i in idxs]
             val_i = np.asarray(val_i)
             if paramfull == 'DTfvw_[s]':
-                ax.plot(val_i * RPMi * 6, CPU_hrs_i, '-o', label='WS = {:}'.format(w))
+                ax.plot(val_i * RPMi * 6, CPU_hrs_i, 'o', label='WS = {:}'.format(w))
             elif paramfull == 'nNWPanel_[-]':
                 ax.plot(val_i*5, CPU_hrs_i, 'o', label='WS = {:}'.format(w))  # TODO asssume dpsi_cvg=5deg
             elif paramfull == 'WakeLength_[-]':
@@ -150,9 +151,43 @@ def resolution_pDiff_single(paramfull, out, WS, loc, plot):
     param = paramfull.split('_', 1)[0]
     outname = out.split('_', 1)[0]
     for ws in WS:
-        df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
-        df_fine = df.iloc[loc]
-        dfpdiff = (df - df_fine) / df_fine * 100
+        # df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
+        # df_fine = df.iloc[loc]
+        # dfpdiff = (df - df_fine) / df_fine * 100
+        # dfpdiff = dfpdiff.fillna(0)
+        k = WS.index(ws)
+        df = pd.read_csv('./PostPro/' + paramfull + '/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
+        full_list = [out] + [paramfull]
+        if paramfull in {'WakeRegFactor_[-]', 'WingRegFactor_[-]',
+                         'CoreSpreadEddyVisc_[-]'}:  # Compare to SOWFA for these runs
+            SOWFA_out = out
+            # switch channel used as SOWFA has 15x more nodes
+            if out == 'AB1N008AxInd_[-]':
+                SOWFA_out = 'AB1N120AxInd_[-]'
+            elif out == 'AB1N023AxInd_[-]':
+                SOWFA_out = 'AB1N345AxInd_[-]'
+            elif out == 'AB1N008TnInd_[-]':
+                SOWFA_out = 'AB1N120TnInd_[-]'
+            elif out == 'AB1N023TnInd_[-]':
+                SOWFA_out = 'AB1N345TnInd_[-]'
+            elif out == 'AB1N008Gam_[m^2/s]':
+                SOWFA_out = 'AB1N120Gam_[m^2/s]'
+            elif out == 'AB1N023Gam_[m^2/s]':
+                SOWFA_out = 'AB1N345Gam_[m^2/s]'
+
+            df_sowfa = pd.read_csv('PostPro/Results_SOWFA.csv', sep='\t')
+            SOWFA_data = df_sowfa[SOWFA_out].iloc[k]
+            OLAF_data = df[out]
+            dfpdiff = (OLAF_data - SOWFA_data) / SOWFA_data * 100
+            paramdf = df[paramfull].to_frame(name=paramfull)
+            dfpdiff = pd.concat([paramdf, dfpdiff], axis=1)
+            # df_fine.rename(columns={'AB1N120AxInd_[-]': 'AB1N008AxInd_[-]', 'AB1N345AxInd_[-]': 'AB1N023AxInd_[-]',
+            #                'AB1N120TnInd_[-]': 'AB1N008TnInd_[-]', 'AB1N345TnInd_[-]': 'AB1N023TnInd_[-]',
+            #                'AB1N120Gam_[m^2/s]': 'AB1N008Gam_[m^2/s]', 'AB1N345Gam_[m^2/s]': 'AB1N023Gam_[m^2/s]'})
+        else:
+            df = df[full_list]
+            df_fine = df.iloc[loc]
+            dfpdiff = (df - df_fine) / df_fine * 100
         dfpdiff = dfpdiff.fillna(0)
         if paramfull=='DTfvw_[s]':
             ax.plot(df[paramfull]*df['RotSpeed_[rpm]']*6, dfpdiff[out], '-o', label='WS = {:}'.format(ws))
@@ -204,9 +239,27 @@ def resolution_pDiff_all(paramfull, outlist, WS, loc, plot):
     fsize = 8
 
     for ws in WS:
+        k = WS.index(ws)
         df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
-        df_fine = df.iloc[loc]
-        dfpdiff = (df - df_fine) / df_fine * 100
+        full_list = outlist + [paramfull]
+        if paramfull in {'WakeRegFactor_[-]',  'WingRegFactor_[-]', 'CoreSpreadEddyVisc_[-]'}:  # Compare to SOWFA for these runs
+            df_sowfa = pd.read_csv('PostPro/Results_SOWFA.csv', sep='\t')
+            SOWFA_outlist = ['HSShftPwr_[kW]', 'RootMOoP1_[kN-m]', 'RootMzb1_[kN-m]', 'RotThrust_[kN]',
+               'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'AB1N120AxInd_[-]', 'AB1N345AxInd_[-]',
+               'AB1N120TnInd_[-]', 'AB1N345TnInd_[-]', 'AB1N120Gam_[m^2/s]', 'AB1N345Gam_[m^2/s]']
+            SOWFA_data = df_sowfa[SOWFA_outlist].iloc[k].to_numpy()
+            OLAF_data = df[outlist].to_numpy()
+            pdiff = (OLAF_data-SOWFA_data)/SOWFA_data * 100
+            dfpdiff = pd.DataFrame(data=pdiff, columns=outlist)
+            paramdf = df[paramfull].to_frame(name=paramfull)
+            dfpdiff = pd.concat([paramdf, dfpdiff], axis=1)
+            # df_fine.rename(columns={'AB1N120AxInd_[-]': 'AB1N008AxInd_[-]', 'AB1N345AxInd_[-]': 'AB1N023AxInd_[-]',
+            #                'AB1N120TnInd_[-]': 'AB1N008TnInd_[-]', 'AB1N345TnInd_[-]': 'AB1N023TnInd_[-]',
+            #                'AB1N120Gam_[m^2/s]': 'AB1N008Gam_[m^2/s]', 'AB1N345Gam_[m^2/s]': 'AB1N023Gam_[m^2/s]'})
+        else:
+            df = df[full_list]
+            df_fine = df.iloc[loc]
+            dfpdiff = (df - df_fine) / df_fine * 100
         dfpdiff = dfpdiff.fillna(0)
         for i in range(0, n_row):
             for j in range(0, n_col):
@@ -270,20 +323,86 @@ def spanwise_vary_both(paramfull, values, WS, plot):
     RPMM = np.outer(RPM, np.ones(len(values[0, :])))
 
     fig, ax = plt.subplots(3, 2, sharey=False, sharex=False, figsize=(15, 20))
-    norm_node_r = np.array([0.000000000000000e+00, 3.448147165807185e+00, 6.896294331614371e+00, 1.034444149742155e+01, 1.379258866322874e+01,
-                            1.724073582903592e+01, 2.068888299484311e+01, 2.413703016065029e+01, 2.758517732645748e+01, 3.103332449226467e+01,
-                            3.448147165807185e+01, 3.792961882387903e+01, 4.137776598968622e+01, 4.482591315549340e+01, 4.827406032130058e+01,
-                            5.172220748710778e+01, 5.517035465291496e+01, 5.861850181872214e+01, 6.206664898452934e+01, 6.551479615033651e+01,
-                            6.896294331614371e+01, 7.241109048195088e+01, 7.585923764775806e+01, 7.930738481356525e+01, 8.275553197937244e+01,
-                            8.620367914517962e+01, 8.965182631098681e+01, 9.309997347679399e+01, 9.654812064260116e+01, 9.999626780840836e+01]) / 103
+    linestyle = [':', '-.', '--', '-', ':']
+    linewidth = [1, 1, 1, 1, 2]
+    colors = ['xkcd:blue', 'xkcd:green', 'xkcd:red', 'xkcd:orange', 'xkcd:black', 'xkcd:purple', 'xkcd:cyan',
+              'xkcd:mustard', 'xkcd:lime green', 'xkcd:pink', 'xkcd:light brown', 'xkcd:grey', 'xkcd:sky blue',
+              'xkcd:sea green', 'xkcd:maroon']
+    # R = 103  # rotor radius [m]
+
+    # The radial coordinate
+    # norm_node_r = np.array([0.000000000000000e+00, 3.448147165807185e+00, 6.896294331614371e+00, 1.034444149742155e+01, 1.379258866322874e+01,
+    #                         1.724073582903592e+01, 2.068888299484311e+01, 2.413703016065029e+01, 2.758517732645748e+01, 3.103332449226467e+01,
+    #                         3.448147165807185e+01, 3.792961882387903e+01, 4.137776598968622e+01, 4.482591315549340e+01, 4.827406032130058e+01,
+    #                         5.172220748710778e+01, 5.517035465291496e+01, 5.861850181872214e+01, 6.206664898452934e+01, 6.551479615033651e+01,
+    #                         6.896294331614371e+01, 7.241109048195088e+01, 7.585923764775806e+01, 7.930738481356525e+01, 8.275553197937244e+01,
+    #                         8.620367914517962e+01, 8.965182631098681e+01, 9.309997347679399e+01, 9.654812064260116e+01, 9.999626780840836e+01]) / 103
     legend_labels = []
     legend_handles = []
     for ws in WS:
         i = WS.index(ws)
         a = 0
+        b = 0
+        """ REPEAT EVERYTHING FOR SOWFA """
+        if paramfull in {'WakeRegFactor_[-]',  'WingRegFactor_[-]', 'CoreSpreadEddyVisc_[-]'}:
+            legend_labels = legend_labels + ['SOWFA; ws_[m/s] = {:}'.format(ws)]
+            # pull out spanwise values
+            df = pd.read_csv('PostPro/Results_SOWFA.csv', sep='\t')
+            ls = [i for i in list(df.columns) if (('B1N' in i) & ('Phi' in i))]
+            N = len(ls)
+            norm_node_r = np.linspace(0, 1, N)
+            cols = df.columns.tolist()
+            axind_cols = [j for j in cols if (('AxInd' in j) & ('B1N' in j))]
+            AxInd = df[axind_cols].iloc[i]
+            tanind_cols = [j for j in cols if (('TnInd' in j) & ('B1N' in j))]
+            TnInd = df[tanind_cols].iloc[i]
+            fn_cols = [j for j in cols if (('Fn' in j) & ('B1N' in j))]
+            Fn = df[fn_cols].iloc[i]
+            ft_cols = [j for j in cols if (('Ft' in j) & ('B1N' in j))]
+            Ft = df[ft_cols].iloc[i]
+            fl_cols = [j for j in cols if (('Fl' in j) & ('B1N' in j))]
+            Fl = df[fl_cols].iloc[i]
+            fd_cols = [j for j in cols if (('Fd' in j) & ('B1N' in j))]
+            Fd = df[fd_cols].iloc[i]
+            gam_cols = [j for j in cols if (('Gam' in j) & ('B1N' in j))]
+            Circ = df[gam_cols].iloc[i]
+
+            # # compute spanwise stats, append to df, and write back to csv
+            # if b == 0:  # only do it once
+            #     AxIndMean = AxInd.mean(axis=1); AxIndMean = AxIndMean.rename('AxIndMean')
+            #     AxIndMax  = AxInd.max(axis=1);   AxIndMax = AxIndMax.rename('AxIndMax')
+            #     CircMean  = Circ.mean(axis=1);   CircMean = CircMean.rename('CircMean')
+            #     CircMax   = Circ.max(axis=1);    CircMax  = CircMax.rename('CircMax')
+            #     df = pd.concat([df, AxIndMean, AxIndMax, CircMean, CircMax], axis=1)
+            #     df.to_csv('Results_SOWFA.csv', sep='\t', index=False)
+
+            # AxInd = pd.concat([AxInd, mean, max], axis=1)
+            # plot everything
+            # (0, (3, 5, 1, 5, 1, 5))
+            ax[0, 0].set_ylabel('Axial Induction')
+            ax[0, 0].plot(norm_node_r, AxInd, linestyle=linestyle[i], linewidth=linewidth[i], color=colors[-1])
+            ax[0, 1].set_ylabel('Tangential Induction')
+            ax[0, 1].plot(norm_node_r, TnInd, linestyle=linestyle[i], linewidth=linewidth[i], color=colors[-1])
+            ax[1, 0].set_ylabel('Normal Force [N]')
+            ax[1, 0].plot(norm_node_r, Fn, linestyle=linestyle[i], linewidth=linewidth[i], color=colors[-1])
+            ax[1, 1].set_ylabel('Tangential Force [N]')
+            ax[1, 1].plot(norm_node_r, Ft, linestyle=linestyle[i], linewidth=linewidth[i], color=colors[-1])
+            ax[1, 1].set_xlabel('r/R')
+            # ax[2, 0].set_ylabel('Lift Force [N]')
+            # ax[2, 0].plot(norm_node_r, Fl.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
+            # ax[2, 1].set_ylabel('Drag Force [N]')
+            # ax[2, 1].plot(norm_node_r, Fd.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
+            ax[2, 0].set_ylabel('Circulation')
+            ax[2, 0].set_xlabel('r/R')
+            ax[2, 0].plot(norm_node_r, Circ, linestyle=linestyle[i], linewidth=linewidth[i], color=colors[-1],
+                          label='ws = {:}'.format(ws))
+
         for value in values[i, :]:
             # pull out spanwise values
             df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
+            ls = [i for i in list(df.columns) if (('B1N' in i) & ('Phi' in i))]
+            N = len(ls)
+            norm_node_r = np.linspace(0, 1, N)
             cols = df.columns.tolist()
             axind_cols = [j for j in cols if 'AxInd' in j]
             AxInd = df[axind_cols]
@@ -310,10 +429,7 @@ def spanwise_vary_both(paramfull, values, WS, plot):
             # AxInd = pd.concat([AxInd, mean, max], axis=1)
             #plot everything
             k = df.index[abs(df[paramfull]-value)<1e-5][0]  # assert almost equal
-            linestyle = [':', '-.', '--', '-', ':']
-            linewidth = [1, 1, 1, 1, 2]
-            colors = ['xkcd:blue', 'xkcd:green', 'xkcd:red', 'xkcd:orange', 'xkcd:black', 'xkcd:magenta', 'xkcd:cyan',
-                      'xkcd:mustard', 'xkcd:lime green', 'xkcd:pink', 'xkcd:light brown', 'xkcd:grey', 'xkcd:sky blue', 'xkcd:sea green']
+
             #(0, (3, 5, 1, 5, 1, 5))
             ax[0, 0].set_ylabel('Axial Induction')
             ax[0, 0].plot(norm_node_r, AxInd.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a])
@@ -332,6 +448,9 @@ def spanwise_vary_both(paramfull, values, WS, plot):
             ax[2, 0].set_xlabel('r/R')
             ax[2, 0].plot(norm_node_r, Circ.iloc[k], linestyle=linestyle[i], linewidth=linewidth[i], color=colors[a], label='ws = {:}'.format(ws))
 
+
+
+
             """for display, change values to desired"""
             if paramfull == 'DTfvw_[s]':
                 legend_value = np.round(value * RPM[i] * 6, 1)
@@ -348,6 +467,7 @@ def spanwise_vary_both(paramfull, values, WS, plot):
 
             legend_labels = legend_labels + [legend_paramfull + " = {:04.1f}".format(legend_value) + '; ws_[m/s] = {:}'.format(ws)]
             a+=1
+
     ax[2, 0].legend(legend_labels, loc='upper left', bbox_to_anchor=(1, 1))
     ax[0, 0].grid(); ax[0, 1].grid(); ax[1, 0].grid(); ax[1, 1].grid(); ax[2, 0].grid();
     plt.tick_params(direction='in')
@@ -395,41 +515,104 @@ def run_study(WS, paramfull, values):
     elif paramfull == 'CoreSpreadEddyVisc_[-]':
         loc = -1
 
-    # if not os.path.isdir(cwd + postpro_dir[1:]):
-    #     os.mkdir(cwd + postpro_dir[1:])
-    # for wsp in WS:
-    #     i = WS.index(wsp)
-    #     outFiles=[]
-    #     for val in values[i,:]:
-    #         case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.3f}'.format(val)
-    #         filename = os.path.join(work_dir, case + '.outb')
-    #         outFiles.append(filename)
-    #     # print(outFiles)
-    #     dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
-    #     dfAvg.insert(0,paramfull, values[i, :])
-    #     # --- Save to csv since step above can be expensive
-    #     csvname = 'Results_ws{:.0f}_'.format(wsp) + paramfull + '.csv'
-    #     csvpath = os.path.join(postpro_dir, csvname)
-    #     dfAvg.to_csv(csvpath, sep='\t', index=False)
-    #     print(dfAvg)
-    # print('created all csvs ')
+    """make SOWFA csvs"""
+    dflist = []
+    for i, wsp in enumerate(WS):
+        case = 'OpenFAST_BAR_02_ws{:.0f}'.format(wsp)
+        filename = os.path.join('SOWFA/old 3/'+case+'.outb')
+        df = weio.read(filename).toDataFrame()
+        axindnames = [i for i in list(df.columns) if ('AxInd' in i)]
+        vxnames = [i for i in list(df.columns) if ('Vx' in i)]
+        vynames = [i for i in list(df.columns) if ('Vy' in i)]
+        tnindnames = [i for i in list(df.columns) if ('TnInd' in i)]
+        phinames = [i for i in list(df.columns) if ('Phi' in i)]
+        ctnames = [i for i in list(df.columns) if (('AB' in i) & ('Ct' in i))]
+        ax = 1 - df[vxnames] / wsp
+        ax = np.clip(ax, -0.1, 0.4)
+        df[axindnames] = ax
+        # TnInd method 1
+        # ph = df[phinames].to_numpy()
+        # ct = df[ctnames].to_numpy()
+        # tn = 1 / (4 / ct * np.sin(np.radians(ph)) * np.cos(np.radians(ph)) - 1)
+        # TnInd method 2
+        R = 100  # rotor radius - hub radius
+        N = 451  # # blade nodes
+        r = np.linspace(0, 1, N)*R+3
+        r3 = np.concatenate([r, r, r])
+        vy = df[vynames].to_numpy()
+        tn = vy/rotSpd[i]/r3-1
+
+        tn = np.clip(tn, -1, 1)
+        df[tnindnames] = tn
+        dflist.append(df)
+    # make my own averagePostPro
+    dfAvg = None
+    for i,f in enumerate(dflist):
+        postpro=fastlib.averageDF(f, avgMethod='periods', avgParam=1, ColMap={'WS_[m/s]': 'Wind1VelX_[m/s]'})
+        MeanValues=postpro # todo
+        if dfAvg is None:
+            # We create a dataframe here, now that we know the colums
+            columns = MeanValues.columns
+            dfAvg = pd.DataFrame(np.nan, index=np.arange(len(dflist)), columns=columns)
+        dfAvg.iloc[i,:] = MeanValues.copy().values
+    dfAvg.insert(0, 'ws_[m/s]', WS)
+    csvname = 'Results_SOWFA.csv'
+    csvpath = os.path.join('PostPro/', csvname)
+    dfAvg.to_csv(csvpath, sep='\t', index=False)
+
+    if not os.path.isdir(cwd + postpro_dir[1:]):
+        os.mkdir(cwd + postpro_dir[1:])
+    for wsp in WS:
+        i = WS.index(wsp)
+        outFiles=[]
+        for val in values[i,:]:
+            case     ='ws{:.0f}'.format(wsp)+'_'+param+'{:.3f}'.format(val)
+            filename = os.path.join(work_dir, case + '.outb')
+            outFiles.append(filename)
+        # print(outFiles)
+        dfAvg = fastlib.averagePostPro(outFiles,avgMethod='periods',avgParam=1,ColMap={'WS_[m/s]':'Wind1VelX_[m/s]'})
+        dfAvg.insert(0,paramfull, values[i, :])
+        # --- Save to csv since step above can be expensive
+        csvname = 'Results_ws{:.0f}_'.format(wsp) + paramfull + '.csv'
+        csvpath = os.path.join(postpro_dir, csvname)
+        dfAvg.to_csv(csvpath, sep='\t', index=False)
+        print(dfAvg)
+    print('created all csvs ')
     outlist = ['HSShftPwr_[kW]', 'RootMIP1_[kN-m]', 'RootMOoP1_[kN-m]', 'RootMzb1_[kN-m]', 'RotThrust_[kN]',
                'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',
                'AB1N008TnInd_[-]', 'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
     outlist_pd = ['HSShftPwr_[kW]', 'RootMOoP1_[kN-m]', 'RootMzb1_[kN-m]', 'RotThrust_[kN]',
                'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',
                'AB1N008TnInd_[-]', 'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
+    # outlist_pd = ['AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',                                              #  TODO fix
+    #            'AB1N008TnInd_[-]', 'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
+
     # calc_sim_times(paramfull, 2)
     # for out in outlist_pd:
     #     resolution_pDiff_single(paramfull, out, WS, loc, 2)
-    resolution_raw_all(paramfull, outlist, WS, 2)
-    resolution_pDiff_all(paramfull, outlist_pd, WS, loc, 2)
-    # spanwise_vary_both(paramfull, values, WS, 2)
+    # resolution_raw_all(paramfull, outlist, WS, 2)
+    # resolution_pDiff_all(paramfull, outlist_pd, WS, loc, 2)
+    spanwise_vary_both(paramfull, values, WS, 2)
 
     print('Ran ' + paramfull + ' post processing')
 
 if __name__ == "__main__":
-    study = study2
+
+    # x = np.linspace(0,4, 5)
+    # y = np.linspace(0, 4, 5)
+    # end = 5*np.pi/6
+    # x = np.linspace(0, end, 6)
+    # grid = np.meshgrid(x, y)
+    # test = pd.DataFrame(data=grid[0], columns=['a', 'b', 'c', 'd', 'e', 'f'])
+    # lista = ['a', 'b']
+    # listb = ['c', 'd']
+    # listc = ['e', 'f']
+    # a = test[lista].to_numpy()
+    # b = test[listb].to_numpy()
+    # c = test[listc].to_numpy()
+    # a = 1/(4/b*np.sin(c)*np.cos(c)-1)
+    # test[lista] = a
+    study = study4
     run_study(WS=study['WS'], paramfull=study['paramfull'], values=study[study['param']])
 
 
