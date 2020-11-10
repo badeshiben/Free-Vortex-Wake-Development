@@ -25,12 +25,11 @@ dpsiM1 = np.outer(np.ones(len(WS)), dpsi1)
 """ FILL THESE IN BASED ON DISCRETIZATION STUDY RESULTS """
 dpsi_cvg = 5*np.pi/180*np.ones(5)
 DTfvw_cvg = np.round(np.multiply(1/rotSpd, dpsi_cvg), decimals=3)
-nNWPanel_cvg = np.ones(5)  # TODO
 nearWakeExtent_cvg = 720*np.pi/180  # rad
 nNWPanel_cvg = np.round(nearWakeExtent_cvg/(np.multiply(rotSpd, DTfvw_cvg)), decimals=0)
 FWE_cvg = 6 * rot_D
-WakeLength_cvg = np.round(FWE_cvg * rotSpd/WS/dpsi_cvg)  # TODO
-WakeRegFactor_cvg = 3 * np.ones(5)  # TODO
+WakeLength_cvg = np.round(FWE_cvg * rotSpd/WS/dpsi_cvg)
+WakeRegFactor_cvg = np.array([1.5, 1.5, 1, 3, 3])
 WingRegFactor_cvg = 3 * np.ones(5)  # TODO
 
 dpsi_cvgM = np.outer(np.ones(len(WS)), dpsi_cvg)

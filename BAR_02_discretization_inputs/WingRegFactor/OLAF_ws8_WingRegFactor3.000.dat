@@ -23,7 +23,7 @@ default       FWShedVorticity - Include shed vorticity in the far wake {default:
 0             RegDeterMethod - Method to determine the regularization parameters {0: Manual, 1: Optimized, default: 0 }
 3             RegFunction   - Viscous diffusion function {0: None, 1: Rankine, 2: LambOseen, 3: Vatistas, 4: Denominator, "default": 3} (switch)
 3             WakeRegMethod - Wake regularization method {1: Constant, 2: Stretching, 3: Age, default: 1} (switch)
-3.0           WakeRegFactor - Wake regularization factor (m)
+1.0           WakeRegFactor - Wake regularization factor (m)
 3.0           WingRegFactor - Wing regularization factor (m)
 100.0         CoreSpreadEddyVisc - Eddy viscosity in core spreading methods, typical values 1-1000
 ------------------- WAKE TREATMENT OPTIONS ---------------------------------------------------

@@ -519,7 +519,7 @@ def run_study(WS, paramfull, values):
     dflist = []
     for i, wsp in enumerate(WS):
         case = 'OpenFAST_BAR_02_ws{:.0f}'.format(wsp)
-        filename = os.path.join('SOWFA/old 3/'+case+'.outb')
+        filename = os.path.join('SOWFA/rigid450/'+case+'.outb')
         df = weio.read(filename).toDataFrame()
         axindnames = [i for i in list(df.columns) if ('AxInd' in i)]
         vxnames = [i for i in list(df.columns) if ('Vx' in i)]
@@ -588,10 +588,10 @@ def run_study(WS, paramfull, values):
     #            'AB1N008TnInd_[-]', 'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
 
     # calc_sim_times(paramfull, 2)
-    # for out in outlist_pd:
-    #     resolution_pDiff_single(paramfull, out, WS, loc, 2)
+    for out in outlist_pd:
+        resolution_pDiff_single(paramfull, out, WS, loc, 2)
     # resolution_raw_all(paramfull, outlist, WS, 2)
-    # resolution_pDiff_all(paramfull, outlist_pd, WS, loc, 2)
+    resolution_pDiff_all(paramfull, outlist_pd, WS, loc, 2)
     spanwise_vary_both(paramfull, values, WS, 2)
 
     print('Ran ' + paramfull + ' post processing')
