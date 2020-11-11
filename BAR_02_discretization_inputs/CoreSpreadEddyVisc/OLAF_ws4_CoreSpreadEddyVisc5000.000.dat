@@ -2,7 +2,7 @@
 Free          wake          - input file for the BAR turbine
 --------------------------- GENERAL OPTIONS ---------------------------------------------------
 default       IntMethod     - Integration method {4: 2nd order Predictor/Corrector, 5: Forward Euler 1st order, default: 5} (switch)
-0.152         DTfvw         - Time interval for wake propagation. {default: dtaero} (s)
+0.208         DTfvw         - Time interval for wake propagation. {default: dtaero} (s)
 0.0           FreeWakeStart - Time when wake is free. (-) value = always free. {default: 0.0} (s)
 1.0           FullCircStart - Time at which full circulation is reached. {default: 0.0} (s)
 --------------------------- CIRCULATION SPECIFICATIONS ----------------------------------------
@@ -23,8 +23,8 @@ default       FWShedVorticity - Include shed vorticity in the far wake {default:
 0             RegDeterMethod - Method to determine the regularization parameters {0: Manual, 1: Optimized, default: 0 }
 3             RegFunction   - Viscous diffusion function {0: None, 1: Rankine, 2: LambOseen, 3: Vatistas, 4: Denominator, "default": 3} (switch)
 3             WakeRegMethod - Wake regularization method {1: Constant, 2: Stretching, 3: Age, default: 1} (switch)
-3.0           WakeRegFactor - Wake regularization factor (m)
-3.0           WingRegFactor - Wing regularization factor (m)
+1.5           WakeRegFactor - Wake regularization factor (m)
+0.5           WingRegFactor - Wing regularization factor (m)
 5000.0        CoreSpreadEddyVisc - Eddy viscosity in core spreading methods, typical values 1-1000
 ------------------- WAKE TREATMENT OPTIONS ---------------------------------------------------
 False         TwrShadowOnWake - Include tower flow disturbance effects on wake convection {default:false} [only if TwrPotent or TwrShadow]

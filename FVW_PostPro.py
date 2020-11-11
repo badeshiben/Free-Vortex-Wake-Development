@@ -425,7 +425,7 @@ def spanwise_vary_both(paramfull, values, WS, plot):
             CircMean  = Circ.mean(axis=1);   CircMean = CircMean.rename('CircMean')
             CircMax   = Circ.max(axis=1);    CircMax  = CircMax.rename('CircMax')
             df = pd.concat([df, AxIndMean, AxIndMax, CircMean, CircMax], axis=1)
-            df.to_csv('Results_ws{:04.1f}'.format(ws) + '_' + paramfull + '.csv', sep='\t', index=False)
+            df.to_csv('./PostPro/' + paramfull +'/Results_ws{:04.1f}'.format(ws) + '_' + paramfull + '.csv', sep='\t', index=False)
             # AxInd = pd.concat([AxInd, mean, max], axis=1)
             #plot everything
             k = df.index[abs(df[paramfull]-value)<1e-5][0]  # assert almost equal
@@ -541,7 +541,6 @@ def run_study(WS, paramfull, values):
         r3 = np.concatenate([r, r, r])
         vy = df[vynames].to_numpy()
         tn = vy/rotSpd[i]/r3-1
-
         tn = np.clip(tn, -1, 1)
         df[tnindnames] = tn
         dflist.append(df)
@@ -587,10 +586,10 @@ def run_study(WS, paramfull, values):
     # outlist_pd = ['AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',                                              #  TODO fix
     #            'AB1N008TnInd_[-]', 'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
 
-    # calc_sim_times(paramfull, 2)
+    calc_sim_times(paramfull, 2)
     for out in outlist_pd:
         resolution_pDiff_single(paramfull, out, WS, loc, 2)
-    # resolution_raw_all(paramfull, outlist, WS, 2)
+    resolution_raw_all(paramfull, outlist, WS, 2)
     resolution_pDiff_all(paramfull, outlist_pd, WS, loc, 2)
     spanwise_vary_both(paramfull, values, WS, 2)
 
@@ -612,7 +611,7 @@ if __name__ == "__main__":
     # c = test[listc].to_numpy()
     # a = 1/(4/b*np.sin(c)*np.cos(c)-1)
     # test[lista] = a
-    study = study4
+    study = study5
     run_study(WS=study['WS'], paramfull=study['paramfull'], values=study[study['param']])
 
 

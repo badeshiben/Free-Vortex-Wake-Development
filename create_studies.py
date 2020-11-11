@@ -30,7 +30,7 @@ nNWPanel_cvg = np.round(nearWakeExtent_cvg/(np.multiply(rotSpd, DTfvw_cvg)), dec
 FWE_cvg = 6 * rot_D
 WakeLength_cvg = np.round(FWE_cvg * rotSpd/WS/dpsi_cvg)
 WakeRegFactor_cvg = np.array([1.5, 1.5, 1, 3, 3])
-WingRegFactor_cvg = 3 * np.ones(5)  # TODO
+WingRegFactor_cvg = np.array([0.5, 3, 3, 2, 0.5])
 
 dpsi_cvgM = np.outer(np.ones(len(WS)), dpsi_cvg)
 WakeLength1 = np.round(FWE * rotSpdM/WSM/dpsiM1, decimals=0)  # Npanels
@@ -138,19 +138,19 @@ WS = [4, 12]
 RPM = np.array([4, 7.85])
 rotSpd = RPM * 0.104719755  # rad/s
 Pitch = [0, 10]  # deg
-CSEV = np.array([100, 500, 1000, 5000])
-CoreSpreadEddyVisc = np.outer(np.ones(len(WS)), np.array([100, 500, 1000, 5000]))
+CSEV = np.array([100, 300, 500, 700, 1000, 2000, 5000, 7000, 10000])
+CoreSpreadEddyVisc = np.outer(np.ones(len(WS)), CSEV)
 study6 = {
         'param'                         : 'CoreSpreadEddyVisc',
         'paramfull'                     : 'CoreSpreadEddyVisc_[-]',
         'WS'                            : WS,
         'RPM'                           : RPM,
         'pitch'                         : Pitch,
-        'DTfvw'                         : np.outer(DTfvw_cvg[[1, -1]], np.ones(len(CSEV))),
-        'nNWPanel'                      : np.outer(nNWPanel_cvg[[1, -1]], np.ones(len(CSEV))),
-        'WakeLength'                    : WakeLength,
-        'WakeRegFactor'                 : np.outer(WakeRegFactor_cvg[[1, -1]], np.ones(len(CSEV))),
-        'WingRegFactor'                 : np.outer(WingRegFactor_cvg[[1, -1]], np.ones(len(CSEV))),
+        'DTfvw'                         : np.outer(DTfvw_cvg[[0, -1]], np.ones(len(CSEV))),
+        'nNWPanel'                      : np.outer(nNWPanel_cvg[[0, -1]], np.ones(len(CSEV))),
+        'WakeLength'                    : np.outer(WakeLength_cvg[[0, -1]], np.ones(len(CSEV))),
+        'WakeRegFactor'                 : np.outer(WakeRegFactor_cvg[[0, -1]], np.ones(len(CSEV))),
+        'WingRegFactor'                 : np.outer(WingRegFactor_cvg[[0, -1]], np.ones(len(CSEV))),
         'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc,
         'TMax': 950
 }
