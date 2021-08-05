@@ -6,6 +6,13 @@ import fastlib
 import weio
 from create_studies import study1, study2, study3, study4, study5, study6
 import re
+from prettyplotlib.utils import remove_chartjunk
+import matplotlib.pylab as pl
+
+
+colors=pl.cm.tab20b(np.linspace(0,1,10))
+plt.rc("font",family="serif")
+plt.rc("font",size=14)
 
 """ PLOTTING MEAN QUANTITIES """
 ####################################################################################################################
@@ -18,6 +25,7 @@ def calc_sim_times(paramfull, plot):
     CPU_hrs = []
     ws = []
     val = []
+    dr = 3.448147165807185
     """extract values to plot"""
     data = pd.read_csv(timefile, delimiter=r"\s+", header=None)
     data.columns = ['fname','-','-','-','time','unit']
@@ -42,32 +50,42 @@ def calc_sim_times(paramfull, plot):
     fig, ax = plt.subplots(1, figsize=(8.5, 11))
     for w in wsuq:
             wi = np.where(wsuq==w)
+            color_index = wi[0][0]*2+1
             RPMi = RPM[wi]
             idxs = np.where(ws==w)[0]
             idxs = idxs.tolist()
             CPU_hrs_i = [CPU_hrs[i] for i in idxs]
             val_i = [val[i] for i in idxs]
             val_i = np.asarray(val_i)
+            if paramfull == 'nNWPanel_[-]':
+                val_i.sort()
+                CPU_hrs_i.sort()
             if paramfull == 'DTfvw_[s]':
-                ax.plot(val_i * RPMi * 6, CPU_hrs_i, 'o', label='WS = {:}'.format(w))
+                ax.plot(val_i * RPMi * 6, CPU_hrs_i, '-o', color=colors[color_index], label='WS = {:}'.format(w))
             elif paramfull == 'nNWPanel_[-]':
-                ax.plot(val_i*5, CPU_hrs_i, 'o', label='WS = {:}'.format(w))  # TODO asssume dpsi_cvg=5deg
+                ax.plot(val_i*5, CPU_hrs_i, '-o', color=colors[color_index], label='WS = {:}'.format(w))  # TODO asssume dpsi_cvg=5deg
             elif paramfull == 'WakeLength_[-]':
-                ax.plot(val_i*w*5/(RPMi*6*102.996267808408*2), CPU_hrs_i, 'o', label='WS = {:}'.format(w))  # TODO asssume dpsi_cvg=5deg
+                ax.plot(val_i*w*5/(RPMi*6*102.996267808408*2), CPU_hrs_i, '-o', color=colors[color_index], label='WS = {:}'.format(w))  # TODO asssume dpsi_cvg=5deg
+            elif paramfull == 'WakeRegFactor_[-]' or 'WingRegFactor_[-]':
+                ax.plot(val_i/dr, CPU_hrs_i, '-o', color=colors[color_index], label='WS = {:}'.format(w))
             else:
-                ax.plot(val_i, CPU_hrs_i, 'o', label='WS = {:}'.format(w))
-    ax.set_title('Simulation Time', fontsize=10)
+                ax.plot(val_i, CPU_hrs_i, '-o', color=colors[color_index], label='WS = {:}'.format(w))
     ax.grid()
     ax.legend(loc='best')
-    ax.set_ylabel('CPU hours')
+    ax.set_ylabel('Computational Time [hours]')
+    remove_chartjunk(ax, ['top', 'right'])
     if paramfull == 'DTfvw_[s]':
-        ax.set_xlabel('dpsi [deg]')
+        ax.set_xlabel('Wake Discretization [deg]')
     elif paramfull == 'nNWPanel_[-]':
-        ax.set_xlabel('NearWakeExtent [deg]')
+        ax.set_xlabel('Near Wake Extent [deg]')
     elif paramfull == 'WakeLength_[-]':
-        ax.set_xlabel('FarWakeExtent [D]')
-    else:
-        ax.set_xlabel(paramfull)
+        ax.set_xlabel('Far Wake Extent [D]')
+    elif paramfull == 'WakeRegFactor_[-]':
+        ax.set_xlabel('Wake Regularization Factor [dr]')
+    elif paramfull == 'WingRegFactor_[-]':
+        ax.set_xlabel('Wing Regularization Factor [dr]')
+    elif paramfull == 'CoreSpreadEddyVisc_[-]':
+        ax.set_xlabel('Core Spread Eddy Viscosity [-]')
     if plot == 1:
         plt.show()
         plt.close()
@@ -116,7 +134,7 @@ def resolution_raw_all(paramfull, outlist, WS, plot):
                     if i == n_row - 1:
                         ax[i, j].set_xlabel(paramfull)
                         if paramfull == 'DTfvw_[s]':
-                            ax[i, j].set_xlabel('dpsi [deg]', fontsize=fsize)
+                            ax[i, j].set_xlabel('Wake Discretization [deg]', fontsize=fsize)
                         else:
                             ax[i, j].set_xlabel(paramfull, fontsize=fsize)
                     if idx == (n_plot - 1):
@@ -150,14 +168,16 @@ def resolution_pDiff_single(paramfull, out, WS, loc, plot):
     fig, ax = plt.subplots(1, figsize=(8.5, 11))  # (6.4,4.8)
     param = paramfull.split('_', 1)[0]
     outname = out.split('_', 1)[0]
+    dr = 3.448147165807185
     for ws in WS:
         # df = pd.read_csv('./PostPro/' + paramfull +'/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
         # df_fine = df.iloc[loc]
         # dfpdiff = (df - df_fine) / df_fine * 100
         # dfpdiff = dfpdiff.fillna(0)
         k = WS.index(ws)
+        color_index = 2*k + 1
         df = pd.read_csv('./PostPro/' + paramfull + '/Results_ws{:.0f}_'.format(ws) + paramfull + '.csv', sep='\t')
-        full_list = [out] + [paramfull]
+        full_list = [out] + [paramfull]+['RotSpeed_[rpm]']
         if paramfull in {'WakeRegFactor_[-]', 'WingRegFactor_[-]',
                          'CoreSpreadEddyVisc_[-]'}:  # Compare to SOWFA for these runs
             SOWFA_out = out
@@ -190,22 +210,31 @@ def resolution_pDiff_single(paramfull, out, WS, loc, plot):
             dfpdiff = (df - df_fine) / df_fine * 100
         dfpdiff = dfpdiff.fillna(0)
         if paramfull=='DTfvw_[s]':
-            ax.plot(df[paramfull]*df['RotSpeed_[rpm]']*6, dfpdiff[out], '-o', label='WS = {:}'.format(ws))
+            ax.plot(df[paramfull]*df['RotSpeed_[rpm]']*6, dfpdiff[out], '-o', color=colors[color_index], label='WS = {:}'.format(ws))
         elif paramfull == 'nNWPanel_[-]':
-            ax.plot(df[paramfull]*5, dfpdiff[out], '-o', label='WS = {:}'.format(ws))  # TODO asssume dpsi_cvg=5deg
+            ax.plot(df[paramfull]*5, dfpdiff[out], '-o', color=colors[color_index], label='WS = {:}'.format(ws))  # TODO asssume dpsi_cvg=5deg
         elif paramfull == 'WakeLength_[-]':
-            ax.plot(df[paramfull]*ws*5/(df['RotSpeed_[rpm]']*6*102.996267808408*2), dfpdiff[out], '-o', label='WS = {:}'.format(ws))  # TODO asssume dpsi_cvg=5deg
+            ax.plot(df[paramfull]*ws*5/(df['RotSpeed_[rpm]']*6*102.996267808408*2), dfpdiff[out], '-o', color=colors[color_index], label='WS = {:}'.format(ws))  # TODO asssume dpsi_cvg=5deg
+        elif paramfull == 'WakeRegFactor_[-]' or 'WingRegFactor_[-]':
+            ax.plot(df[paramfull]/dr, dfpdiff[out], '-o', color=colors[color_index], label='WS = {:}'.format(ws))
         else:
-            ax.plot(df[paramfull], dfpdiff[out], '-o', label='WS = {:}'.format(ws))
-    ax.set_title(outname, fontsize=10)
+            ax.plot(df[paramfull], dfpdiff[out], '-o', color=colors[color_index], label='WS = {:}'.format(ws))
+    # ax.set_title(outname, fontsize=10)
     ax.grid()
-    ax.set_ylabel('% Difference')
+    ax.set_ylabel('Percent Difference')
+    remove_chartjunk(ax, ['top', 'right'])
     if paramfull == 'DTfvw_[s]':
-        ax.set_xlabel('dpsi [deg]')
+        ax.set_xlabel('Wake Discretization [deg]')
     elif paramfull == 'nNWPanel_[-]':
-        ax.set_xlabel('NearWakeExtent [deg]')
+        ax.set_xlabel('Near Wake Extent [deg]')
     elif paramfull == 'WakeLength_[-]':
-        ax.set_xlabel('FarWakeExtent [D]')
+        ax.set_xlabel('Far Wake Extent [D]')
+    elif paramfull == 'WakeRegFactor_[-]':
+        ax.set_xlabel('Wake Regularization Factor [dr]')
+    elif paramfull == 'WingRegFactor_[-]':
+        ax.set_xlabel('Wing Regularization Factor [dr]')
+    elif paramfull == 'CoreSpreadEddyVisc_[-]':
+        ax.set_xlabel('Core Spread Eddy Viscosity [-]')
     else:
         ax.set_xlabel(paramfull)
     plt.tick_params(direction='in')
@@ -257,6 +286,7 @@ def resolution_pDiff_all(paramfull, outlist, WS, loc, plot):
             #                'AB1N120TnInd_[-]': 'AB1N008TnInd_[-]', 'AB1N345TnInd_[-]': 'AB1N023TnInd_[-]',
             #                'AB1N120Gam_[m^2/s]': 'AB1N008Gam_[m^2/s]', 'AB1N345Gam_[m^2/s]': 'AB1N023Gam_[m^2/s]'})
         else:
+            rotspd = df['RotSpeed_[rpm]']
             df = df[full_list]
             df_fine = df.iloc[loc]
             dfpdiff = (df - df_fine) / df_fine * 100
@@ -266,7 +296,7 @@ def resolution_pDiff_all(paramfull, outlist, WS, loc, plot):
                 idx = i*n_col + j
                 if idx < n_plot:
                     if paramfull == 'DTfvw_[s]':
-                        ax[i, j].plot(df[paramfull] * df['RotSpeed_[rpm]'] * 6, dfpdiff[outlist[idx]], '-o',
+                        ax[i, j].plot(df[paramfull] * rotspd * 6, dfpdiff[outlist[idx]], '-o',
                             label='WS = {:}'.format(ws))
                     elif paramfull == 'nNWPanel_[-]':
                         ax[i, j].plot(df[paramfull] * 5, dfpdiff[outlist[idx]], '-o',
@@ -515,50 +545,6 @@ def run_study(WS, paramfull, values):
     elif paramfull == 'CoreSpreadEddyVisc_[-]':
         loc = -1
 
-    """make SOWFA csvs"""
-    dflist = []
-    for i, wsp in enumerate(WS):
-        case = 'OpenFAST_BAR_02_ws{:.0f}'.format(wsp)
-        filename = os.path.join('SOWFA/rigid450/'+case+'.outb')
-        df = weio.read(filename).toDataFrame()
-        axindnames = [i for i in list(df.columns) if ('AxInd' in i)]
-        vxnames = [i for i in list(df.columns) if ('Vx' in i)]
-        vynames = [i for i in list(df.columns) if ('Vy' in i)]
-        tnindnames = [i for i in list(df.columns) if ('TnInd' in i)]
-        phinames = [i for i in list(df.columns) if ('Phi' in i)]
-        ctnames = [i for i in list(df.columns) if (('AB' in i) & ('Ct' in i))]
-        ax = 1 - df[vxnames] / wsp
-        ax = np.clip(ax, -0.1, 0.4)
-        df[axindnames] = ax
-        # TnInd method 1
-        # ph = df[phinames].to_numpy()
-        # ct = df[ctnames].to_numpy()
-        # tn = 1 / (4 / ct * np.sin(np.radians(ph)) * np.cos(np.radians(ph)) - 1)
-        # TnInd method 2
-        R = 100  # rotor radius - hub radius
-        N = 451  # # blade nodes
-        r = np.linspace(0, 1, N)*R+3
-        r3 = np.concatenate([r, r, r])
-        vy = df[vynames].to_numpy()
-        tn = vy/rotSpd[i]/r3-1
-        tn = np.clip(tn, -1, 1)
-        df[tnindnames] = tn
-        dflist.append(df)
-    # make my own averagePostPro
-    dfAvg = None
-    for i,f in enumerate(dflist):
-        postpro=fastlib.averageDF(f, avgMethod='periods', avgParam=1, ColMap={'WS_[m/s]': 'Wind1VelX_[m/s]'})
-        MeanValues=postpro # todo
-        if dfAvg is None:
-            # We create a dataframe here, now that we know the colums
-            columns = MeanValues.columns
-            dfAvg = pd.DataFrame(np.nan, index=np.arange(len(dflist)), columns=columns)
-        dfAvg.iloc[i,:] = MeanValues.copy().values
-    dfAvg.insert(0, 'ws_[m/s]', WS)
-    csvname = 'Results_SOWFA.csv'
-    csvpath = os.path.join('PostPro/', csvname)
-    dfAvg.to_csv(csvpath, sep='\t', index=False)
-
     if not os.path.isdir(cwd + postpro_dir[1:]):
         os.mkdir(cwd + postpro_dir[1:])
     for wsp in WS:
@@ -583,10 +569,11 @@ def run_study(WS, paramfull, values):
     outlist_pd = ['HSShftPwr_[kW]', 'RootMOoP1_[kN-m]', 'RootMzb1_[kN-m]', 'RotThrust_[kN]',
                'TwrBsMxt_[kN-m]', 'TwrBsMyt_[kN-m]', 'AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',
                'AB1N008TnInd_[-]', 'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
+
     # outlist_pd = ['AB1N008AxInd_[-]', 'AB1N023AxInd_[-]',                                              #  TODO fix
     #            'AB1N008TnInd_[-]', 'AB1N023TnInd_[-]', 'AB1N008Gam_[m^2/s]', 'AB1N023Gam_[m^2/s]']
 
-    calc_sim_times(paramfull, 2)
+    # calc_sim_times(paramfull, 2)
     for out in outlist_pd:
         resolution_pDiff_single(paramfull, out, WS, loc, 2)
     resolution_raw_all(paramfull, outlist, WS, 2)
@@ -597,21 +584,7 @@ def run_study(WS, paramfull, values):
 
 if __name__ == "__main__":
 
-    # x = np.linspace(0,4, 5)
-    # y = np.linspace(0, 4, 5)
-    # end = 5*np.pi/6
-    # x = np.linspace(0, end, 6)
-    # grid = np.meshgrid(x, y)
-    # test = pd.DataFrame(data=grid[0], columns=['a', 'b', 'c', 'd', 'e', 'f'])
-    # lista = ['a', 'b']
-    # listb = ['c', 'd']
-    # listc = ['e', 'f']
-    # a = test[lista].to_numpy()
-    # b = test[listb].to_numpy()
-    # c = test[listc].to_numpy()
-    # a = 1/(4/b*np.sin(c)*np.cos(c)-1)
-    # test[lista] = a
-    study = study5
+    study = study1
     run_study(WS=study['WS'], paramfull=study['paramfull'], values=study[study['param']])
 
 

@@ -22,6 +22,14 @@ rotSpdM = np.outer(rotSpd, np.ones(len(dpsi)))
 WSM = np.outer(WS, np.ones(len(dpsi)))
 dpsiM1 = np.outer(np.ones(len(WS)), dpsi1)
 
+R=102.99626780840836
+TSR = np.divide(rotSpd*R, WS)
+rho = 1.225
+A=np.pi*R*R
+Tmax = 1/2*rho*A*np.square(WS)
+T_SOWFA = np.array([87.27, 373.03, 822.07, 596.1, 444.2])*1000
+Ct = np.divide(T_SOWFA, Tmax)
+
 """ FILL THESE IN BASED ON DISCRETIZATION STUDY RESULTS """
 dpsi_cvg = 5*np.pi/180*np.ones(5)
 DTfvw_cvg = np.round(np.multiply(1/rotSpd, dpsi_cvg), decimals=3)
@@ -133,7 +141,7 @@ study5 = {
         'CoreSpreadEddyVisc'            : CoreSpreadEddyVisc_default * np.ones([len(WS), len(WiRF)]),
         'TMax': 950
 }
-"""study 6: """
+"""study 6: core spread eddy viscosity"""
 WS = [4, 12]
 RPM = np.array([4, 7.85])
 rotSpd = RPM * 0.104719755  # rad/s
@@ -217,4 +225,3 @@ def calc_sim_times(paramfull, plot):
         plot_name = "PostPro/" + paramfull + '/' + param + "_simtime" + ".pdf"
         plt.savefig(plot_name, bbox_inches='tight')
 
-calc_sim_times('DTfvw_[s]', 2)
