@@ -17,7 +17,7 @@ mpmath==1.1.0
 ncurses==6.2
 nrel-pysam==1.2.dev3
 nrel-pysam-stubs==1.2.dev3
-numpy==1.16.2
+numpy==1.22.0
 openssl==1.1.1e
 packaging==20.3
 pandas==0.24.1
