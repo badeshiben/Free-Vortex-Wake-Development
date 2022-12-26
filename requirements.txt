@@ -33,7 +33,7 @@ sympy==1.5.1
 tk==8.6.8
 urllib3==1.24.1
 wcwidth==0.1.8
-wheel==0.34.2
+wheel==0.38.1
 xlsxwriter==1.2.8
 xz==5.2.4
 zipp==3.1.0
